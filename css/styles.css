@@ -1505,3 +1505,13 @@ button {
     text-align: center;
   }
 }
+
+/* Outline-Only File & Action Glyphs */
+.folder-outline-icon {
+  stroke: #E5A93C !important;
+  fill: none !important;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
