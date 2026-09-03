@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelvra — Autonomous Coding Agent Orchestrator & Swarm Control Room</title>
+  <meta name="description" content="Open-source multi-agent developer intelligence platform. Voice-driven, security-screened, Git worktree isolated, and verified with human-in-the-loop PR reviews." />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D97757'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>" />
+</head>
+<body>
+
+  <!-- Ambient Cosmic Background Particles & Glow -->
+  <div class="ambient-background">
+    <div class="ambient-glow-orb-1"></div>
+    <div class="ambient-glow-orb-2"></div>
+  </div>
+
+  <!-- STICKY SITE NAVIGATION -->
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand">
+        <div class="kelvra-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0906F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+        </div>
+        <span class="nav-wordmark">Kelvra</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#modes" class="nav-link">Modes</a></li>
+        <li><a href="#showcase" class="nav-link">Code Mode</a></li>
+        <li><a href="#voice" class="nav-link">Voice Orb</a></li>
+        <li><a href="#open-source" class="nav-link">Open Source</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://github.com/greninja-op/kelvra-marketing-page.git" target="_blank" rel="noopener" class="btn-nav-github">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+
+        <a href="#download" class="btn-nav-primary">
+          <span>Download</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       SECTION 2: HERO SECTION & REAL 3-PANE KELVRA APP SHOWCASE
+       ======================================================================== -->
+  <section class="hero-section">
+    <!-- Vertical Radiant Terracotta Beam -->
+    <div class="hero-light-beam"></div>
+
+    <div class="container hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        <span>AUTONOMOUS DEVELOPER INTELLIGENCE PLATFORM</span>
+      </div>
+
+      <h1 class="hero-headline">
+        Orchestrate multi-agent swarms.<br />
+        From <em>voice directive</em> to verified code.
+      </h1>
+
+      <p class="hero-subhead">
+        Kelvra screens prompts with PromptGuard, decomposes high-level directives into disjoint tasks, isolates each agent in an independent Git worktree, and gates every change behind PR-style diff review.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#download" class="btn-hero-primary" id="btnHeroDownload">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/>
+          </svg>
+          <span>Download for Windows (x64)</span>
+        </a>
+
+        <a href="https://github.com/greninja-op/kelvra-marketing-page.git" target="_blank" rel="noopener" class="btn-hero-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+          </svg>
+          <span>View on GitHub</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- High-Fidelity Mockup of Kelvra Bench 3-Pane Interface -->
+    <div class="container-wide hero-showcase-wrapper">
+      <div class="mockup-window-frame">
+        <!-- Top Window Chrome -->
+        <div class="mockup-window-header">
+          <div class="mockup-window-controls">
+            <span class="window-dot red"></span>
+            <span class="window-dot yellow"></span>
+            <span class="window-dot green"></span>
+          </div>
+
+          <!-- Mode Switcher in Window Header -->
+          <div class="mockup-mode-switch-preview">
+            <span class="mockup-mode-tab">Chat</span>
+            <span class="mockup-mode-tab active">Code</span>
+            <span class="mockup-mode-tab">Agent</span>
+          </div>
+
+          <div class="mockup-header-meta">
+            <span style="color: #52B788;">● AIR-GAP READY</span>
+            <span>· PORT 8099</span>
+          </div>
+        </div>
+
+        <!-- 3-Pane Body -->
+        <div class="mockup-window-body">
+          <!-- Left: Workspace Rail -->
+          <div class="mockup-sidebar">
+            <div>
+              <div class="mockup-section-title">Workspaces</div>
+              <div class="mockup-item active">
+                <span>📁 kelvra-bench</span>
+                <span class="mockup-badge-mini">6 LIVE</span>
+              </div>
+              <div class="mockup-item">
+                <span>📁 kelvra-voice</span>
+                <span class="mockup-badge-mini">IDLE</span>
+              </div>
+              <div class="mockup-item">
+                <span>📁 kelvra-security</span>
+                <span class="mockup-badge-mini">ARMED</span>
+              </div>
+              <div class="mockup-item">
+                <span>📁 kelvra-space</span>
+                <span class="mockup-badge-mini">HUB</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="mockup-section-title">Isolation Mode</div>
+              <div class="mockup-item">
+                <span>🌿 Git Worktrees (Isolated)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center: Multi-Terminal Grid -->
+          <div class="mockup-grid-center">
+            <!-- Pane 1 -->
+            <div class="mockup-terminal-card">
+              <div class="mockup-term-header">
+                <div class="mockup-term-title">
+                  <span class="mockup-term-dot green"></span>
+                  <span>Frontend · Claude Code</span>
+                </div>
+                <span class="pane-model-pill">Claude 3.7</span>
+              </div>
+              <div class="mockup-term-logs">
+                <div class="cmd"><span class="dollar">$</span> git worktree add .worktrees/fe</div>
+                <div>• Inspecting shared tokens in styles.css...</div>
+                <div class="success">✔ Hairline borders & GPU canvas mounted.</div>
+              </div>
+              <div class="mockup-term-footer">
+                <span>📂 static/js/app.js</span>
+                <span>2.4k tokens</span>
+              </div>
+            </div>
+
+            <!-- Pane 2 -->
+            <div class="mockup-terminal-card">
+              <div class="mockup-term-header">
+                <div class="mockup-term-title">
+                  <span class="mockup-term-dot terracotta"></span>
+                  <span>Backend · Antigravity</span>
+                </div>
+                <span class="pane-model-pill">Claude Fable 5.1</span>
+              </div>
+              <div class="mockup-term-logs">
+                <div class="cmd"><span class="dollar">$</span> uvicorn src.server:app --port 8099</div>
+                <div>• Mounting standing context & voice intent parser...</div>
+                <div class="success">✔ PR review gate verified. 0 leaks.</div>
+              </div>
+              <div class="mockup-term-footer">
+                <span>📂 src/server.py</span>
+                <span>Effort: High</span>
+              </div>
+            </div>
+
+            <!-- Pane 3 -->
+            <div class="mockup-terminal-card">
+              <div class="mockup-term-header">
+                <div class="mockup-term-title">
+                  <span class="mockup-term-dot green"></span>
+                  <span>Database · Codex</span>
+                </div>
+                <span class="pane-model-pill">GPT-4o</span>
+              </div>
+              <div class="mockup-term-logs">
+                <div class="cmd"><span class="dollar">$</span> python -m migrations.verify</div>
+                <div>• Validating schema constraints on session groups...</div>
+                <div class="success">✔ Disjoint boundary lock confirmed.</div>
+              </div>
+              <div class="mockup-term-footer">
+                <span>📂 data/schema.sql</span>
+                <span>Sync OK</span>
+              </div>
+            </div>
+
+            <!-- Pane 4 -->
+            <div class="mockup-terminal-card">
+              <div class="mockup-term-header">
+                <div class="mockup-term-title">
+                  <span class="mockup-term-dot green"></span>
+                  <span>QA Sentinel · Cursor</span>
+                </div>
+                <span class="pane-model-pill">Local Llama 3</span>
+              </div>
+              <div class="mockup-term-logs">
+                <div class="cmd"><span class="dollar">$</span> python -m unittest discover</div>
+                <div class="success">✔ 44/44 tests passed (0 regressions).</div>
+                <div>★ PR ready for human review.</div>
+              </div>
+              <div class="mockup-term-footer">
+                <span>📂 tests/test_voice.py</span>
+                <span>100% Pass</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Inspector Panel -->
+          <div class="mockup-inspector">
+            <div class="mockup-section-title">Swarm Telemetry</div>
+            <div class="mockup-card-metric">
+              <div class="metric-title">Active Fleet</div>
+              <div class="metric-val">6 Concurrent Agents</div>
+              <span class="metric-pill-ok">Worktrees Locked</span>
+            </div>
+
+            <div class="mockup-card-metric">
+              <div class="metric-title">PromptGuard Pre-Screen</div>
+              <div class="metric-val">100% Clean</div>
+              <span class="metric-pill-ok">0 Injections</span>
+            </div>
+
+            <div class="mockup-card-metric">
+              <div class="metric-title">Context Budget</div>
+              <div class="metric-val">28.4k / 128k Tokens</div>
+              <span class="metric-pill-ok">Green (22%)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ========================================================================
+       SECTION 3: THREE MODES ("AGENT. CODE. CHAT.")
+       ======================================================================== -->
+  <section class="modes-section" id="modes">
+    <div class="container">
+      <span class="section-eyebrow">UNIFIED CONTROL ROOM</span>
+      <h2 class="section-title">Agent. Code. Chat.</h2>
+      <p class="section-desc">
+        One unified application. Three distinct operating paradigms tuned for autonomous agents, high-density terminal swarms, and interactive pair-programming.
+      </p>
+
+      <div class="modes-grid">
+        <!-- Card 1: Agent Mode -->
+        <div class="mode-card">
+          <div class="mode-icon-box">🧭</div>
+          <h3 class="mode-name">Agent Mode</h3>
+          <div class="mode-tagline">Autonomous Decomposition & Vibe Kanban</div>
+          <p class="mode-body-text">
+            Give a high-level goal and let Kelvra construct an executable DAG graph. Tasks automatically decompose across specialized personas with real-time status boards and conflict-free allocation.
+          </p>
+        </div>
+
+        <!-- Card 2: Code Mode -->
+        <div class="mode-card">
+          <div class="mode-icon-box">⚡</div>
+          <h3 class="mode-name">Code Mode</h3>
+          <div class="mode-tagline">3×2 Magnetic Split-Grid Swarms</div>
+          <p class="mode-body-text">
+            Run up to six parallel CLI agents simultaneously. Panes resize magnetically with zero floating windows, while terminal handback keeps every process accessible for interactive debugging.
+          </p>
+        </div>
+
+        <!-- Card 3: Chat Mode -->
+        <div class="mode-card">
+          <div class="mode-icon-box">💬</div>
+          <h3 class="mode-name">Chat Mode</h3>
+          <div class="mode-tagline">Pair Programming & Universal Artifacts</div>
+          <p class="mode-body-text">
+            Converse directly with flagship reasoning models. View generated architectural plans, real-time code diffs, and interactive live previews in an integrated right-hand artifact drawer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ========================================================================
+       SECTION 4: CODE MODE SHOWCASE & INFINITE CLI MARQUEE
+       ======================================================================== -->
+  <section class="code-mode-showcase-section" id="showcase">
+    <div class="container">
+      <div class="showcase-header">
+        <span class="section-eyebrow">MULTI-AGENT SWARM ORCHESTRATION</span>
+        <h2 class="section-title">Built for parallel agent swarms.</h2>
+        <p class="section-desc">
+          Six simultaneous CLI sessions. Zero file write collisions. Magnetic split grid with real interactive shell handback.
+        </p>
+      </div>
+
+      <!-- Live Terminal Grid Mockup -->
+      <div class="terminal-grid-showcase">
+        <div class="terminal-grid-header-meta">
+          <div class="grid-active-badge">
+            <span class="mockup-term-dot green"></span>
+            <span>SWARM ROOM · 6 SESSIONS SYNCHRONIZED</span>
+          </div>
+          <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-secondary);">
+            ISOLATION: <code>.worktrees/branch-isolated</code>
+          </div>
+        </div>
+
+        <div class="grid-real-split-layout">
+          <!-- 1: Frontend -->
+          <div class="grid-pane">
+            <div class="pane-chrome">
+              <div class="pane-identity"><span class="mockup-term-dot green"></span>🎨 Frontend</div>
+              <span class="pane-model-pill">Claude 3.7</span>
+            </div>
+            <div class="pane-stream">
+              <span class="dollar">$</span> <span class="hi-code">npm run dev</span><br />
+              • Compiling CSS tokens in styles.css...<br />
+              <span class="status-ok">✔ Vite bundle ready on :5173</span>
+            </div>
+            <div class="pane-bar"><span>📂 src/components</span><span>183 hidden</span></div>
+          </div>
+
+          <!-- 2: Backend -->
+          <div class="grid-pane">
+            <div class="pane-chrome">
+              <div class="pane-identity"><span class="mockup-term-dot terracotta"></span>⚙️ Backend</div>
+              <span class="pane-model-pill">Claude Fable 5.1</span>
+            </div>
+            <div class="pane-stream">
+              <span class="dollar">$</span> <span class="hi-code">python -m src.server</span><br />
+              • Uvicorn running on :8099<br />
+              <span class="status-ok">✔ WebSocket /ws/swarm armed</span>
+            </div>
+            <div class="pane-bar"><span>📂 src/server.py</span><span>High Effort</span></div>
+          </div>
+
+          <!-- 3: Database -->
+          <div class="grid-pane">
+            <div class="pane-chrome">
+              <div class="pane-identity"><span class="mockup-term-dot green"></span>🗄️ Database</div>
+              <span class="pane-model-pill">GPT-4o</span>
+            </div>
+            <div class="pane-stream">
+              <span class="dollar">$</span> <span class="hi-code">alembic upgrade head</span><br />
+              • Disjoint foreign keys applied.<br />
+              <span class="status-ok">✔ Index verified without lock</span>
+            </div>
+            <div class="pane-bar"><span>📂 migrations/</span><span>3.1k tokens</span></div>
+          </div>
+
+          <!-- 4: QA Tests -->
+          <div class="grid-pane">
+            <div class="pane-chrome">
+              <div class="pane-identity"><span class="mockup-term-dot green"></span>🧪 QA Tests</div>
+              <span class="pane-model-pill">Antigravity</span>
+            </div>
+            <div class="pane-stream">
+              <span class="dollar">$</span> <span class="hi-code">python -m unittest</span><br />
+              • Ran 44 tests in 22.7s<br />
+              <span class="status-ok">✔ 100% assertions passed</span>
+            </div>
+            <div class="pane-bar"><span>📂 tests/</span><span>Zero Fails</span></div>
+          </div>
+
+          <!-- 5: Sentinel -->
+          <div class="grid-pane">
+            <div class="pane-chrome">
+              <div class="pane-identity"><span class="mockup-term-dot green"></span>🛡️ Sentinel</div>
+              <span class="pane-model-pill">PromptGuard</span>
+            </div>
+            <div class="pane-stream">
+              <span class="dollar">$</span> <span class="hi-code">kelvra-sec scan --diff</span><br />
+              • Checking staged worktree diff...<br />
+              <span class="status-ok">✔ Secrets: 0 | Injection: Safe</span>
+            </div>
+            <div class="pane-bar"><span>📂 security/</span><span>PR Gate Open</span></div>
+          </div>
+
+          <!-- 6: System Orchestrator -->
+          <div class="grid-pane">
+            <div class="pane-chrome">
+              <div class="pane-identity"><span class="mockup-term-dot green"></span>🧭 Swarm Lead</div>
+              <span class="pane-model-pill">Claude 3.7</span>
+            </div>
+            <div class="pane-stream">
+              <span class="dollar">$</span> <span class="hi-code">kelvra swarm check</span><br />
+              • All 6 worktrees in clean state.<br />
+              <span class="status-ok">✔ Ready for human merge</span>
+            </div>
+            <div class="pane-bar"><span>📂 repo_root/</span><span>Synced</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infinite Looping CLI / Agent Logo Pill Row -->
+      <div class="cli-marquee-container">
+        <div class="cli-marquee-track">
+          <!-- 10 Supported CLIs (Set 1) -->
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+            <span>Claude Code</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 9 3 3-3 3"/></svg>
+            <span>OpenAI Codex</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 3 21 12 12 14 9 21 3 3"/></svg>
+            <span>Cursor Agent</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 3 7 7 2-7 3-3 7-3-7-7-3 7-2 3-7z"/></svg>
+            <span>Gemini CLI</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><circle cx="15" cy="9" r="2"/></svg>
+            <span>Factory Droid</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <span>OpenCode</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>DeepSeek Harness</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 8 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 8 12 2"/></svg>
+            <span>Grok Build</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg>
+            <span>Google Antigravity</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            <span>Interactive Terminal</span>
+          </div>
+
+          <!-- 10 Supported CLIs (Set 2 for seamless infinite loop) -->
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+            <span>Claude Code</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 9 3 3-3 3"/></svg>
+            <span>OpenAI Codex</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 3 21 12 12 14 9 21 3 3"/></svg>
+            <span>Cursor Agent</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 3 7 7 2-7 3-3 7-3-7-7-3 7-2 3-7z"/></svg>
+            <span>Gemini CLI</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9" r="2"/><circle cx="15" cy="9" r="2"/></svg>
+            <span>Factory Droid</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <span>OpenCode</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>DeepSeek Harness</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 8 22 9 17 14 18 21 12 17 6 21 7 14 2 9 9 8 12 2"/></svg>
+            <span>Grok Build</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/></svg>
+            <span>Google Antigravity</span>
+          </div>
+          <div class="cli-pill">
+            <svg class="cli-glyph-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            <span>Interactive Terminal</span>
+          </div>
+        </div>
+      </div>
+      <div class="marquee-closing-note">If it runs in a terminal, it runs inside Kelvra. Zero proprietary wrappers.</div>
+
+      <!-- 3 Feature Pillars Below -->
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <h4 class="pillar-title">True Terminal Handback</h4>
+          <p class="pillar-desc">
+            Unlike sandbox wrappers that kill session state upon process exit, Kelvra leaves interactive shells open. Inspect history, run diagnostics, and type follow-up commands directly.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <h4 class="pillar-title">Git Worktree Isolation</h4>
+          <p class="pillar-desc">
+            Agents never overwrite each other's work. Every session runs in an isolated Git worktree branch, allowing 6 agents to modify, build, and test simultaneously without file locking collisions.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <h4 class="pillar-title">PR-Style Diff Gates</h4>
+          <p class="pillar-desc">
+            No agent writes directly to your main branch. Every change is staged into a human-in-the-loop review drawer with automated secret auditing and line-by-line diff approval.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ========================================================================
+       SECTION 5: VOICE ORB & SECURITY CONTROL ROOM
+       ======================================================================== -->
+  <section class="voice-security-section" id="voice">
+    <div class="container">
+      <div class="voice-sec-grid">
+        <!-- Card 1: Kelvra Voice Floating Orb -->
+        <div class="voice-card">
+          <div>
+            <span class="section-eyebrow">CONTINUOUS VOICE ORCHESTRATION</span>
+            <h3 class="section-title" style="font-size: 36px; margin-bottom: 12px;">Hold Ctrl+Space. Speak directives.</h3>
+            <p class="section-desc" style="margin-bottom: 24px; font-size: 15px;">
+              Kelvra Voice transforms speech into structured swarm directives. Launch 6 agent sections, adjust reasoning effort, or dispatch error fixes with spoken intent.
+            </p>
+          </div>
+
+          <!-- Interactive GPU Waveform Orb Demo -->
+          <div class="voice-card-interactive-orb">
+            <canvas id="marketingVoiceOrbCanvas"></canvas>
+
+            <div class="orb-live-demo-bubble">
+              <span class="orb-demo-status" id="demoOrbStatus">LISTENING</span>
+              <span id="demoOrbTranscript">"create a workspace named nova-app and 6 sections of Claude Code"</span>
+            </div>
+          </div>
+
+          <div style="font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); text-align: center;">
+            Click orb to cycle states · High-DPI GPU Canvas · Dual Push-to-Hold & Hands-Free
+          </div>
+        </div>
+
+        <!-- Card 2: Security & Provider Control Room -->
+        <div class="security-card">
+          <div>
+            <span class="section-eyebrow">BYOK & SECURITY VAULT</span>
+            <h3 class="section-title" style="font-size: 36px; margin-bottom: 12px;">Pre-screened & Air-Gapped.</h3>
+            <p class="section-desc" style="margin-bottom: 24px; font-size: 15px;">
+              Bring your own API keys. Kelvra Security validates prompts for prompt injections, audits diffs for API keys or tokens, and supports strict zero-egress offline modes.
+            </p>
+          </div>
+
+          <div class="vault-provider-list">
+            <div class="vault-item">
+              <div class="vault-name">Anthropic (Claude 3.7 & Fable 5.1)</div>
+              <span class="vault-badge-secure">Extended Thinking</span>
+            </div>
+            <div class="vault-item">
+              <div class="vault-name">OpenAI (o1, o3-mini & GPT-4o)</div>
+              <span class="vault-badge-secure">Reasoning Effort</span>
+            </div>
+            <div class="vault-item">
+              <div class="vault-name">Google Gemini (2.0 Flash)</div>
+              <span class="vault-badge-secure">Thinking Budget</span>
+            </div>
+            <div class="vault-item">
+              <div class="vault-name">Local LLMs (Ollama / Llama 3)</div>
+              <span class="vault-badge-secure">100% Offline</span>
+            </div>
+          </div>
+
+          <div style="font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);">
+            Credentials stored locally in AES-256 encrypted vault · Zero telemetry
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ========================================================================
+       SECTION 6: OPEN SOURCE & SELF-HOSTED (REPLACES PRICING)
+       ======================================================================== -->
+  <section class="open-source-section" id="open-source">
+    <div class="container">
+      <div class="open-source-card">
+        <div class="open-source-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>100% FREE & OPEN SOURCE</span>
+        </div>
+
+        <h2 class="open-source-title">Your code stays on your machine.</h2>
+        <p class="open-source-sub">
+          No seat licenses. No monthly subscriptions. No cloud intermediary tracking your codebase. Clone the repository, configure your preferred models, and orchestrate on your own terms.
+        </p>
+
+        <div class="os-check-grid">
+          <div class="os-check-item">
+            <span class="check-icon">✔</span>
+            <span>Self-hosted local FastAPI orchestration</span>
+          </div>
+          <div class="os-check-item">
+            <span class="check-icon">✔</span>
+            <span>Local Air-Gap mode (0 bytes outbound)</span>
+          </div>
+          <div class="os-check-item">
+            <span class="check-icon">✔</span>
+            <span>Multi-model BYOK (Bring Your Own Key)</span>
+          </div>
+          <div class="os-check-item">
+            <span class="check-icon">✔</span>
+            <span>MIT / Apache 2.0 open-source license</span>
+          </div>
+        </div>
+
+        <!-- Terminal Clone Box with Copy Button -->
+        <div class="terminal-clone-box">
+          <span class="clone-code-text" id="cloneText">git clone https://github.com/greninja-op/kelvra-marketing-page.git</span>
+          <button class="btn-copy-clone" id="btnCopyClone" title="Copy to clipboard">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ========================================================================
+       SECTION 7: FAQ ACCORDION
+       ======================================================================== -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <span class="section-eyebrow">FREQUENTLY ASKED QUESTIONS</span>
+        <h2 class="section-title">Everything you need to know.</h2>
+      </div>
+
+      <div class="faq-accordion">
+        <!-- Q1 -->
+        <div class="faq-item open">
+          <button class="faq-trigger">
+            <span>What is Kelvra?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-content">
+            Kelvra (Kinetic Execution Layer, Verified Routing for Agents) is an open-source multi-agent developer intelligence platform. It provides a multi-terminal grid for running parallel coding agents (Claude Code, Cursor, Gemini, Codex) in isolated Git worktrees, controlled via natural speech and gated by human PR reviews.
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span>What are the four products in the Kelvra ecosystem?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-content">
+            The ecosystem consists of: (1) <strong>Kelvra Bench</strong>: the multi-agent terminal grid & orchestrator; (2) <strong>Kelvra Voice</strong>: continuous on-device dictation and floating voice orb; (3) <strong>Kelvra Security</strong>: PromptGuard injection defense and secrets auditor; and (4) <strong>Kelvra Space</strong>: the unified umbrella dashboard connecting all local services.
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span>Do I need my own API keys or CLI subscriptions?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-content">
+            Yes. Kelvra is a self-hosted platform that interfaces directly with your own CLI tools (like Claude Code, Cursor Agent, or Gemini CLI) or your own API keys (Anthropic, OpenAI, Gemini). You never pay Kelvra a markup on tokens or a subscription fee.
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span>How does Git worktree isolation prevent merge conflicts?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-content">
+            Rather than having multiple agents write to the same working directory simultaneously, Kelvra spawns each agent in an isolated Git worktree branch under <code>.worktrees/</code>. Agents operate on disjoint file subsets. When finished, their changes are presented as a clean PR-style diff for your inspection before merging.
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span>Can I run Kelvra fully offline or air-gapped?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-content">
+            Yes! Kelvra features a strict Air-Gap mode. When enabled, cloud egress is blocked, and all transcription, intent parsing, and code generation runs through local models (such as local Whisper and Ollama/Local Llama).
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item">
+          <button class="faq-trigger">
+            <span>How do I contribute or customize Kelvra?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-content">
+            Kelvra is 100% open source under the MIT / Apache 2.0 license. You can clone the repository, write custom agent personas, add workflow presets, or submit pull requests directly on our GitHub repository.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ========================================================================
+       SECTION 8: FINAL CTA & OS BUTTONS
+       ======================================================================== -->
+  <section class="final-cta-section" id="download">
+    <div class="container">
+      <h2 class="final-cta-title">Put your agents in one window.</h2>
+      <p class="final-cta-sub">
+        Experience autonomous swarm orchestration with voice directives, isolated worktrees, and human-in-the-loop review.
+      </p>
+
+      <div class="download-os-grid">
+        <a href="https://github.com/greninja-op/kelvra-marketing-page.git" class="os-download-btn primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg>
+          <span>Download for Windows (x64)</span>
+        </a>
+
+        <a href="https://github.com/greninja-op/kelvra-marketing-page.git" class="os-download-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 5h-2v6h6v-2h-4V7z"/></svg>
+          <span>Download for macOS</span>
+        </a>
+
+        <a href="https://github.com/greninja-op/kelvra-marketing-page.git" class="os-download-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          <span>Download for Linux</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 9: SITE FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="nav-brand">
+            <div class="kelvra-logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F0906F" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <span class="footer-wordmark">Kelvra</span>
+          </div>
+          <p class="footer-tagline">
+            Autonomous multi-agent orchestration for developers. Self-hosted, air-gap ready, and 100% open source.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Ecosystem</div>
+          <ul class="footer-links">
+            <li><a href="#showcase">Kelvra Bench (Orchestrator)</a></li>
+            <li><a href="#voice">Kelvra Voice (Floating Orb)</a></li>
+            <li><a href="#voice">Kelvra Security (PromptGuard)</a></li>
+            <li><a href="#">Kelvra Space (Platform Hub)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Architecture</div>
+          <ul class="footer-links">
+            <li><a href="#showcase">Git Worktree Sandbox</a></li>
+            <li><a href="#showcase">Terminal Handback</a></li>
+            <li><a href="#showcase">Vibe Kanban Boards</a></li>
+            <li><a href="#voice">Standing Voice Context</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Open Source</div>
+          <ul class="footer-links">
+            <li><a href="https://github.com/greninja-op/kelvra-marketing-page.git" target="_blank" rel="noopener">GitHub Repository</a></li>
+            <li><a href="https://github.com/greninja-op/kelvra-marketing-page.git" target="_blank" rel="noopener">Documentation</a></li>
+            <li><a href="https://github.com/greninja-op/kelvra-marketing-page.git" target="_blank" rel="noopener">Issue Tracker</a></li>
+            <li><a href="https://github.com/greninja-op/kelvra-marketing-page.git" target="_blank" rel="noopener">MIT License</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Kelvra Open Source Project. Built for autonomous developer intelligence.</div>
+        <div>Free & Open Source · No Telemetry · Self-Hosted</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
