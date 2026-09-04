@@ -969,10 +969,14 @@ button {
   transform: translateY(-2px);
 }
 
-.cli-glyph-svg {
-  width: 16px;
-  height: 16px;
-  stroke: var(--accent-coral);
+.cli-glyph-svg,
+.cli-glyph-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .marquee-closing-note {
@@ -1120,6 +1124,8 @@ button {
 .vault-name {
   font-weight: 600;
   color: var(--text-primary);
+  display: flex;
+  align-items: center;
 }
 
 .vault-badge-secure {
