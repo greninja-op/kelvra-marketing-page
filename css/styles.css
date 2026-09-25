@@ -1968,23 +1968,61 @@ button {
   position: relative;
 }
 
+/* ==========================================================================
+   GLOBAL SECTION HEADERS & UTILITIES
+   ========================================================================== */
+
+.text-center {
+  text-align: center !important;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .section-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--accent-coral);
   text-transform: uppercase;
   margin-bottom: var(--space-3);
+  text-align: center;
+}
+
+.section-header .section-eyebrow {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .section-title {
   font-family: var(--font-serif);
-  font-size: clamp(34px, 4.5vw, 54px);
+  font-size: clamp(28px, 4.5vw, 54px);
+  line-height: 1.16;
   font-weight: 400;
   letter-spacing: -0.3px;
   margin: 0 auto var(--space-4) auto;
   text-align: center !important;
+  width: 100%;
+}
+
+.section-header .section-title {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
 }
 
@@ -1995,6 +2033,18 @@ button {
   margin: 0 auto var(--space-12) auto;
   text-align: center !important;
   width: 100%;
+}
+
+.section-header .section-desc {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.section-header .wt-view-switcher {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ==========================================================================
@@ -3591,6 +3641,39 @@ button {
   }
 }
 
+/* Card 1 & 2 Headers */
+.voice-card-header,
+.security-card-header {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.voice-card-header .section-eyebrow,
+.security-card-header .section-eyebrow {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+.voice-card-header .section-title,
+.security-card-header .section-title {
+  text-align: left !important;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+.voice-card-header .section-desc,
+.security-card-header .section-desc {
+  text-align: left !important;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
 /* Card 1: Kelvra Voice Floating Orb & Directives */
 .voice-card {
   background: var(--bg-surface);
@@ -4172,6 +4255,13 @@ button {
 .ward-title-group {
   flex: 1;
   min-width: 280px;
+  text-align: left;
+}
+
+.ward-title-group .section-eyebrow {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
 }
 
 .ward-tabs-nav {
@@ -8042,6 +8132,13 @@ button {
 
 .econ-card-header {
   margin-bottom: 24px;
+  text-align: left;
+}
+
+.econ-card-header .section-eyebrow {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
 }
 
 .econ-card-title {
