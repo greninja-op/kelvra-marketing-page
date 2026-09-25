@@ -47,6 +47,7 @@
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
+  --space-20: 80px;
   --space-24: 96px;
   --space-32: 128px;
 
@@ -2515,10 +2516,9 @@ button {
    ========================================================================== */
 
 .mobile-showcase-section {
-  padding: var(--space-20) 0;
+  padding: var(--space-24) 0 clamp(80px, 9vw, 112px) 0;
   position: relative;
   background: var(--bg-canvas);
-  border-top: 1px solid var(--border-hairline);
   overflow: hidden;
   text-align: center;
 }
@@ -2678,8 +2678,8 @@ button {
   justify-content: center;
   align-items: center;
   position: relative;
-  margin: var(--space-4) auto 0;
-  padding: var(--space-4) 0;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-6) 0 var(--space-10) 0;
 }
 
 .mobile-phone-showcase-stage::before {
