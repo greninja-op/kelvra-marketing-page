@@ -72,11 +72,10 @@
 }
 
 html {
-  scroll-behavior: smooth;
   color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   max-width: 100%;
 }
@@ -87,7 +86,7 @@ body {
   font-family: var(--font-sans);
   font-size: clamp(14px, 0.95vw + 10px, 16px);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -2974,6 +2973,7 @@ button {
   container-name: swarmgrid;
 }
 
+/* Swarm Grid Header Meta Layout */
 .terminal-grid-header-meta {
   display: flex;
   align-items: center;
@@ -2982,27 +2982,158 @@ button {
   margin-bottom: var(--space-3);
   border-bottom: 1px solid var(--border-hairline);
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-3);
+}
+
+.grid-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .grid-active-badge {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  font-size: 12px;
+  gap: 6px;
+  font-size: 11.5px;
   font-family: var(--font-mono);
-  color: var(--text-secondary);
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
+.swarm-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 3px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.swarm-filter-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.swarm-filter-btn:hover {
+  color: var(--text-primary);
+}
+
+.swarm-filter-btn.active {
+  background: rgba(217, 119, 87, 0.18);
+  color: var(--accent-coral);
+  border: 1px solid rgba(217, 119, 87, 0.35);
+  font-weight: 600;
+}
+
+.grid-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.grid-view-toggles {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 3px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.grid-layout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.grid-layout-btn:hover {
+  color: var(--text-primary);
+}
+
+.grid-layout-btn.active {
+  background: #22221E;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.grid-isolation-badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.grid-isolation-badge code {
+  color: #52B788;
+  background: rgba(82, 183, 136, 0.12);
+  border: 1px solid rgba(82, 183, 136, 0.25);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* Dynamic Grid Layouts */
 .grid-real-split-layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 180px);
   gap: var(--space-3);
+  transition: all 0.25s ease;
 }
 
+.grid-real-split-layout.layout-6 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 190px);
+}
+
+.grid-real-split-layout.layout-4 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 210px);
+}
+.grid-real-split-layout.layout-4 .grid-pane:nth-child(n+5) {
+  display: none !important;
+}
+
+.grid-real-split-layout.layout-2 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 320px;
+}
+.grid-real-split-layout.layout-2 .grid-pane:nth-child(n+3) {
+  display: none !important;
+}
+
+.grid-real-split-layout.layout-1 {
+  grid-template-columns: 1fr;
+  grid-template-rows: 380px;
+}
+.grid-real-split-layout.layout-1 .grid-pane:not(.active-focus) {
+  display: none !important;
+}
+
+/* Individual Terminal Panes */
 .grid-pane {
-  background: #1A1A17;
+  background: #181815;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
   display: flex;
@@ -3010,6 +3141,23 @@ button {
   overflow: hidden;
   font-family: var(--font-mono);
   font-size: clamp(9.5px, 1.2cqw + 6px, 11px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.grid-pane:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.grid-pane.active-focus {
+  border-color: rgba(217, 119, 87, 0.55);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 0 14px rgba(217, 119, 87, 0.06);
+}
+
+.grid-pane.dimmed {
+  opacity: 0.35;
+  filter: grayscale(0.5);
 }
 
 .pane-chrome {
@@ -3017,7 +3165,7 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 6px 10px;
-  background: #22221E;
+  background: #20201C;
   border-bottom: 1px solid var(--border-hairline);
 }
 
@@ -3042,7 +3190,7 @@ button {
   padding: 8px 10px;
   flex: 1;
   color: var(--text-secondary);
-  line-height: 1.45;
+  line-height: 1.5;
   overflow: hidden;
 }
 
@@ -3063,10 +3211,77 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 4px 10px;
-  background: #171714;
+  background: #141411;
   border-top: 1px solid var(--border-hairline);
   font-size: 9.5px;
   color: var(--text-muted);
+}
+
+/* Broadcast Command Bar */
+.terminal-broadcast-bar {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.broadcast-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8C887E;
+  font-weight: 600;
+}
+
+.broadcast-commands {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.broadcast-cmd-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #EDE8DF;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.broadcast-cmd-btn:hover {
+  background: #22221E;
+  border-color: rgba(217, 119, 87, 0.4);
+  color: var(--accent-coral);
+  transform: translateY(-1px);
+}
+
+.broadcast-cmd-btn:active {
+  transform: translateY(1px);
+}
+
+.broadcast-cmd-btn .cmd-icon {
+  color: var(--accent-coral);
+}
+
+.broadcast-telemetry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #52B788;
+  font-size: 10.5px;
 }
 
 /* Container Query Breakpoints (exact product logic: 360px & 260px) */
@@ -5537,8 +5752,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  overflow-y: auto;
-  max-height: 480px;
+  overscroll-behavior: auto;
 }
 
 .acs-msg-human {

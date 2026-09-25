@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFaqAccordion();
   initCloneCopy();
   detectUserOS();
+  initSmoothAnchorScroll();
 });
 
 /* ==========================================================================
@@ -560,12 +561,13 @@ function initHeroModeSwitcher() {
   });
 }
 
-// Wire Mobile Showcase, Hero Mode Switcher, Accounts Router & Swarm Workbench on DOMContentLoaded
+// Wire Mobile Showcase, Hero Mode Switcher, Accounts Router, Swarm Workbench & Swarm Matrix on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   initMobileShowcaseAutoplay();
   initHeroModeSwitcher();
   initAccountsRouter();
   initSwarmWorkbench();
+  initSwarmMatrix();
 });
 
 /* ==========================================================================
@@ -1009,9 +1011,8 @@ function initAccountsRouter() {
     });
   }
 
-  // Window resize & scroll listeners for responsive spline recalculation
+  // Window resize listener for responsive spline recalculation (avoids scroll-thrashing)
   window.addEventListener("resize", updateSplines, { passive: true });
-  window.addEventListener("scroll", updateSplines, { passive: true });
 
   // Start animated spark particle
   animateSpark();
@@ -1177,6 +1178,204 @@ function initSwarmWorkbench() {
     });
   }
 }
+
+/**
+ * Modern Anchor Smooth Scroll Helper
+ * Replaces global CSS scroll-behavior: smooth to prevent fighting trackpad deceleration curves.
+ */
+function initSmoothAnchorScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const targetId = this.getAttribute("href");
+      if (!targetId || targetId === "#") return;
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (history.pushState) {
+          history.pushState(null, null, targetId);
+        }
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   SECTION 4: INTERACTIVE MAGNETIC SWARM MATRIX CONTROLLER
+   Layout Switching (1/2/4/6), Subsystem Filtering & Live Broadcast Execution
+   ========================================================================== */
+
+function initSwarmMatrix() {
+  const showcase = document.getElementById("terminalGridShowcase");
+  if (!showcase) return;
+
+  const splitLayout = document.getElementById("swarmSplitLayout");
+  const layoutBtns = document.querySelectorAll(".grid-layout-btn");
+  const filterBtns = document.querySelectorAll(".swarm-filter-btn");
+  const panes = document.querySelectorAll(".grid-pane");
+  const statusBadgeText = document.getElementById("swarmStatusBadgeText");
+  const broadcastText = document.getElementById("broadcastText");
+  const broadcastDot = document.getElementById("broadcastDot");
+
+  const btnBroadcastTest = document.getElementById("btnBroadcastTest");
+  const btnBroadcastScan = document.getElementById("btnBroadcastScan");
+  const btnBroadcastSync = document.getElementById("btnBroadcastSync");
+
+  let currentLayout = "6";
+
+  const layoutTitles = {
+    "1": "SOLO FOCUS · 1 SESSION EXPANDED",
+    "2": "DUAL SPLIT · 2 SESSIONS PARALLEL",
+    "4": "QUAD MESH · 4 SESSIONS PARALLEL",
+    "6": "SWARM MATRIX · 6 SESSIONS SYNCHRONIZED"
+  };
+
+  /**
+   * Set Grid Layout Mode
+   */
+  function setLayout(layoutNum) {
+    currentLayout = layoutNum;
+    layoutBtns.forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.layout === layoutNum);
+    });
+
+    if (splitLayout) {
+      splitLayout.className = `grid-real-split-layout layout-${layoutNum}`;
+    }
+
+    if (statusBadgeText && layoutTitles[layoutNum]) {
+      statusBadgeText.textContent = layoutTitles[layoutNum];
+    }
+  }
+
+  // Bind Layout Buttons
+  layoutBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const layout = btn.dataset.layout;
+      if (layout) setLayout(layout);
+    });
+  });
+
+  /**
+   * Set Subsystem Filter
+   */
+  function setFilter(filterKey) {
+    filterBtns.forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.filter === filterKey);
+    });
+
+    if (filterKey === "all") {
+      panes.forEach(pane => {
+        pane.classList.remove("dimmed");
+      });
+      return;
+    }
+
+    panes.forEach(pane => {
+      const matches = pane.dataset.paneId === filterKey;
+      pane.classList.toggle("dimmed", !matches);
+      if (matches) {
+        panes.forEach(p => p.classList.remove("active-focus"));
+        pane.classList.add("active-focus");
+        if (currentLayout === "1") {
+          // If in solo layout, ensure the filtered pane is displayed
+          splitLayout.appendChild(pane);
+        }
+      }
+    });
+  }
+
+  // Bind Filter Buttons
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+      if (filter) setFilter(filter);
+    });
+  });
+
+  // Bind Click on Individual Panes
+  panes.forEach(pane => {
+    pane.addEventListener("click", () => {
+      panes.forEach(p => p.classList.remove("active-focus"));
+      pane.classList.add("active-focus");
+
+      // Sync filter pill
+      const paneId = pane.dataset.paneId;
+      if (paneId) {
+        filterBtns.forEach(b => {
+          b.classList.toggle("active", b.dataset.filter === paneId);
+        });
+      }
+    });
+  });
+
+  /**
+   * Helper to simulate terminal response
+   */
+  function broadcastResponse(msg, dotColor = "#52B788") {
+    if (broadcastText) {
+      broadcastText.textContent = msg;
+    }
+    if (broadcastDot) {
+      broadcastDot.style.background = dotColor;
+    }
+  }
+
+  // Bind Broadcast: $ cargo test --all
+  if (btnBroadcastTest) {
+    btnBroadcastTest.addEventListener("click", () => {
+      broadcastResponse("Running $ cargo test --all across 6 worktrees...", "#FFD43B");
+      setTimeout(() => {
+        broadcastResponse("✔ All 44 tests passed across 6 worktrees · 0 failed · 42ms total runtime", "#52B788");
+        const qaStream = document.getElementById("paneStreamQa");
+        if (qaStream) {
+          const newRow = document.createElement("div");
+          newRow.style.color = "#52B788";
+          newRow.style.marginTop = "3px";
+          newRow.textContent = "✔ [Broadcast] Full suite verified clean: 28 unit, 16 integration";
+          qaStream.appendChild(newRow);
+        }
+      }, 450);
+    });
+  }
+
+  // Bind Broadcast: $ kelvra sec scan
+  if (btnBroadcastScan) {
+    btnBroadcastScan.addEventListener("click", () => {
+      broadcastResponse("Running $ kelvra sec scan (PromptGuard + AST secrets)...", "#60A5FA");
+      setTimeout(() => {
+        broadcastResponse("✔ Security Scan Passed: 0 secret leaks, 0 prompt injections detected", "#52B788");
+        const secStream = document.getElementById("paneStreamSec");
+        if (secStream) {
+          const newRow = document.createElement("div");
+          newRow.style.color = "#60A5FA";
+          newRow.style.marginTop = "3px";
+          newRow.textContent = "✔ [Broadcast] PromptGuard AST check: 100% clean diffs";
+          secStream.appendChild(newRow);
+        }
+      }, 450);
+    });
+  }
+
+  // Bind Broadcast: $ git worktree sync
+  if (btnBroadcastSync) {
+    btnBroadcastSync.addEventListener("click", () => {
+      broadcastResponse("Running $ git worktree sync --all across namespaces...", "#F0906F");
+      setTimeout(() => {
+        broadcastResponse("✔ Git worktrees synchronized: 0 lock collisions across 6 branches", "#52B788");
+        const leadStream = document.getElementById("paneStreamLead");
+        if (leadStream) {
+          const newRow = document.createElement("div");
+          newRow.style.color = "#F0906F";
+          newRow.style.marginTop = "3px";
+          newRow.textContent = "✔ [Broadcast] Disjoint branches synced to staging drawer";
+          leadStream.appendChild(newRow);
+        }
+      }, 450);
+    });
+  }
+}
+
 
 
 
