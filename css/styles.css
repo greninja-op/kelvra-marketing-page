@@ -76,6 +76,9 @@ html {
   color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -86,6 +89,8 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
+  width: 100%;
+  max-width: 100%;
   padding-left: env(safe-area-inset-left, 0px);
   padding-right: env(safe-area-inset-right, 0px);
 }
@@ -103,7 +108,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
+  max-width: 100%;
   height: 100vh;
   pointer-events: none;
   z-index: 0;
@@ -154,18 +160,22 @@ button {
 
 .container {
   max-width: var(--container-max);
+  width: 100%;
   margin: 0 auto;
   padding: 0 var(--space-6);
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 .container-wide {
   max-width: var(--container-wide);
+  width: 100%;
   margin: 0 auto;
   padding: 0 var(--space-6);
   position: relative;
   z-index: 1;
+  box-sizing: border-box;
 }
 
 /* Hairline Section Dividers */
@@ -2267,19 +2277,25 @@ button {
   gap: var(--space-6);
   margin-top: var(--space-12);
   text-align: left;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .pillar-card {
   padding: var(--space-6);
   background: var(--bg-surface);
   border: 1px solid var(--border-hairline);
-  border-radius: 12px;
+  border-radius: 14px;
   transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .pillar-card:hover {
   border-color: rgba(255, 255, 255, 0.16);
   background: var(--bg-card);
+  transform: translateY(-2px);
 }
 
 .pillar-title {
@@ -2287,12 +2303,13 @@ button {
   font-weight: 600;
   margin-bottom: var(--space-2);
   color: var(--text-primary);
+  line-height: 1.35;
 }
 
 .pillar-desc {
   font-size: 13.5px;
   color: var(--text-secondary);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -2682,6 +2699,9 @@ button {
   position: relative;
   margin: var(--space-8) auto 0;
   padding: var(--space-6) 0 var(--space-10) 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .mobile-phone-showcase-stage::before {
@@ -3854,6 +3874,11 @@ button {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-4);
   }
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
   .grid-real-split-layout {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3870,6 +3895,9 @@ button {
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
   .nav-links {
     display: none;
   }
@@ -3916,9 +3944,17 @@ button {
     gap: 4px;
   }
   
-  /* Modes Grid */
+  /* Modes Grid & Pillars Grid */
   .modes-grid {
     grid-template-columns: 1fr;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+  .pillar-card {
+    padding: var(--space-5);
   }
   .hero-cta-group {
     flex-direction: column;
@@ -3956,11 +3992,43 @@ button {
 }
 
 @media (max-width: 480px) {
+  .nav-inner {
+    height: 54px;
+    gap: 8px;
+  }
+  .nav-brand {
+    gap: 8px;
+  }
+  .nav-wordmark {
+    font-size: 22px;
+  }
+  .btn-nav-download {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
   .hero-headline {
     font-size: clamp(28px, 8.5vw, 40px);
   }
   .mockup-window-body-viewport {
     height: 420px;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: var(--space-6);
+  }
+  .pillar-card {
+    padding: 16px 18px;
+    border-radius: 12px;
+  }
+  .pillar-title {
+    font-size: 16px;
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+  .pillar-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
   }
   .iphone-hardware-frame {
     width: clamp(280px, 92vw, 340px);
