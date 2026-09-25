@@ -44,6 +44,7 @@
   --space-4: 16px;
   --space-6: 24px;
   --space-8: 32px;
+  --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
   --space-24: 96px;
@@ -1948,6 +1949,7 @@ button {
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-6);
   text-align: left;
+  margin-bottom: var(--space-12);
 }
 
 .mode-card {
@@ -2076,10 +2078,19 @@ button {
    AUTHENTIC KELVRA BENCH WINDOW (Carbon Copy Desktop Shell - Enlarged)
    ========================================================================== */
 
+.bench-showcase-wrapper {
+  width: 100%;
+  max-width: 1480px;
+  margin: 64px auto 0 auto;
+  padding: 0 var(--space-6);
+  position: relative;
+  z-index: 1;
+}
+
 .bench-showcase-container {
   width: 100%;
-  max-width: 1360px;
-  margin: var(--space-10) auto 0 auto;
+  max-width: 1420px;
+  margin: 0 auto;
   text-align: left;
 }
 
@@ -2088,10 +2099,10 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.85);
   display: flex;
   flex-direction: column;
-  min-height: 720px;
+  min-height: 740px;
 }
 
 /* 1. Authentic Topbar */
@@ -2566,9 +2577,9 @@ button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 12px;
+  gap: 14px;
   flex: 1;
-  min-height: 580px;
+  min-height: 600px;
 }
 
 @media (max-width: 960px) {
