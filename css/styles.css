@@ -1016,7 +1016,8 @@ button {
    ========================================================================== */
 
 .cli-marquee-container {
-  margin: var(--space-12) 0;
+  margin: var(--space-10) 0;
+  padding: 14px 0;
   position: relative;
   overflow: hidden;
   mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
@@ -1031,6 +1032,7 @@ button {
   width: max-content;
   animation: marqueeLoop 34s linear infinite;
   touch-action: pan-y;
+  padding: 8px 0;
 }
 
 .cli-marquee-track:hover,
@@ -1063,7 +1065,8 @@ button {
   background: var(--bg-elevated);
   color: var(--text-primary);
   border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
 .cli-glyph-svg,
