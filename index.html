@@ -103,11 +103,11 @@
             <span class="window-dot green"></span>
           </div>
 
-          <!-- Mode Switcher in Window Header -->
-          <div class="mockup-mode-switch-preview">
-            <span class="mockup-mode-tab">Chat</span>
-            <span class="mockup-mode-tab active">Code</span>
-            <span class="mockup-mode-tab">Agent</span>
+          <!-- Mode Switcher in Window Header (Interactive Tri-Modal Switcher) -->
+          <div class="mockup-mode-switch-preview" id="mockupModeSwitch" role="tablist" aria-label="Kelvra Bench Modes">
+            <button type="button" class="mockup-mode-tab" data-mode="chat" id="tabMockupChat" role="tab" aria-selected="false">Chat</button>
+            <button type="button" class="mockup-mode-tab active" data-mode="code" id="tabMockupCode" role="tab" aria-selected="true">Code</button>
+            <button type="button" class="mockup-mode-tab" data-mode="agent" id="tabMockupAgent" role="tab" aria-selected="false">Agent</button>
           </div>
 
           <div class="mockup-header-meta">
@@ -116,146 +116,504 @@
           </div>
         </div>
 
-        <!-- 3-Pane Body -->
-        <div class="mockup-window-body">
-          <!-- Left: Workspace Rail -->
-          <div class="mockup-sidebar">
-            <div>
-              <div class="mockup-section-title">Workspaces</div>
-              <div class="mockup-item active">
-                <span><svg class="folder-outline-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> kelvra-bench</span>
-                <span class="mockup-badge-mini">6 LIVE</span>
+        <!-- 3-Pane Body Viewport with Directional Spatial Transitions -->
+        <div class="mockup-window-body-viewport" id="mockupViewport">
+
+          <!-- ================================================================
+               MODE 1: CHAT MODE (CLAUDE-SHELL + CODEX SUBAGENT EXECUTION)
+               ================================================================ -->
+          <div class="mockup-view-pane" id="mockupViewChat" role="tabpanel" aria-labelledby="tabMockupChat">
+            <!-- Left: Chat Management Sidebar -->
+            <div class="mockup-chat-sidebar">
+              <div class="chat-sidebar-action-row">
+                <button type="button" class="btn-mockup-new-chat">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span>New Chat</span>
+                </button>
               </div>
-              <div class="mockup-item">
-                <span><svg class="folder-outline-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> kelvra-voice</span>
-                <span class="mockup-badge-mini">IDLE</span>
+
+              <div class="chat-sidebar-search-box">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" placeholder="Search conversations..." readonly value="" />
               </div>
-              <div class="mockup-item">
-                <span><svg class="folder-outline-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> kelvra-security</span>
-                <span class="mockup-badge-mini">ARMED</span>
-              </div>
-              <div class="mockup-item">
-                <span><svg class="folder-outline-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> kelvra-space</span>
-                <span class="mockup-badge-mini">HUB</span>
+
+              <div class="chat-history-mockup-list">
+                <div class="chat-history-mockup-item active">
+                  <div class="chat-item-title-row">
+                    <span class="chat-item-name">Refactor Auth Store</span>
+                    <span class="chat-item-time">2m ago</span>
+                  </div>
+                  <span class="chat-item-preview">ed25519 hardware key claims</span>
+                </div>
+
+                <div class="chat-history-mockup-item">
+                  <div class="chat-item-title-row">
+                    <span class="chat-item-name">Optimize Mesh RPC</span>
+                    <span class="chat-item-time">18m ago</span>
+                  </div>
+                  <span class="chat-item-preview">Tailscale zero-cloud fallback</span>
+                </div>
+
+                <div class="chat-history-mockup-item">
+                  <div class="chat-item-title-row">
+                    <span class="chat-item-name">SLSA Level 3 Gates</span>
+                    <span class="chat-item-time">1h ago</span>
+                  </div>
+                  <span class="chat-item-preview">Sigstore Cosign cryptographic proof</span>
+                </div>
+
+                <div class="chat-history-mockup-item">
+                  <div class="chat-item-title-row">
+                    <span class="chat-item-name">Vite 5.4 App Shell</span>
+                    <span class="chat-item-time">3h ago</span>
+                  </div>
+                  <span class="chat-item-preview">Zero layout shift scrollytelling</span>
+                </div>
               </div>
             </div>
 
-            <div>
-              <div class="mockup-section-title">Isolation Mode</div>
-              <div class="mockup-item">
-                <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle;"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 9v1a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V9"/><path d="M12 12v3"/></svg> Git Worktrees (Isolated)</span>
+            <!-- Center: Message Thread & Inline Tool Execution -->
+            <div class="mockup-chat-center">
+              <div class="mockup-chat-topbar">
+                <div class="chat-title-group">
+                  <span class="chat-main-title">Refactor Auth Store</span>
+                  <span class="chat-model-badge">Claude 3.7 Sonnet</span>
+                </div>
+                <div class="chat-topbar-actions">
+                  <span class="chat-action-chip active">Review Diffs (2)</span>
+                  <span class="chat-action-chip">Artifacts</span>
+                </div>
+              </div>
+
+              <div class="mockup-chat-thread">
+                <!-- User Turn -->
+                <div class="chat-bubble-turn user">
+                  <div class="chat-bubble-text">
+                    Refactor the token authentication store in <code>kelvra-bench</code> to use ed25519 cryptographic tokens with zero cloud egress and test coverage.
+                  </div>
+                </div>
+
+                <!-- Assistant Turn -->
+                <div class="chat-bubble-turn assistant">
+                  <div class="assistant-lead-text">
+                    Isolated task to branch <code>.worktrees/auth-refactor</code> and ran cryptographic verification:
+                  </div>
+
+                  <!-- Inline Terminal in Chat (Codex-style) -->
+                  <div class="chat-inline-terminal">
+                    <div class="inline-term-head">
+                      <span class="term-status-dot green"></span>
+                      <span class="term-cmd-text">$ cargo test --package auth-mesh</span>
+                      <span class="term-runtime-tag">142ms</span>
+                    </div>
+                    <div class="inline-term-output">
+                      • Compiling ed25519-dalek v2.1.0...<br />
+                      <span class="text-emerald">✔ 28/28 cryptographic tests passed. Hardware claims verified.</span>
+                    </div>
+                  </div>
+
+                  <!-- Parallel Task Fan-Out Cards -->
+                  <div class="chat-task-cards-grid">
+                    <div class="chat-task-card complete">
+                      <span class="task-check">✔</span>
+                      <span class="task-title">Generate Keypair Store</span>
+                    </div>
+                    <div class="chat-task-card complete">
+                      <span class="task-check">✔</span>
+                      <span class="task-title">Update Claims Validator</span>
+                    </div>
+                    <div class="chat-task-card active">
+                      <span class="task-spinner"></span>
+                      <span class="task-title">SLSA Attestation Gate</span>
+                    </div>
+                  </div>
+
+                  <div class="chat-bubble-text" style="margin-top: 8px;">
+                    Stored validated token signatures into local SQLite cache. Changes staged into review drawer for your approval.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chat Input Dock -->
+              <div class="mockup-chat-input-bar">
+                <input type="text" class="chat-mockup-input" placeholder="Ask Kelvra Bench or speak directive (Hold Ctrl+Space)..." readonly />
+                <div class="chat-input-actions">
+                  <span class="chat-input-model">Claude 3.7</span>
+                  <button type="button" class="btn-chat-mic">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                  </button>
+                  <button type="button" class="btn-chat-send">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Artifacts & Diff Review Drawer -->
+            <div class="mockup-chat-right">
+              <div class="drawer-header">
+                <span class="drawer-title">Diff Review · 2 Files</span>
+                <span class="drawer-tag">Worktree Clean</span>
+              </div>
+
+              <div class="drawer-diff-box">
+                <div class="diff-file-tag">
+                  <svg class="folder-outline-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                  <span>src/auth/p256_keys.rs</span>
+                </div>
+                <div class="diff-lines-preview">
+                  <div class="diff-ln del">- let token = unsafe_bearer_auth(user)?;</div>
+                  <div class="diff-ln add">+ let key = P256HardwareKey::verify(&amp;req)?;</div>
+                  <div class="diff-ln add">+ let signed = Claims::sign_ed25519(key)?;</div>
+                </div>
+              </div>
+
+              <div class="drawer-actions-row">
+                <button type="button" class="btn-drawer-reject">Reject</button>
+                <button type="button" class="btn-drawer-approve">✔ Approve &amp; Merge</button>
+              </div>
+
+              <div class="drawer-guard-badge">
+                <span class="guard-dot"></span>
+                <span>PromptGuard SLSA Level 3 Passed</span>
               </div>
             </div>
           </div>
 
-          <!-- Center: Multi-Terminal Grid -->
-          <div class="mockup-grid-center">
-            <!-- Pane 1 -->
-            <div class="mockup-terminal-card">
-              <div class="mockup-term-header">
-                <div class="mockup-term-title">
-                  <span class="mockup-term-dot green"></span>
-                  <img class="cli-glyph-icon" src="assets/icons/claude.svg" alt="Claude Code" width="14" height="14" style="margin: 0 6px 0 2px;" />
-                  <span>Frontend · Claude Code</span>
+          <!-- ================================================================
+               MODE 2: CODE MODE (SWARM TERMINAL GRID IN WORKTREES - DEFAULT)
+               ================================================================ -->
+          <div class="mockup-view-pane active" id="mockupViewCode" role="tabpanel" aria-labelledby="tabMockupCode">
+            <!-- Left: Workspace Rail -->
+            <div class="mockup-sidebar">
+              <div>
+                <div class="mockup-section-title">Workspaces</div>
+                <div class="mockup-item active">
+                  <span><svg class="folder-outline-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> kelvra-bench</span>
+                  <span class="mockup-badge-mini">6 LIVE</span>
                 </div>
-                <span class="pane-model-pill">Claude 3.7</span>
+                <div class="mockup-item">
+                  <span><svg class="folder-outline-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> kelvra-voice</span>
+                  <span class="mockup-badge-mini">IDLE</span>
+                </div>
+                <div class="mockup-item">
+                  <span><svg class="folder-outline-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> kelvra-security</span>
+                  <span class="mockup-badge-mini">ARMED</span>
+                </div>
+                <div class="mockup-item">
+                  <span><svg class="folder-outline-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> kelvra-space</span>
+                  <span class="mockup-badge-mini">HUB</span>
+                </div>
               </div>
-              <div class="mockup-term-logs">
-                <div class="cmd"><span class="dollar">$</span> git worktree add .worktrees/fe</div>
-                <div>• Inspecting shared tokens in styles.css...</div>
-                <div class="success">✔ Hairline borders & GPU canvas mounted.</div>
-              </div>
-              <div class="mockup-term-footer">
-                <span><svg class="folder-outline-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> static/js/app.js</span>
-                <span>2.4k tokens</span>
+
+              <div>
+                <div class="mockup-section-title">Isolation Mode</div>
+                <div class="mockup-item">
+                  <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle;"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 9v1a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V9"/><path d="M12 12v3"/></svg> Git Worktrees (Isolated)</span>
+                </div>
               </div>
             </div>
 
-            <!-- Pane 2 -->
-            <div class="mockup-terminal-card">
-              <div class="mockup-term-header">
-                <div class="mockup-term-title">
-                  <span class="mockup-term-dot terracotta"></span>
-                  <img class="cli-glyph-icon" src="assets/icons/antigravity.png" alt="Google Antigravity" width="14" height="14" style="margin: 0 6px 0 2px;" />
-                  <span>Backend · Antigravity</span>
+            <!-- Center: Multi-Terminal Grid -->
+            <div class="mockup-grid-center">
+              <!-- Pane 1 -->
+              <div class="mockup-terminal-card">
+                <div class="mockup-term-header">
+                  <div class="mockup-term-title">
+                    <span class="mockup-term-dot green"></span>
+                    <img class="cli-glyph-icon" src="assets/icons/claude.svg" alt="Claude Code" width="14" height="14" style="margin: 0 6px 0 2px;" />
+                    <span>Frontend · Claude Code</span>
+                  </div>
+                  <span class="pane-model-pill">Claude 3.7</span>
                 </div>
-                <span class="pane-model-pill">Claude Fable 5.1</span>
+                <div class="mockup-term-logs">
+                  <div class="cmd"><span class="dollar">$</span> git worktree add .worktrees/fe</div>
+                  <div>• Inspecting shared tokens in styles.css...</div>
+                  <div class="success">✔ Hairline borders &amp; GPU canvas mounted.</div>
+                </div>
+                <div class="mockup-term-footer">
+                  <span><svg class="folder-outline-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> static/js/app.js</span>
+                  <span>2.4k tokens</span>
+                </div>
               </div>
-              <div class="mockup-term-logs">
-                <div class="cmd"><span class="dollar">$</span> uvicorn src.server:app --port 8099</div>
-                <div>• Mounting standing context & voice intent parser...</div>
-                <div class="success">✔ PR review gate verified. 0 leaks.</div>
+
+              <!-- Pane 2 -->
+              <div class="mockup-terminal-card">
+                <div class="mockup-term-header">
+                  <div class="mockup-term-title">
+                    <span class="mockup-term-dot terracotta"></span>
+                    <img class="cli-glyph-icon" src="assets/icons/antigravity.png" alt="Google Antigravity" width="14" height="14" style="margin: 0 6px 0 2px;" />
+                    <span>Backend · Antigravity</span>
+                  </div>
+                  <span class="pane-model-pill">Claude Fable 5.1</span>
+                </div>
+                <div class="mockup-term-logs">
+                  <div class="cmd"><span class="dollar">$</span> uvicorn src.server:app --port 8099</div>
+                  <div>• Mounting standing context &amp; voice intent parser...</div>
+                  <div class="success">✔ PR review gate verified. 0 leaks.</div>
+                </div>
+                <div class="mockup-term-footer">
+                  <span><svg class="folder-outline-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> src/server.py</span>
+                  <span>Effort: High</span>
+                </div>
               </div>
-              <div class="mockup-term-footer">
-                <span><svg class="folder-outline-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> src/server.py</span>
-                <span>Effort: High</span>
+
+              <!-- Pane 3 -->
+              <div class="mockup-terminal-card">
+                <div class="mockup-term-header">
+                  <div class="mockup-term-title">
+                    <span class="mockup-term-dot green"></span>
+                    <img class="cli-glyph-icon" src="assets/icons/openai.svg" alt="OpenAI Codex" width="14" height="14" style="margin: 0 6px 0 2px;" />
+                    <span>Database · Codex</span>
+                  </div>
+                  <span class="pane-model-pill">GPT-4o</span>
+                </div>
+                <div class="mockup-term-logs">
+                  <div class="cmd"><span class="dollar">$</span> python -m migrations.verify</div>
+                  <div>• Validating schema constraints on session groups...</div>
+                  <div class="success">✔ Disjoint boundary lock confirmed.</div>
+                </div>
+                <div class="mockup-term-footer">
+                  <span><svg class="folder-outline-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> data/schema.sql</span>
+                  <span>Sync OK</span>
+                </div>
+              </div>
+
+              <!-- Pane 4 -->
+              <div class="mockup-terminal-card">
+                <div class="mockup-term-header">
+                  <div class="mockup-term-title">
+                    <span class="mockup-term-dot green"></span>
+                    <img class="cli-glyph-icon" src="assets/icons/cursor.svg" alt="Cursor Agent" width="14" height="14" style="margin: 0 6px 0 2px;" />
+                    <span>QA Sentinel · Cursor</span>
+                  </div>
+                  <span class="pane-model-pill">Local Llama 3</span>
+                </div>
+                <div class="mockup-term-logs">
+                  <div class="cmd"><span class="dollar">$</span> python -m unittest discover</div>
+                  <div class="success">✔ 44/44 tests passed (0 regressions).</div>
+                  <div>• PR ready for human review.</div>
+                </div>
+                <div class="mockup-term-footer">
+                  <span><svg class="folder-outline-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> tests/test_voice.py</span>
+                  <span>100% Pass</span>
+                </div>
               </div>
             </div>
 
-            <!-- Pane 3 -->
-            <div class="mockup-terminal-card">
-              <div class="mockup-term-header">
-                <div class="mockup-term-title">
-                  <span class="mockup-term-dot green"></span>
-                  <img class="cli-glyph-icon" src="assets/icons/openai.svg" alt="OpenAI Codex" width="14" height="14" style="margin: 0 6px 0 2px;" />
-                  <span>Database · Codex</span>
-                </div>
-                <span class="pane-model-pill">GPT-4o</span>
+            <!-- Right: Inspector Panel -->
+            <div class="mockup-inspector">
+              <div class="mockup-section-title">Swarm Telemetry</div>
+              <div class="mockup-card-metric">
+                <div class="metric-title">Active Fleet</div>
+                <div class="metric-val">6 Concurrent Agents</div>
+                <span class="metric-pill-ok">Worktrees Locked</span>
               </div>
-              <div class="mockup-term-logs">
-                <div class="cmd"><span class="dollar">$</span> python -m migrations.verify</div>
-                <div>• Validating schema constraints on session groups...</div>
-                <div class="success">✔ Disjoint boundary lock confirmed.</div>
-              </div>
-              <div class="mockup-term-footer">
-                <span><svg class="folder-outline-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> data/schema.sql</span>
-                <span>Sync OK</span>
-              </div>
-            </div>
 
-            <!-- Pane 4 -->
-            <div class="mockup-terminal-card">
-              <div class="mockup-term-header">
-                <div class="mockup-term-title">
-                  <span class="mockup-term-dot green"></span>
-                  <img class="cli-glyph-icon" src="assets/icons/cursor.svg" alt="Cursor Agent" width="14" height="14" style="margin: 0 6px 0 2px;" />
-                  <span>QA Sentinel · Cursor</span>
-                </div>
-                <span class="pane-model-pill">Local Llama 3</span>
+              <div class="mockup-card-metric">
+                <div class="metric-title">PromptGuard Pre-Screen</div>
+                <div class="metric-val">100% Clean</div>
+                <span class="metric-pill-ok">0 Injections</span>
               </div>
-              <div class="mockup-term-logs">
-                <div class="cmd"><span class="dollar">$</span> python -m unittest discover</div>
-                <div class="success">✔ 44/44 tests passed (0 regressions).</div>
-                <div>• PR ready for human review.</div>
-              </div>
-              <div class="mockup-term-footer">
-                <span><svg class="folder-outline-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg> tests/test_voice.py</span>
-                <span>100% Pass</span>
+
+              <div class="mockup-card-metric">
+                <div class="metric-title">Context Budget</div>
+                <div class="metric-val">28.4k / 128k Tokens</div>
+                <span class="metric-pill-ok">Green (22%)</span>
               </div>
             </div>
           </div>
 
-          <!-- Right: Inspector Panel -->
-          <div class="mockup-inspector">
-            <div class="mockup-section-title">Swarm Telemetry</div>
-            <div class="mockup-card-metric">
-              <div class="metric-title">Active Fleet</div>
-              <div class="metric-val">6 Concurrent Agents</div>
-              <span class="metric-pill-ok">Worktrees Locked</span>
+          <!-- ================================================================
+               MODE 3: AGENT MODE (WHATSAPP/GROK MULTI-AGENT INTERFACE)
+               ================================================================ -->
+          <div class="mockup-view-pane" id="mockupViewAgent" role="tabpanel" aria-labelledby="tabMockupAgent">
+            <!-- Left: Agent Roster Column -->
+            <div class="mockup-agent-sidebar">
+              <div class="agent-sidebar-head">
+                <span class="agent-head-title">Agents</span>
+                <button type="button" class="btn-mockup-add-agent" title="Create Agent">+</button>
+              </div>
+
+              <div class="agent-sidebar-search">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" placeholder="Search agents..." readonly />
+              </div>
+
+              <div class="agent-roster-scrollable">
+                <div class="agent-category-label">WORKING AGENTS (3)</div>
+                <div class="agent-roster-row active">
+                  <div class="agent-avatar-wrap">
+                    <img src="assets/angel-bot-idle.gif" alt="Angel Bot" class="agent-mini-pixel" />
+                    <span class="agent-state-dot amber"></span>
+                  </div>
+                  <div class="agent-row-info">
+                    <div class="agent-name-line">
+                      <span class="agent-label">Angel Bot</span>
+                      <span class="agent-role-pill">Orchestrator</span>
+                    </div>
+                    <span class="agent-status-sub">Watching .worktrees/fe</span>
+                  </div>
+                </div>
+
+                <div class="agent-roster-row">
+                  <div class="agent-avatar-wrap">
+                    <span class="agent-avatar-letter">S</span>
+                    <span class="agent-state-dot green"></span>
+                  </div>
+                  <div class="agent-row-info">
+                    <div class="agent-name-line">
+                      <span class="agent-label">Scout</span>
+                      <span class="agent-role-pill">Research</span>
+                    </div>
+                    <span class="agent-status-sub">Parsing Vercel bundle spec</span>
+                  </div>
+                </div>
+
+                <div class="agent-roster-row">
+                  <div class="agent-avatar-wrap">
+                    <span class="agent-avatar-letter">Q</span>
+                    <span class="agent-state-dot green"></span>
+                  </div>
+                  <div class="agent-row-info">
+                    <div class="agent-name-line">
+                      <span class="agent-label">QA Sentinel</span>
+                      <span class="agent-role-pill">AppSec</span>
+                    </div>
+                    <span class="agent-status-sub">SLSA Cosign attestation clean</span>
+                  </div>
+                </div>
+
+                <div class="agent-category-label" style="margin-top: 10px;">IDLE AGENTS (2)</div>
+                <div class="agent-roster-row idle">
+                  <div class="agent-avatar-wrap">
+                    <span class="agent-avatar-letter muted">A</span>
+                    <span class="agent-state-dot muted"></span>
+                  </div>
+                  <div class="agent-row-info">
+                    <div class="agent-name-line">
+                      <span class="agent-label">Architect</span>
+                      <span class="agent-role-pill muted">System</span>
+                    </div>
+                    <span class="agent-status-sub">Standing by</span>
+                  </div>
+                </div>
+
+                <div class="agent-roster-row idle">
+                  <div class="agent-avatar-wrap">
+                    <span class="agent-avatar-letter muted">C</span>
+                    <span class="agent-state-dot muted"></span>
+                  </div>
+                  <div class="agent-row-info">
+                    <div class="agent-name-line">
+                      <span class="agent-label">Chronos</span>
+                      <span class="agent-role-pill muted">Frontend</span>
+                    </div>
+                    <span class="agent-status-sub">Worktree clean</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="mockup-card-metric">
-              <div class="metric-title">PromptGuard Pre-Screen</div>
-              <div class="metric-val">100% Clean</div>
-              <span class="metric-pill-ok">0 Injections</span>
+            <!-- Center: 1:1 WhatsApp-style Agent Conversation -->
+            <div class="mockup-agent-center">
+              <div class="agent-chat-head">
+                <div class="agent-head-left">
+                  <div class="agent-head-avatar">
+                    <img src="assets/angel-bot-idle.gif" alt="Angel Bot" class="agent-head-pixel" />
+                  </div>
+                  <div class="agent-head-meta">
+                    <div class="agent-head-title-row">
+                      <span class="agent-head-name">Angel Bot</span>
+                      <span class="agent-status-chip">● MONITORING MESH</span>
+                    </div>
+                    <span class="agent-head-desc">Chief of Staff · Active Worktree: .worktrees/fe-mobile</span>
+                  </div>
+                </div>
+                <div class="agent-head-right">
+                  <span class="agent-mesh-ping">12ms Tailscale Mesh</span>
+                </div>
+              </div>
+
+              <div class="agent-chat-messages">
+                <!-- User Message -->
+                <div class="agent-msg-turn user">
+                  <div class="agent-msg-bubble">
+                    Summarize status across the 6 parallel Git worktrees and check PR diff approvals.
+                  </div>
+                </div>
+
+                <!-- Angel Bot Turn with Persona Avatar -->
+                <div class="agent-msg-turn bot">
+                  <div class="agent-msg-avatar">
+                    <img src="assets/angel-bot-idle.gif" alt="Angel Bot" class="agent-bubble-pixel" />
+                  </div>
+                  <div class="agent-msg-content">
+                    <div class="agent-thought-pill">
+                      <span class="thought-spark">✨</span>
+                      <span>Verified zero lock collisions on .worktrees/fe-mobile &amp; auth-mesh</span>
+                    </div>
+                    <div class="agent-msg-bubble">
+                      All 6 Git worktrees are isolated and clean. Frontend Claude Code agent is ready with <strong>PR #18</strong> (ed25519 token migration) awaiting your approval in the Review Drawer.
+                    </div>
+                    <div class="agent-msg-time">09:41 · Angel Bot</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Agent Input Dock -->
+              <div class="mockup-agent-input-dock">
+                <input type="text" class="agent-mockup-input" placeholder="Direct message Angel Bot (Hold Ctrl+Space to talk)..." readonly />
+                <div class="agent-input-buttons">
+                  <button type="button" class="btn-agent-voice">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                  </button>
+                  <button type="button" class="btn-agent-send">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <div class="mockup-card-metric">
-              <div class="metric-title">Context Budget</div>
-              <div class="metric-val">28.4k / 128k Tokens</div>
-              <span class="metric-pill-ok">Green (22%)</span>
+            <!-- Right: Agent Details Column -->
+            <div class="mockup-agent-right">
+              <div class="agent-detail-header">
+                <span class="detail-head-title">Agent Profile</span>
+                <span class="detail-state-badge">Active</span>
+              </div>
+
+              <div class="agent-detail-card">
+                <div class="detail-avatar-preview">
+                  <img src="assets/angel-bot-idle.gif" alt="Angel Bot" class="detail-pixel-hero" />
+                </div>
+                <div class="detail-name-text">Angel Bot</div>
+                <div class="detail-role-sub">Orchestrator Persona</div>
+                <p class="detail-purpose-quote">
+                  “Monitors worktree file events, routes tasks to specialized personas, and enforces SLSA release gates.”
+                </p>
+              </div>
+
+              <div class="agent-meta-attributes">
+                <div class="meta-attr-row">
+                  <span class="attr-lbl">Assigned Model</span>
+                  <span class="attr-val">Claude 3.7 Sonnet</span>
+                </div>
+                <div class="meta-attr-row">
+                  <span class="attr-lbl">Workspace</span>
+                  <span class="attr-val text-emerald">kelvra-bench (main)</span>
+                </div>
+                <div class="meta-attr-row">
+                  <span class="attr-lbl">Worktree Fleet</span>
+                  <span class="attr-val text-emerald">6 Active</span>
+                </div>
+                <div class="meta-attr-row">
+                  <span class="attr-lbl">Security Screen</span>
+                  <span class="attr-val">PromptGuard (0 Leaks)</span>
+                </div>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

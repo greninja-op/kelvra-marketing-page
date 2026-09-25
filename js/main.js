@@ -421,8 +421,144 @@ function initMobileShowcaseAutoplay() {
   startAutoplay();
 }
 
-// Wire Mobile Showcase on DOMContentLoaded
+/* ==========================================================================
+   5. HERO WINDOW TRI-MODAL SWITCHER (CHAT / CODE / AGENT)
+   Directional Spatial Transitions with Physics Matching Kelvra Bench
+   ========================================================================== */
+
+function initHeroModeSwitcher() {
+  const switchContainer = document.getElementById("mockupModeSwitch");
+  const viewport = document.getElementById("mockupViewport");
+  if (!switchContainer || !viewport) return;
+
+  const tabs = switchContainer.querySelectorAll(".mockup-mode-tab");
+  const panes = {
+    chat: document.getElementById("mockupViewChat"),
+    code: document.getElementById("mockupViewCode"),
+    agent: document.getElementById("mockupViewAgent"),
+  };
+
+  const modeIndices = { chat: 0, code: 1, agent: 2 };
+  let currentMode = "code";
+  let isTransitioning = false;
+  let transitionTimer = null;
+
+  function switchMode(targetMode) {
+    if (targetMode === currentMode || isTransitioning) return;
+    const oldMode = currentMode;
+    const oldPane = panes[oldMode];
+    const newPane = panes[targetMode];
+    if (!newPane) return;
+
+    isTransitioning = true;
+    currentMode = targetMode;
+
+    // Update active tab buttons
+    tabs.forEach((tab) => {
+      const isTarget = tab.dataset.mode === targetMode;
+      tab.classList.toggle("active", isTarget);
+      tab.setAttribute("aria-selected", isTarget ? "true" : "false");
+    });
+
+    // Spatial directional physics: Right tab -> view enters from right; Left tab -> view enters from left
+    const isFromRight = (modeIndices[targetMode] ?? 0) >= (modeIndices[oldMode] ?? 0);
+    const inClass = isFromRight ? "mode-transition-in-right" : "mode-transition-in-left";
+    const outClass = isFromRight ? "mode-transition-out-left" : "mode-transition-out-right";
+
+    if (transitionTimer) {
+      clearTimeout(transitionTimer);
+      transitionTimer = null;
+    }
+
+    // Clean up any remaining classes from all panes
+    Object.values(panes).forEach((pane) => {
+      if (!pane) return;
+      pane.classList.remove(
+        "mode-transition-in-right",
+        "mode-transition-in-left",
+        "mode-transition-out-left",
+        "mode-transition-out-right"
+      );
+    });
+
+    // Start directional transition
+    if (oldPane) {
+      oldPane.classList.add(outClass);
+    }
+    newPane.classList.add("active", inClass);
+
+    transitionTimer = setTimeout(() => {
+      if (oldPane && oldPane !== newPane) {
+        oldPane.classList.remove("active", outClass);
+      }
+      newPane.classList.remove(inClass);
+      isTransitioning = false;
+      transitionTimer = null;
+    }, 290);
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const mode = tab.dataset.mode;
+      if (mode) switchMode(mode);
+    });
+  });
+
+  // Micro-interactions: Chat Diff Review Drawer Buttons
+  const chatApproveBtn = document.querySelector(".btn-drawer-approve");
+  const chatRejectBtn = document.querySelector(".btn-drawer-reject");
+
+  if (chatApproveBtn) {
+    chatApproveBtn.addEventListener("click", () => {
+      const orig = chatApproveBtn.innerHTML;
+      chatApproveBtn.innerHTML = "✔ Approved &amp; Merged";
+      chatApproveBtn.style.background = "#52B788";
+      chatApproveBtn.style.color = "#0B0B09";
+      setTimeout(() => {
+        chatApproveBtn.innerHTML = orig;
+        chatApproveBtn.style.background = "";
+        chatApproveBtn.style.color = "";
+      }, 2400);
+    });
+  }
+
+  if (chatRejectBtn) {
+    chatRejectBtn.addEventListener("click", () => {
+      const orig = chatRejectBtn.innerHTML;
+      chatRejectBtn.innerHTML = "Changes Requested";
+      chatRejectBtn.style.color = "#F87171";
+      chatRejectBtn.style.borderColor = "#F87171";
+      setTimeout(() => {
+        chatRejectBtn.innerHTML = orig;
+        chatRejectBtn.style.color = "";
+        chatRejectBtn.style.borderColor = "";
+      }, 2400);
+    });
+  }
+
+  // Micro-interactions: Chat History selection
+  const chatItems = document.querySelectorAll(".chat-history-mockup-item");
+  chatItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      chatItems.forEach((ci) => ci.classList.remove("active"));
+      item.classList.add("active");
+    });
+  });
+
+  // Micro-interactions: Agent Roster selection
+  const agentRows = document.querySelectorAll(".agent-roster-row");
+  agentRows.forEach((row) => {
+    row.addEventListener("click", () => {
+      agentRows.forEach((ar) => ar.classList.remove("active"));
+      row.classList.add("active");
+    });
+  });
+}
+
+// Wire Mobile Showcase & Hero Mode Switcher on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   initMobileShowcaseAutoplay();
+  initHeroModeSwitcher();
 });
+
 
