@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCloneCopy();
   detectUserOS();
   initNavScrollSpyAndSmoothScroll();
+  initWorktreeStudio();
 });
 
 /* ==========================================================================
@@ -1383,7 +1384,7 @@ function initSwarmWorkbench() {
  */
 function initNavScrollSpyAndSmoothScroll() {
   const navLinks = Array.from(document.querySelectorAll(".site-nav .nav-link"));
-  const sectionIds = ["modes", "showcase", "accounts", "mobile-showcase", "voice", "ward", "faq"];
+  const sectionIds = ["modes", "showcase", "accounts", "mobile-showcase", "voice", "ward", "worktrees", "faq"];
   const headerOffset = 76; // Site nav height clearance
 
   let isManualScrolling = false;
@@ -1868,4 +1869,211 @@ function initWardStudio() {
       }, item.delay);
     });
   });
+}
+
+/* ==========================================================================
+   SECTION 7: KELVRA WORKTREE SANDBOX & SWARM TOKEN ECONOMICS STUDIO
+   ========================================================================== */
+
+function initWorktreeStudio() {
+  const viewBtns = document.querySelectorAll(".wt-view-btn");
+  const panelMatrix = document.getElementById("wtPanelMatrix");
+  const panelEconomics = document.getElementById("wtPanelEconomics");
+
+  // Perspective tab switcher (Worktree Matrix vs Token Economics)
+  viewBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const view = btn.dataset.wtView;
+      viewBtns.forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+
+      if (view === "matrix") {
+        if (panelMatrix) panelMatrix.classList.add("active");
+        if (panelEconomics) panelEconomics.classList.remove("active");
+      } else {
+        if (panelMatrix) panelMatrix.classList.remove("active");
+        if (panelEconomics) panelEconomics.classList.add("active");
+      }
+    });
+  });
+
+  // Worktree Fleet Data and Selector
+  const wtData = {
+    fe: {
+      path: "/dev/shm/.kelvra/wt-fe-mobile",
+      branch: "origin/main ← feat/mobile-gestures",
+      rebase: "Clean (Zero Merge Conflicts)",
+      ast: "Disjoint Symbol Graph",
+      boundary: "0 SHARED INODES WITH MAIN",
+      files: [
+        { name: "src/mobile/gestures.ts", type: "add", text: "+84" },
+        { name: "src/theme/tokens.css", type: "mod", text: "~16" },
+        { name: "tests/touch.test.ts", type: "add", text: "+42" }
+      ],
+      terminal: `<span class="wt-term-prompt">$</span> <span class="wt-term-cmd">git worktree lock --reason="Active Claude Code session (PID 8192)"</span><br />` +
+                `<span class="wt-term-res">✔ Inode lock established at .worktrees/fe-mobile</span><br />` +
+                `<span class="wt-term-res">✔ AST-Tree validation passed: 0 symbol collisions with pending PR #19</span>`
+    },
+    auth: {
+      path: "/dev/shm/.kelvra/wt-auth-mesh",
+      branch: "origin/main ← security/p256-keys",
+      rebase: "Clean (Zero Merge Conflicts)",
+      ast: "Hardware Key Claims Graph",
+      boundary: "0 SHARED INODES WITH MAIN",
+      files: [
+        { name: "src/auth/hardware_keys.rs", type: "add", text: "+140" },
+        { name: "src/crypto/claims.rs", type: "mod", text: "~12" }
+      ],
+      terminal: `<span class="wt-term-prompt">$</span> <span class="wt-term-cmd">git worktree lock --reason="OpenAI o3-mini session (PID 8204)"</span><br />` +
+                `<span class="wt-term-res">✔ Inode lock established at .worktrees/auth-mesh</span><br />` +
+                `<span class="wt-term-res">✔ Hardware key P-256 claims passed compilation with zero heap leaks</span>`
+    },
+    qa: {
+      path: "/dev/shm/.kelvra/wt-qa-sentinel",
+      branch: "origin/main ← audit/cve-sandbox",
+      rebase: "Clean (Read-Only Audit)",
+      ast: "Read-Only Boundary Guard",
+      boundary: "AIRGAP SANDBOX BOUNDARY",
+      files: [
+        { name: "tests/security/cve_audit.test.ts", type: "add", text: "+92" },
+        { name: "data/sandbox/quarantine.json", type: "mod", text: "0 diffs" }
+      ],
+      terminal: `<span class="wt-term-prompt">$</span> <span class="wt-term-cmd">git worktree lock --reason="Local Ollama SLSA audit (PID 8219)"</span><br />` +
+                `<span class="wt-term-res">✔ Read-only filesystem boundary active (0 network egress)</span><br />` +
+                `<span class="wt-term-res">✔ 40/40 AppSec assertions passing with SLSA Level 3 provenance</span>`
+    },
+    db: {
+      path: "/dev/shm/.kelvra/wt-db-migration",
+      branch: "origin/main ← refactor/wal-index",
+      rebase: "Clean (Zero Merge Conflicts)",
+      ast: "Disjoint Storage Symbol Graph",
+      boundary: "0 SHARED INODES WITH MAIN",
+      files: [
+        { name: "src/storage/wal.rs", type: "add", text: "+65" },
+        { name: "src/storage/index.rs", type: "mod", text: "~30" }
+      ],
+      terminal: `<span class="wt-term-prompt">$</span> <span class="wt-term-cmd">git worktree lock --reason="Gemini 2.5 Flash session (PID 8231)"</span><br />` +
+                `<span class="wt-term-res">✔ Write-ahead log lock confirmed</span><br />` +
+                `<span class="wt-term-res">✔ 0 lock collisions with active SQLite connection pool</span>`
+    }
+  };
+
+  const nodeCards = document.querySelectorAll(".wt-node-card");
+  const stagePath = document.getElementById("wtStagePath");
+  const stageBranch = document.getElementById("wtStageBranch");
+  const stageRebase = document.getElementById("wtStageRebase");
+  const stageAst = document.getElementById("wtStageAst");
+  const stageBadge = document.getElementById("wtStageBoundaryBadge");
+  const stageFiles = document.getElementById("wtStageFiles");
+  const stageTerminal = document.getElementById("wtStageTerminal");
+  const btnRebase = document.getElementById("btnWtRebase");
+  const btnRebaseLabel = document.getElementById("btnWtRebaseLabel");
+  const rebaseStatus = document.getElementById("wtRebaseStatus");
+
+  nodeCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const key = card.dataset.wt;
+      const data = wtData[key];
+      if (!data) return;
+
+      nodeCards.forEach((c) => c.classList.remove("active"));
+      card.classList.add("active");
+
+      if (stagePath) stagePath.textContent = data.path;
+      if (stageBranch) stageBranch.textContent = data.branch;
+      if (stageRebase) stageRebase.textContent = data.rebase;
+      if (stageAst) stageAst.textContent = data.ast;
+      if (stageBadge) {
+        stageBadge.innerHTML = `<span class="wt-badge-dot"></span><span>${data.boundary}</span>`;
+      }
+
+      if (stageFiles) {
+        stageFiles.innerHTML = data.files
+          .map(
+            (f) => `
+          <div class="wt-file-row">
+            <div class="wt-file-name">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+              <span>${f.name}</span>
+            </div>
+            <div class="wt-file-diff-pill ${f.type}">${f.text}</div>
+          </div>
+        `
+          )
+          .join("");
+      }
+
+      if (stageTerminal) {
+        stageTerminal.innerHTML = data.terminal;
+      }
+
+      // Reset rebase button state
+      if (btnRebase) {
+        btnRebase.classList.remove("success");
+        if (btnRebaseLabel) btnRebaseLabel.textContent = "Simulate Fast-Forward Rebase to main";
+      }
+      if (rebaseStatus) rebaseStatus.textContent = "Awaiting human sign-off";
+    });
+  });
+
+  // Fast-Forward Rebase Simulation
+  if (btnRebase) {
+    btnRebase.addEventListener("click", () => {
+      if (btnRebaseLabel) btnRebaseLabel.textContent = "Rebasing branch onto origin/main...";
+      btnRebase.style.opacity = "0.7";
+
+      setTimeout(() => {
+        btnRebase.classList.add("success");
+        btnRebase.style.opacity = "1";
+        if (btnRebaseLabel) btnRebaseLabel.textContent = "✔ Fast-Forward Merged (commit 4d91a0c)";
+        if (rebaseStatus) {
+          rebaseStatus.textContent = "✔ Clean rebase verified: 0 merge conflicts";
+          rebaseStatus.style.color = "#52B788";
+        }
+      }, 380);
+    });
+  }
+
+  // Token Economics ROI Calculator
+  const teamSlider = document.getElementById("econTeamSlider");
+  const tasksSlider = document.getElementById("econTasksSlider");
+  const teamBadge = document.getElementById("econTeamBadge");
+  const tasksBadge = document.getElementById("econTasksBadge");
+  const saasPrice = document.getElementById("econSaasPrice");
+  const kelvraPrice = document.getElementById("econKelvraPrice");
+  const netYearly = document.getElementById("econNetYearly");
+  const hoursSaved = document.getElementById("econHoursSaved");
+
+  function updateEconomics() {
+    if (!teamSlider || !tasksSlider) return;
+    const devs = parseInt(teamSlider.value, 10) || 5;
+    const tasks = parseInt(tasksSlider.value, 10) || 24;
+
+    if (teamBadge) teamBadge.textContent = `${devs} ${devs === 1 ? "dev" : "devs"}`;
+    if (tasksBadge) tasksBadge.textContent = `${tasks} tasks / day`;
+
+    // Monthly Math:
+    // SaaS Model: $200 per seat + token overage tax ($0.04 per task avg)
+    const saasMonthly = Math.round(devs * 200 + devs * tasks * 22 * 0.038);
+
+    // Kelvra Model: $0 seat + BYOK wholesale tokens with 64% AST decomposition savings
+    const kelvraMonthly = Math.round(devs * tasks * 22 * 0.038 * 0.36);
+
+    const netAnnual = (saasMonthly - kelvraMonthly) * 12;
+    const totalHours = Math.round(devs * 36);
+
+    if (saasPrice) saasPrice.textContent = `$${saasMonthly.toLocaleString()}`;
+    if (kelvraPrice) kelvraPrice.textContent = `$${kelvraMonthly.toLocaleString()}`;
+    if (netYearly) netYearly.textContent = `$${netAnnual.toLocaleString()} / yr`;
+    if (hoursSaved) hoursSaved.textContent = `${totalHours} hrs`;
+  }
+
+  if (teamSlider) teamSlider.addEventListener("input", updateEconomics);
+  if (tasksSlider) tasksSlider.addEventListener("input", updateEconomics);
+
+  updateEconomics();
 }

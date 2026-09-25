@@ -35,6 +35,7 @@
         <li><a href="#mobile-showcase" class="nav-link">Mobile App</a></li>
         <li><a href="#voice" class="nav-link">Voice Orb</a></li>
         <li><a href="#ward" class="nav-link">Ward Gate</a></li>
+        <li><a href="#worktrees" class="nav-link">Worktrees</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
       </ul>
 
@@ -2424,7 +2425,300 @@
   <hr class="section-divider" />
 
   <!-- ========================================================================
-       SECTION 7: FAQ ACCORDION
+       SECTION 7: KELVRA WORKTREE SANDBOX & SWARM TOKEN ECONOMICS STUDIO
+       ======================================================================== -->
+  <section class="worktree-studio-section" id="worktrees">
+    <div class="container">
+      <div class="section-header text-center" style="margin-bottom: var(--space-8);">
+        <span class="section-eyebrow">CONCURRENT WORKTREE ISOLATION &amp; RESOURCE INTELLIGENCE</span>
+        <h2 class="section-title">6 Autonomous Agents. 1 Repository. Zero Collisions.</h2>
+        <p class="section-desc" style="max-width: 760px; margin: 0 auto;">
+          Traditional AI tools overwrite files on your active branch. Kelvra provisions ephemeral, RAM-mounted Git worktrees. Each agent compiles on an isolated branch, screened by AST symbol locks and merged with human sign-off.
+        </p>
+
+        <!-- Perspective Toggle (Worktree Matrix vs Token Economics) -->
+        <div class="wt-view-switcher" role="tablist">
+          <button class="wt-view-btn active" data-wt-view="matrix" type="button" role="tab" aria-selected="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>
+            </svg>
+            <span>Git Worktree Concurrency Matrix</span>
+          </button>
+          <button class="wt-view-btn" data-wt-view="economics" type="button" role="tab" aria-selected="false">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            <span>Token Economics &amp; ROI Calculator</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW 1: WORKTREE MATRIX -->
+      <div class="wt-view-panel active" id="wtPanelMatrix">
+        <div class="wt-grid-layout">
+          <!-- Left: Fleet of Worktree Nodes -->
+          <div class="wt-fleet-rail">
+            <div class="wt-rail-head">
+              <span>ISOLATED WORKTREE INSTANCES</span>
+              <span class="wt-rail-badge">4 ACTIVE RAM DISKS</span>
+            </div>
+
+            <div class="wt-node-card active" data-wt="fe">
+              <div class="wt-node-header">
+                <div class="wt-node-title">
+                  <span class="wt-branch-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  </span>
+                  <span class="wt-name">.worktrees/fe-mobile</span>
+                </div>
+                <span class="wt-status-pill green">DISJOINT LOCK</span>
+              </div>
+              <div class="wt-node-meta">
+                <span>Branch: <code>feat/mobile-gestures</code></span>
+                <span>Agent: Claude 3.7 Sonnet (PID: 8192)</span>
+              </div>
+              <div class="wt-node-stats">
+                <span class="wt-stat-tag">4 files modified</span>
+                <span class="wt-stat-tag pass">28/28 tests pass</span>
+              </div>
+            </div>
+
+            <div class="wt-node-card" data-wt="auth">
+              <div class="wt-node-header">
+                <div class="wt-node-title">
+                  <span class="wt-branch-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  </span>
+                  <span class="wt-name">.worktrees/auth-mesh</span>
+                </div>
+                <span class="wt-status-pill green">DISJOINT LOCK</span>
+              </div>
+              <div class="wt-node-meta">
+                <span>Branch: <code>security/p256-keys</code></span>
+                <span>Agent: OpenAI o3-mini (PID: 8204)</span>
+              </div>
+              <div class="wt-node-stats">
+                <span class="wt-stat-tag">2 files modified</span>
+                <span class="wt-stat-tag pass">12/12 tests pass</span>
+              </div>
+            </div>
+
+            <div class="wt-node-card" data-wt="qa">
+              <div class="wt-node-header">
+                <div class="wt-node-title">
+                  <span class="wt-branch-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  </span>
+                  <span class="wt-name">.worktrees/qa-sentinel</span>
+                </div>
+                <span class="wt-status-pill amber">AIRGAP READ-ONLY</span>
+              </div>
+              <div class="wt-node-meta">
+                <span>Branch: <code>audit/cve-sandbox</code></span>
+                <span>Agent: Local Ollama (PID: 8219)</span>
+              </div>
+              <div class="wt-node-stats">
+                <span class="wt-stat-tag">0 uncommitted diffs</span>
+                <span class="wt-stat-tag slsa">SLSA Level 3</span>
+              </div>
+            </div>
+
+            <div class="wt-node-card" data-wt="db">
+              <div class="wt-node-header">
+                <div class="wt-node-title">
+                  <span class="wt-branch-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  </span>
+                  <span class="wt-name">.worktrees/db-migration</span>
+                </div>
+                <span class="wt-status-pill green">DISJOINT LOCK</span>
+              </div>
+              <div class="wt-node-meta">
+                <span>Branch: <code>refactor/wal-index</code></span>
+                <span>Agent: Gemini 2.5 Flash (PID: 8231)</span>
+              </div>
+              <div class="wt-node-stats">
+                <span class="wt-stat-tag">1 file modified</span>
+                <span class="wt-stat-tag pass">40/40 tests pass</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Worktree Stage & Diff Review -->
+          <div class="wt-inspector-stage">
+            <div class="wt-stage-header">
+              <div class="wt-stage-title-group">
+                <div class="wt-stage-eyebrow">EPHEMERAL RAM MOUNT</div>
+                <h3 class="wt-stage-path" id="wtStagePath">/dev/shm/.kelvra/wt-fe-mobile</h3>
+              </div>
+              <div class="wt-stage-badge" id="wtStageBoundaryBadge">
+                <span class="wt-badge-dot"></span>
+                <span>0 SHARED INODES WITH MAIN</span>
+              </div>
+            </div>
+
+            <!-- Inode Boundary Info Strip -->
+            <div class="wt-boundary-bar">
+              <div class="wt-boundary-metric">
+                <span class="wt-m-lbl">Target Git Upstream</span>
+                <span class="wt-m-val" id="wtStageBranch">origin/main ← feat/mobile-gestures</span>
+              </div>
+              <div class="wt-boundary-metric">
+                <span class="wt-m-lbl">Rebase Verification</span>
+                <span class="wt-m-val green" id="wtStageRebase">Clean (Zero Merge Conflicts)</span>
+              </div>
+              <div class="wt-boundary-metric">
+                <span class="wt-m-lbl">AST Collision Shield</span>
+                <span class="wt-m-val" id="wtStageAst">Disjoint Symbol Graph</span>
+              </div>
+            </div>
+
+            <!-- Staged File Tree Explorer -->
+            <div class="wt-file-tree" id="wtStageFiles">
+              <div class="wt-file-row">
+                <div class="wt-file-name">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                  <span>src/mobile/gestures.ts</span>
+                </div>
+                <div class="wt-file-diff-pill add">+84</div>
+              </div>
+              <div class="wt-file-row">
+                <div class="wt-file-name">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                  <span>src/theme/tokens.css</span>
+                </div>
+                <div class="wt-file-diff-pill mod">~16</div>
+              </div>
+              <div class="wt-file-row">
+                <div class="wt-file-name">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                  <span>tests/touch.test.ts</span>
+                </div>
+                <div class="wt-file-diff-pill add">+42</div>
+              </div>
+            </div>
+
+            <!-- Terminal Attestation Log & Action -->
+            <div class="wt-stage-footer">
+              <div class="wt-terminal-output" id="wtStageTerminal">
+                <span class="wt-term-prompt">$</span> <span class="wt-term-cmd">git worktree lock --reason="Active Claude Code session (PID 8192)"</span><br />
+                <span class="wt-term-res">✔ Inode lock established at .worktrees/fe-mobile</span><br />
+                <span class="wt-term-res">✔ AST AST-Tree validation passed: 0 symbol collisions with pending PR #19</span>
+              </div>
+              <div class="wt-action-row">
+                <button class="btn-wt-rebase" id="btnWtRebase" type="button">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span id="btnWtRebaseLabel">Simulate Fast-Forward Rebase to main</span>
+                </button>
+                <div class="wt-rebase-status" id="wtRebaseStatus">Awaiting human sign-off</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 2: SWARM TOKEN ECONOMICS & ROI CALCULATOR -->
+      <div class="wt-view-panel" id="wtPanelEconomics">
+        <div class="econ-calculator-grid">
+          <!-- Left: Sliders Card -->
+          <div class="econ-inputs-card">
+            <div class="econ-card-header">
+              <span class="section-eyebrow">YOUR TEAM PARAMETERS</span>
+              <h3 class="econ-card-title">Simulate Swarm ROI</h3>
+              <p class="econ-card-desc">See how much your organization saves by shifting from closed-source SaaS seat monopolies to Kelvra's local-first orchestrator.</p>
+            </div>
+
+            <div class="econ-slider-group">
+              <div class="econ-slider-head">
+                <label for="econTeamSlider" class="econ-label">Engineers in Team</label>
+                <span class="econ-val-badge" id="econTeamBadge">5 devs</span>
+              </div>
+              <input type="range" class="econ-range-slider" id="econTeamSlider" min="1" max="50" value="5" step="1" />
+              <div class="econ-slider-range-labels">
+                <span>1 dev</span>
+                <span>25 devs</span>
+                <span>50 devs</span>
+              </div>
+            </div>
+
+            <div class="econ-slider-group" style="margin-top: 24px;">
+              <div class="econ-slider-head">
+                <label for="econTasksSlider" class="econ-label">Daily Directives per Engineer</label>
+                <span class="econ-val-badge" id="econTasksBadge">24 tasks / day</span>
+              </div>
+              <input type="range" class="econ-range-slider" id="econTasksSlider" min="5" max="100" value="24" step="1" />
+              <div class="econ-slider-range-labels">
+                <span>5 tasks</span>
+                <span>50 tasks</span>
+                <span>100 tasks</span>
+              </div>
+            </div>
+
+            <div class="econ-savings-callout">
+              <div class="econ-callout-top">
+                <span class="econ-callout-tag">NET ANNUAL SAVINGS</span>
+                <span class="econ-callout-num" id="econNetYearly">$20,016 / yr</span>
+              </div>
+              <p class="econ-callout-sub">Zero seat taxes, zero proprietary subscription lock-in, and 64% fewer wasted tokens via AST symbol decomposition.</p>
+            </div>
+          </div>
+
+          <!-- Right: Side-by-side Comparative Cost Breakdown -->
+          <div class="econ-breakdown-card">
+            <div class="econ-columns-compare">
+              <!-- Column 1: SaaS Tax -->
+              <div class="econ-col saas">
+                <div class="econ-col-head">
+                  <div class="econ-col-title">Closed SaaS Cloud Seat</div>
+                  <span class="econ-col-price" id="econSaasPrice">$1,860</span>
+                  <span class="econ-col-period">per month</span>
+                </div>
+                <ul class="econ-col-features">
+                  <li><span class="econ-x">✕</span> $200/mo per-seat SaaS tax</li>
+                  <li><span class="econ-x">✕</span> $15/1M token markup markup</li>
+                  <li><span class="econ-x">✕</span> Full file dumps burn token limits</li>
+                  <li><span class="econ-x">✕</span> Proprietary telemetry tracking code</li>
+                </ul>
+              </div>
+
+              <!-- Column 2: Kelvra Local-First Swarm -->
+              <div class="econ-col kelvra active">
+                <div class="econ-col-head">
+                  <div class="econ-col-badge">RECOMMENDED</div>
+                  <div class="econ-col-title">Kelvra Local Swarm</div>
+                  <span class="econ-col-price" id="econKelvraPrice">$192</span>
+                  <span class="econ-col-period">per month</span>
+                </div>
+                <ul class="econ-col-features">
+                  <li><span class="econ-chk">✔</span> <strong>$0 / mo</strong> 100% Free &amp; Open Source</li>
+                  <li><span class="econ-chk">✔</span> Wholesale BYOK API key pricing</li>
+                  <li><span class="econ-chk">✔</span> Free local Ollama for triage</li>
+                  <li><span class="econ-chk">✔</span> 0 bytes outbound code leakage</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="econ-efficiency-strip">
+              <div class="econ-eff-item">
+                <span class="econ-eff-num" id="econHoursSaved">180 hrs</span>
+                <span class="econ-eff-desc">Monthly Parallel Build Time Saved</span>
+              </div>
+              <div class="econ-eff-divider"></div>
+              <div class="econ-eff-item">
+                <span class="econ-eff-num" id="econTokenPercent">64%</span>
+                <span class="econ-eff-desc">AST Token Waste Reduction</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ========================================================================
+       SECTION 8: FAQ ACCORDION
        ======================================================================== -->
   <section class="faq-section" id="faq">
     <div class="container">
