@@ -1314,6 +1314,7 @@ function initSwarmWorkbench() {
   // Bind Tab Click Handlers
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
+      tab.blur();
       const tabKey = tab.dataset.tab;
       if (tabKey) switchTab(tabKey);
     });
@@ -1798,6 +1799,7 @@ function initWardStudio() {
 
   tabBtns.forEach(btn => {
     btn.addEventListener("click", () => {
+      btn.blur();
       const targetTab = btn.dataset.wardTab;
       tabBtns.forEach(b => {
         b.classList.remove("active");
@@ -1890,6 +1892,7 @@ function initWorktreeStudio() {
   // Perspective tab switcher (Worktree Matrix vs Token Economics)
   viewBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      btn.blur();
       const view = btn.dataset.wtView;
       viewBtns.forEach((b) => {
         b.classList.remove("active");

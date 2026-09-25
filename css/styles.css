@@ -155,6 +155,20 @@ button {
   border: none;
   cursor: pointer;
   background: none;
+  outline: none !important;
+  outline-color: transparent !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus,
+button:focus-visible,
+button:active,
+[role="tab"]:focus,
+[role="tab"]:focus-visible,
+[role="tab"]:active {
+  outline: none !important;
+  outline-color: transparent !important;
+  box-shadow: none;
 }
 
 .container {
@@ -2455,10 +2469,21 @@ button {
   transition: all 0.18s ease;
   white-space: nowrap;
   box-sizing: border-box;
+  outline: none !important;
+  outline-color: transparent !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sw-tab:hover {
   color: #EDE8DF;
+  outline: none !important;
+}
+
+.sw-tab:focus,
+.sw-tab:focus-visible,
+.sw-tab:active {
+  outline: none !important;
+  outline-color: transparent !important;
 }
 
 .sw-tab.active {
@@ -2466,6 +2491,14 @@ button {
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  outline: none !important;
+  outline-color: transparent !important;
+}
+
+.sw-tab.active:focus,
+.sw-tab.active:focus-visible {
+  outline: none !important;
+  outline-color: transparent !important;
 }
 
 .sw-diff-counter {
@@ -4308,10 +4341,22 @@ button {
   transition: all var(--transition-fast);
   white-space: nowrap;
   box-sizing: border-box;
+  outline: none !important;
+  outline-color: transparent !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .ward-tab-btn:hover {
   color: var(--text-primary);
+  outline: none !important;
+}
+
+.ward-tab-btn:focus,
+.ward-tab-btn:focus-visible,
+.ward-tab-btn:active {
+  outline: none !important;
+  outline-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .ward-tab-btn.active {
@@ -4319,6 +4364,14 @@ button {
   color: var(--text-primary);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  outline: none !important;
+  outline-color: transparent !important;
+}
+
+.ward-tab-btn.active:focus,
+.ward-tab-btn.active:focus-visible {
+  outline: none !important;
+  outline-color: transparent !important;
 }
 
 .ward-main-title {
@@ -7751,16 +7804,35 @@ button {
   border-radius: var(--radius-full);
   transition: all var(--transition-fast);
   cursor: pointer;
+  outline: none !important;
+  outline-color: transparent !important;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .wt-view-btn:hover {
   color: var(--text-primary);
+  outline: none !important;
+}
+
+.wt-view-btn:focus,
+.wt-view-btn:focus-visible,
+.wt-view-btn:active {
+  outline: none !important;
+  outline-color: transparent !important;
 }
 
 .wt-view-btn.active {
   background: rgba(217, 119, 87, 0.16);
   color: var(--accent-coral);
   box-shadow: 0 0 16px rgba(217, 119, 87, 0.2);
+  outline: none !important;
+  outline-color: transparent !important;
+}
+
+.wt-view-btn.active:focus,
+.wt-view-btn.active:focus-visible {
+  outline: none !important;
+  outline-color: transparent !important;
 }
 
 .wt-view-panel {
