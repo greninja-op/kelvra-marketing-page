@@ -288,21 +288,46 @@ button {
   letter-spacing: 0.01em;
   background: transparent !important;
   border: none !important;
+  outline: none !important;
+  outline-color: transparent !important;
   box-shadow: none !important;
   text-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .nav-link:hover {
   color: var(--text-primary);
   background: transparent !important;
+  outline: none !important;
+}
+
+.nav-link:focus,
+.nav-link:focus-visible,
+.nav-link:active {
+  outline: none !important;
+  outline-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .nav-link.active {
   color: var(--accent-coral) !important; /* Signature warm yellow-orange */
   font-weight: 600;
   background: transparent !important;
+  outline: none !important;
+  outline-color: transparent !important;
   box-shadow: none !important;
   text-shadow: none !important;
+  border: none !important;
+}
+
+.nav-link.active:focus,
+.nav-link.active:focus-visible {
+  outline: none !important;
+  outline-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .nav-actions {

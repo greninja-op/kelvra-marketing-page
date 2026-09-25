@@ -1420,6 +1420,7 @@ function initNavScrollSpyAndSmoothScroll() {
       if (!targetEl) return;
 
       e.preventDefault();
+      this.blur();
 
       // Immediately highlight link if it is part of the nav menu
       if (sectionIds.includes(href.substring(1))) {
