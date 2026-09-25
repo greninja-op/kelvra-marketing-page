@@ -203,15 +203,16 @@ button {
 }
 
 .nav-brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 12px;
+  text-decoration: none;
 }
 
 .kelvra-brand-mark,
 .kelvra-logo-icon {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,18 +234,19 @@ button {
 }
 
 .kelvra-logo-img {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
   filter: none !important;
 }
 
 .nav-wordmark {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 500;
   letter-spacing: 0.3px;
   color: var(--text-primary);
+  line-height: 1;
 }
 
 .nav-links {
@@ -3782,7 +3784,10 @@ button {
 .footer-wordmark {
   font-family: var(--font-serif);
   font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
   color: var(--text-primary);
+  line-height: 1;
 }
 
 .footer-tagline {
