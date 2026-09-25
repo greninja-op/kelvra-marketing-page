@@ -4569,7 +4569,28 @@ button:active,
 }
 
 .artifact-icon {
-  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.artifact-icon.emerald {
+  background: rgba(82, 183, 136, 0.12);
+  border-color: rgba(82, 183, 136, 0.25);
+  color: #52B788;
+}
+
+.artifact-icon.warning {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #F87171;
 }
 
 .sub-label {
