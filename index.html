@@ -622,248 +622,353 @@
   <hr class="section-divider" />
 
   <!-- ========================================================================
-       SECTION 3: THREE MODES ("AGENT. CODE. CHAT.")
+       SECTION 3: ASYMMETRIC SWARM WORKBENCH
+       Command isolated agent fleets · Live PR Diff Gates · Hardware Attestation
        ======================================================================== -->
-  <section class="modes-section" id="modes">
+  <section class="workbench-section" id="modes">
     <div class="container">
-      <span class="section-eyebrow">UNIFIED CONTROL ROOM</span>
-      <h2 class="section-title">Agent. Code. Thread.</h2>
-      <p class="section-desc">
-        Flip the switch in the title bar and the whole app changes with it — the rail, the pane, the composer.
-      </p>
+      <div class="workbench-header">
+        <span class="section-eyebrow">PARALLEL SWARM RUNTIME</span>
+        <h2 class="section-title">Asymmetric Swarm Workbench</h2>
+        <p class="section-desc">
+          Move past single-prompt chat windows. Command specialized agent fleets operating in isolated Git worktrees, review staged diffs in real time, and merge without lock contention.
+        </p>
+      </div>
 
-      <div class="modes-grid">
-        <!-- Card 1: Agent Mode -->
-        <div class="mode-card">
-          <div class="mode-card-preview agent-preview">
-            <div class="preview-agent-layout">
-              <!-- Left Rail: Real Kelvra Swarm Agents -->
-              <div class="preview-agent-rail">
-                <div class="preview-rail-head">
-                  <span>SWARM AGENTS (6)</span>
-                  <span class="preview-plus">+</span>
-                </div>
-
-                <!-- Agent 1: Angel Bot (Lead Orchestrator) -->
-                <div class="preview-agent-card-featured">
-                  <div class="preview-mascot-avatar">
-                    <img src="assets/angel-bot-idle.gif" alt="Angel Bot" width="22" height="22" />
-                  </div>
-                  <div class="preview-featured-name">Angel Bot</div>
-                  <span class="preview-featured-role">Orchestrator</span>
-                </div>
-
-                <!-- Agent 2: Scout -->
-                <div class="preview-agent-item active">
-                  <span class="agent-item-glyph scout-glyph"></span>
-                  <span class="agent-item-name">Scout</span>
-                  <span class="agent-item-badge-pill">Research</span>
-                </div>
-
-                <!-- Agent 3: QA Sentinel -->
-                <div class="preview-agent-item">
-                  <span class="agent-item-glyph notes-glyph"></span>
-                  <span class="agent-item-name">QA Sentinel</span>
-                  <span class="agent-item-badge">AppSec</span>
-                </div>
-
-                <!-- Agent 4: Architect -->
-                <div class="preview-agent-item">
-                  <span class="agent-item-glyph video-glyph"></span>
-                  <span class="agent-item-name">Architect</span>
-                  <span class="agent-item-badge">System</span>
-                </div>
-
-                <!-- Agent 5: Chronos -->
-                <div class="preview-agent-item">
-                  <span class="agent-item-glyph charter-glyph"></span>
-                  <span class="agent-item-name">Chronos</span>
-                  <span class="agent-item-badge">Frontend</span>
-                </div>
-
-                <!-- Agent 6: Ward Gate -->
-                <div class="preview-agent-item">
-                  <span class="agent-item-glyph ward-glyph"></span>
-                  <span class="agent-item-name">Ward Gate</span>
-                  <span class="agent-item-badge">Security</span>
-                </div>
+      <div class="sw-workbench" id="swWorkbench">
+        <!-- LEFT DECK: Voice Intent & Swarm Fleet Commander -->
+        <div class="sw-deck">
+          <!-- Voice Intent Directive Box -->
+          <div class="sw-voice-directive">
+            <div class="sw-voice-header">
+              <div class="sw-voice-meta">
+                <span class="sw-pulse-dot"></span>
+                <span class="sw-voice-label">LIVE INTENT WAVEFORM</span>
               </div>
-
-              <!-- Right Pane: Real Multi-Agent Collaborative Execution -->
-              <div class="preview-agent-pane">
-                <div class="preview-pane-header">
-                  <div class="preview-mascot-avatar" style="width: 18px; height: 16px; border-radius: 4px;">
-                    <img src="assets/angel-bot-idle.gif" alt="Angel Bot" width="14" height="14" />
-                  </div>
-                  <div class="preview-pane-titles">
-                    <span class="preview-pane-name">Angel Bot + Swarm Fleet</span>
-                    <span class="preview-pane-sub">6 Isolated Worktrees · Realtime Sync</span>
-                  </div>
-                </div>
-
-                <div class="preview-tags-row">
-                  <span class="preview-tag-active">wt-auth-refactor</span>
-                  <span class="preview-tag">wt-voice-rpc</span>
-                  <span class="preview-tag">wt-slsa-gate</span>
-                </div>
-
-                <div class="preview-user-bubble">
-                  Decompose auth refactor across worktrees and verify SLSA attestation.
-                </div>
-
-                <!-- Multi-Agent Collaborative Activity -->
-                <div class="preview-thought-block">
-                  <div class="thought-line"><strong style="color: #D97757;">Angel Bot:</strong> Dispatched 3 isolated worktree tasks</div>
-                  <div class="tool-line"><span class="tool-icon search-icon"></span> <strong style="color: #60A5FA;">Scout:</strong> Verified ed25519-dalek crate v2.1.0</div>
-                  <div class="tool-line"><span class="tool-icon run-icon"></span> <strong style="color: #52B788;">QA Sentinel:</strong> Cosign attestation clean</div>
-                </div>
-
-                <div class="preview-output-block">
-                  <div class="output-intro">Swarm execution verified:</div>
-                  <div class="output-bullet">• 3 agents modifying code in parallel</div>
-                  <div class="output-bullet">• 0 lock collisions · Staged to drawer</div>
-                </div>
+              <div class="sw-voice-waves" id="swVoiceWaves">
+                <span class="sw-wave-bar"></span>
+                <span class="sw-wave-bar"></span>
+                <span class="sw-wave-bar"></span>
+                <span class="sw-wave-bar"></span>
+                <span class="sw-wave-bar"></span>
               </div>
+            </div>
+            <div class="sw-voice-query">
+              <span class="sw-voice-mic-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
+              </span>
+              <p class="sw-voice-prompt">"Decompose auth session store into isolated worktree. Add ed25519 hardware key claims."</p>
+            </div>
+            <div class="sw-voice-dispatch-meta">
+              <span class="sw-dispatch-tag">Decomposed into 4 scoped branches</span>
+              <span class="sw-dispatch-time">0 lock conflicts</span>
             </div>
           </div>
 
-          <div class="mode-card-content">
-            <div class="mode-badge agent-badge">
-              <span class="mode-badge-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="11" width="18" height="10" rx="2"/>
-                  <circle cx="12" cy="5" r="2"/>
-                  <path d="M12 7v4"/>
-                  <line x1="8" y1="16" x2="8" y2="16"/>
-                  <line x1="16" y1="16" x2="16" y2="16"/>
-                </svg>
-              </span>
-              <span class="mode-badge-label">Agent</span>
+          <!-- Swarm Fleet Title & Roster -->
+          <div class="sw-fleet-container">
+            <div class="sw-fleet-header">
+              <span class="sw-fleet-title">SWARM FLEET ROSTER (4)</span>
+              <span class="sw-fleet-status">● ALL ISOLATED</span>
             </div>
-            <h3 class="mode-card-heading">Teammates on routines.</h3>
-            <p class="mode-card-desc">
-              Orchestrate autonomous agent fleets. Name an agent, assign a scoped worktree branch, and review staged diffs in parallel.
-            </p>
+
+            <!-- Agent 1: Angel Bot (Featured Orchestrator) -->
+            <button class="sw-agent-card active" data-agent="angel" type="button" aria-label="Inspect Angel Bot">
+              <div class="sw-agent-avatar featured">
+                <img src="assets/angel-bot-idle.gif" alt="Angel Bot" width="24" height="24" />
+              </div>
+              <div class="sw-agent-info">
+                <div class="sw-agent-name-row">
+                  <span class="sw-agent-name">Angel Bot</span>
+                  <span class="sw-agent-role role-orchestrator">Orchestrator</span>
+                </div>
+                <p class="sw-agent-summary">Dispatched 3 worktrees · AST symbol tree synced</p>
+                <div class="sw-agent-branch">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  <span>main / supervisor</span>
+                  <span class="sw-agent-badge green">MONITORING</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- Agent 2: Scout (Research) -->
+            <button class="sw-agent-card" data-agent="scout" type="button" aria-label="Inspect Scout">
+              <div class="sw-agent-avatar glyph-blue">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </div>
+              <div class="sw-agent-info">
+                <div class="sw-agent-name-row">
+                  <span class="sw-agent-name">Scout</span>
+                  <span class="sw-agent-role role-research">Research</span>
+                </div>
+                <p class="sw-agent-summary">Audited ed25519-dalek crate v2.1.0 (clean)</p>
+                <div class="sw-agent-branch">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  <span>wt-dep-audit</span>
+                  <span class="sw-agent-badge blue">VALIDATED</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- Agent 3: QA Sentinel (AppSec) -->
+            <button class="sw-agent-card" data-agent="sentinel" type="button" aria-label="Inspect QA Sentinel">
+              <div class="sw-agent-avatar glyph-emerald">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="sw-agent-info">
+                <div class="sw-agent-name-row">
+                  <span class="sw-agent-name">QA Sentinel</span>
+                  <span class="sw-agent-role role-appsec">AppSec</span>
+                </div>
+                <p class="sw-agent-summary">SLSA Cosign attestation clean · 28 tests passing</p>
+                <div class="sw-agent-branch">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  <span>wt-slsa-gate</span>
+                  <span class="sw-agent-badge green">PASSED</span>
+                </div>
+              </div>
+            </button>
+
+            <!-- Agent 4: Architect (System) -->
+            <button class="sw-agent-card" data-agent="architect" type="button" aria-label="Inspect Architect">
+              <div class="sw-agent-avatar glyph-terracotta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div class="sw-agent-info">
+                <div class="sw-agent-name-row">
+                  <span class="sw-agent-name">Architect</span>
+                  <span class="sw-agent-role role-system">System Refactor</span>
+                </div>
+                <p class="sw-agent-summary">Refactored SessionToken struct (+28 -4)</p>
+                <div class="sw-agent-branch">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  <span>wt-auth-mesh</span>
+                  <span class="sw-agent-badge amber">READY TO MERGE</span>
+                </div>
+              </div>
+            </button>
           </div>
         </div>
 
-        <!-- Card 2: Code Mode -->
-        <div class="mode-card">
-          <div class="mode-card-preview code-preview">
-            <div class="preview-code-header">
-              <div class="preview-code-dots">
-                <span class="code-dot dot-red"></span>
-                <span class="code-dot dot-yellow"></span>
-                <span class="code-dot dot-green"></span>
+        <!-- RIGHT STAGE: Live Multi-Pane Execution Stage -->
+        <div class="sw-stage">
+          <!-- Top Window Chrome & Navigation Tabs -->
+          <div class="sw-stage-chrome">
+            <div class="sw-stage-left">
+              <div class="sw-stage-dots">
+                <span class="sw-dot dot-red"></span>
+                <span class="sw-dot dot-yellow"></span>
+                <span class="sw-dot dot-green"></span>
               </div>
-              <span class="preview-code-title">kelvra-bench · wt-auth-mesh</span>
-              <div class="preview-code-actions">
-                <span>—</span>
-                <span>+</span>
-                <span>×</span>
-              </div>
-            </div>
-            <div class="preview-code-body">
-              <div class="preview-terminal-content">
-                <div class="term-line prompt-line"><span class="term-prompt">&gt;</span> <span class="term-cmd-main">claude</span></div>
-                <div class="term-line info-line">Claude Code 3.7 · wt-auth-mesh · kelvra-bench</div>
-                <div class="term-line prompt-line"><span class="term-prompt">&gt;</span> <span class="term-instruction">isolate auth store refactor into git worktree and verify PR diff gates</span></div>
-                <div class="term-line file-action-line">
-                  <span class="action-tag tag-read">Read</span>
-                  <span class="file-path">src/auth/p256_keys.rs</span>
-                </div>
-                <div class="term-line file-action-line">
-                  <span class="action-tag tag-edit">Edit</span>
-                  <span class="file-path">src/auth/p256_keys.rs</span>
-                </div>
-                <div class="term-line diff-stat-line">
-                  <span class="diff-add">+28</span> <span class="diff-del">-4</span>
-                </div>
-                <div class="term-line run-line">
-                  <span class="action-tag tag-run">Run</span>
-                  <span class="cmd-run">cargo test --package auth-mesh</span>
-                </div>
-                <div class="term-line test-result-line">
-                  <span class="test-success">Tests 28 passed · 0 failed · SLSA Level 3 verified</span>
-                </div>
-                <div class="term-line summary-line">
-                  Cryptographic hardware claims validated. Staged into human review drawer with zero leaks.
-                </div>
-              </div>
-              <div class="preview-code-sidebar-peek">
-                <div class="sidebar-peek-line">&gt; fe</div>
-                <div class="sidebar-peek-line muted">Claude</div>
-                <div class="sidebar-peek-line">&gt; be</div>
-                <div class="sidebar-peek-line muted">Antigravity</div>
-                <div class="sidebar-peek-line">&gt; db</div>
-                <div class="sidebar-peek-line muted">Codex</div>
-                <div class="sidebar-peek-line ok">✓ 6 wt</div>
+              <div class="sw-tabs-nav" role="tablist">
+                <button class="sw-tab active" data-tab="terminal" type="button" role="tab" aria-selected="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                  <span>Isolated Shell</span>
+                </button>
+                <button class="sw-tab" data-tab="diff" type="button" role="tab" aria-selected="false">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span>Staged PR Diff <span class="sw-diff-counter">+28 -4</span></span>
+                </button>
+                <button class="sw-tab" data-tab="guardrail" type="button" role="tab" aria-selected="false">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>SLSA Attestation</span>
+                </button>
               </div>
             </div>
-          </div>
 
-          <div class="mode-card-content">
-            <div class="mode-badge code-badge">
-              <span class="mode-badge-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5EA2FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="16" height="16" rx="2"/>
-                  <polyline points="9 10 7 12 9 14"/>
-                  <polyline points="15 10 17 12 15 14"/>
-                </svg>
+            <div class="sw-stage-meta">
+              <span class="sw-branch-indicator">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                <span id="swActiveBranchLabel">.worktrees/auth-mesh</span>
               </span>
-              <span class="mode-badge-label">Code</span>
-            </div>
-            <h3 class="mode-card-heading">Your terminals, your folders.</h3>
-            <p class="mode-card-desc">
-              Live shells over the folders you already work in, with isolated Git worktrees and diff review drawers docked beside them.
-            </p>
-          </div>
-        </div>
-
-        <!-- Card 3: Thread / Chat Mode -->
-        <div class="mode-card">
-          <div class="mode-card-preview thread-preview">
-            <div class="preview-thread-header">
-              <div class="thread-repo-tag">
-                <svg class="folder-outline-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
-                <span>kelvra-workspace</span>
-              </div>
-              <span class="thread-branch-badge">wt-auth-mesh</span>
-              <span class="thread-title-subject">Refactor session token verification with ed25519 claims</span>
-            </div>
-            <div class="preview-thread-body">
-              <div class="thread-user-bubble">
-                Refactor session token verification to support ed25519 hardware key claims in isolated worktree.
-              </div>
-              <div class="thread-reply-block">
-                <div class="thread-thought-tag">&gt; Thought for 6s · Analyzed AST symbol graph</div>
-                <div class="thread-reply-lead">
-                  Isolated task to <code>.worktrees/auth-refactor</code> and ran cryptographic verification:
-                </div>
-                <div class="thread-bullet-point">• Generated P256HardwareKey validator with zero heap leaks.</div>
-                <div class="thread-bullet-point">• 28/28 cryptographic tests passed in 142ms.</div>
-                <div class="thread-conclusion">
-                  ✔ PromptGuard SLSA Level 3 passed. Ready for human review drawer.
-                </div>
-              </div>
+              <span class="sw-telemetry-pill">AST Cache: 0ms</span>
             </div>
           </div>
 
-          <div class="mode-card-content">
-            <div class="mode-badge thread-badge">
-              <span class="mode-badge-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D1CFC7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  <line x1="8" y1="9" x2="16" y2="9"/>
-                  <line x1="8" y1="13" x2="13" y2="13"/>
-                </svg>
-              </span>
-              <span class="mode-badge-label">Thread</span>
+          <!-- Stage Panes Content -->
+          <div class="sw-stage-content">
+            <!-- PANE 1: TERMINAL & ISOLATED SHELL -->
+            <div class="sw-pane sw-pane-terminal active" id="swPaneTerminal">
+              <div class="sw-term-session">
+                <div class="sw-term-line prompt">
+                  <span class="term-sym">&gt;</span>
+                  <span class="term-lead">kelvra-swarm</span>
+                  <span class="term-args">exec --worktree .worktrees/auth-mesh</span>
+                </div>
+                <div class="sw-term-line info">
+                  <span class="term-agent-tag agent-angel">Angel Bot</span>
+                  <span>Dispatched 4 disjoint branches across Linux namespaces:</span>
+                </div>
+                <div class="sw-term-line tree">
+                  <span class="term-branch-tree">├─ [Scout]</span>
+                  <span class="term-text">Audited crate dependencies: ed25519-dalek 2.1.0 verified</span>
+                </div>
+                <div class="sw-term-line tree">
+                  <span class="term-branch-tree">├─ [Architect]</span>
+                  <span class="term-text">Patching src/auth/p256_keys.rs: added HardwareClaimToken</span>
+                </div>
+                <div class="sw-term-line tree">
+                  <span class="term-branch-tree">└─ [QA Sentinel]</span>
+                  <span class="term-text">Running test harness in isolated container...</span>
+                </div>
+                <div class="sw-term-line action-row">
+                  <span class="sw-badge-cmd tag-run">cargo test</span>
+                  <span class="sw-cmd-code">cargo test --package auth-mesh --lib --release</span>
+                </div>
+                <div class="sw-term-tests-block">
+                  <div class="test-entry"><span class="test-ok">✔</span> test crypto::ed25519::test_signature_validity ... <span class="test-ok">passed (4ms)</span></div>
+                  <div class="test-entry"><span class="test-ok">✔</span> test session::claims::test_hardware_p256_fallback ... <span class="test-ok">passed (2ms)</span></div>
+                  <div class="test-entry"><span class="test-ok">✔</span> test security::replay::test_nonce_deduplication ... <span class="test-ok">passed (5ms)</span></div>
+                  <div class="test-entry"><span class="test-ok">✔</span> test memory::leak::test_zero_heap_fragmentation ... <span class="test-ok">passed (12ms)</span></div>
+                  <div class="test-summary">
+                    <span class="test-strong">28 passed</span> · 0 failed · 0 ignored · 42ms total runtime
+                  </div>
+                </div>
+                <div class="sw-term-line slsa-line">
+                  <span class="sw-badge-cmd tag-slsa">SLSA Level 3</span>
+                  <span class="slsa-text">Cosign hardware signature verified. Ready for human drawer review.</span>
+                </div>
+              </div>
             </div>
-            <h3 class="mode-card-heading">Coding you read instead of watch.</h3>
-            <p class="mode-card-desc">
-              Keep each coding session in its own thread. Start on its own or add a project folder, review approvals, and follow the agent's work as a conversation.
-            </p>
+
+            <!-- PANE 2: STAGED PR DIFF GATE -->
+            <div class="sw-pane sw-pane-diff" id="swPaneDiff">
+              <div class="sw-diff-header">
+                <div class="sw-diff-file">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  <span class="sw-diff-filename">src/auth/p256_keys.rs</span>
+                  <span class="sw-diff-badge-status">MODIFIED</span>
+                </div>
+                <div class="sw-diff-stat-chips">
+                  <span class="sw-chip-add">+28</span>
+                  <span class="sw-chip-del">-4</span>
+                </div>
+              </div>
+
+              <!-- Interactive Syntax Highlighted Diff Viewer -->
+              <div class="sw-diff-body">
+                <div class="diff-line ctx"><span class="ln">41</span><span class="ln-code">use ed25519_dalek::{SigningKey, VerifyingKey, Signature};</span></div>
+                <div class="diff-line ctx"><span class="ln">42</span><span class="ln-code">use kelvra_crypto::hardware::{KeyAttestation, P256HardwareClaim};</span></div>
+                <div class="diff-line ctx"><span class="ln">43</span><span class="ln-code"></span></div>
+                <div class="diff-line del"><span class="ln">44</span><span class="ln-code">- pub struct LegacySessionVerifier {</span></div>
+                <div class="diff-line del"><span class="ln">45</span><span class="ln-code">-     pub raw_hmac_secret: Vec&lt;u8&gt;,</span></div>
+                <div class="diff-line del"><span class="ln">46</span><span class="ln-code">- }</span></div>
+                <div class="diff-line add"><span class="ln">44</span><span class="ln-code">+ #[derive(Debug, Clone, PartialEq, Eq)]</span></div>
+                <div class="diff-line add"><span class="ln">45</span><span class="ln-code">+ pub struct Ed25519HardwareKeyClaim {</span></div>
+                <div class="diff-line add"><span class="ln">46</span><span class="ln-code">+     pub public_key: VerifyingKey,</span></div>
+                <div class="diff-line add"><span class="ln">47</span><span class="ln-code">+     pub attestation_seal: [u8; 64],</span></div>
+                <div class="diff-line add"><span class="ln">48</span><span class="ln-code">+     pub zero_copy_nonce: u64,</span></div>
+                <div class="diff-line add"><span class="ln">49</span><span class="ln-code">+ }</span></div>
+                <div class="diff-line ctx"><span class="ln">50</span><span class="ln-code"></span></div>
+                <div class="diff-line add"><span class="ln">51</span><span class="ln-code">+ impl Ed25519HardwareKeyClaim {</span></div>
+                <div class="diff-line add"><span class="ln">52</span><span class="ln-code">+     pub fn verify_signature(&amp;self, message: &amp;[u8], sig: &amp;[u8; 64]) -&gt; Result&lt;(), AuthError&gt; {</span></div>
+                <div class="diff-line add"><span class="ln">53</span><span class="ln-code">+         let signature = Signature::from_bytes(sig);</span></div>
+                <div class="diff-line add"><span class="ln">54</span><span class="ln-code">+         self.public_key.verify_strict(message, &amp;signature)</span></div>
+                <div class="diff-line add"><span class="ln">55</span><span class="ln-code">+             .map_err(|_| AuthError::HardwareKeyMismatch)</span></div>
+                <div class="diff-line add"><span class="ln">56</span><span class="ln-code">+     }</span></div>
+                <div class="diff-line add"><span class="ln">57</span><span class="ln-code">+ }</span></div>
+              </div>
+
+              <!-- Interactive PR Gate Actions Bar -->
+              <div class="sw-diff-actions-bar">
+                <div class="sw-diff-actions-left">
+                  <span class="sw-diff-guard-tag">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#52B788" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>0 lock collisions · Fast-forward clean</span>
+                  </span>
+                </div>
+                <div class="sw-diff-actions-right">
+                  <button class="btn-sw-action btn-sw-revise" id="btnSwRequestChanges" type="button">
+                    Request Revision
+                  </button>
+                  <button class="btn-sw-action btn-sw-merge" id="btnSwApproveMerge" type="button">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>Approve &amp; Merge</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Interactive Feedback Toast (Triggered on Click) -->
+              <div class="sw-diff-toast" id="swDiffToast" style="display: none;">
+                <div class="sw-toast-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#52B788" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div class="sw-toast-content">
+                  <strong id="swToastTitle">Merged into main @ commit 9f84a1e</strong>
+                  <span id="swToastSub">Isolated worktree .worktrees/auth-mesh successfully reaped.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANE 3: SLSA GUARDRAILS & ATTESTATION -->
+            <div class="sw-pane sw-pane-guardrail" id="swPaneGuardrail">
+              <div class="sw-guard-grid">
+                <div class="sw-guard-card">
+                  <div class="sw-guard-head">
+                    <span class="sw-guard-dot green"></span>
+                    <span class="sw-guard-title">PromptGuard AST Validator</span>
+                    <span class="sw-guard-status">SECURE</span>
+                  </div>
+                  <p class="sw-guard-desc">Zero prompt injections or malicious instruction payloads detected across 14 LLM reasoning traces.</p>
+                  <div class="sw-guard-metric">Scanned 14 traces · 0 flags</div>
+                </div>
+
+                <div class="sw-guard-card">
+                  <div class="sw-guard-head">
+                    <span class="sw-guard-dot green"></span>
+                    <span class="sw-guard-title">Linux Namespace Isolation</span>
+                    <span class="sw-guard-status">ISOLATED</span>
+                  </div>
+                  <p class="sw-guard-desc">Worktree sandboxed with seccomp-bpf. Sibling directories and root file system strictly read-only.</p>
+                  <div class="sw-guard-metric">seccomp-bpf active · PID 8492</div>
+                </div>
+
+                <div class="sw-guard-card">
+                  <div class="sw-guard-head">
+                    <span class="sw-guard-dot green"></span>
+                    <span class="sw-guard-title">SLSA Provenance Attestation</span>
+                    <span class="sw-guard-status">LEVEL 3</span>
+                  </div>
+                  <p class="sw-guard-desc">Cryptographic build provenance signed via hardware token and verified against tamper-proof ledger.</p>
+                  <div class="sw-guard-metric">Cosign SHA-256: d83b7...91f</div>
+                </div>
+
+                <div class="sw-guard-card">
+                  <div class="sw-guard-head">
+                    <span class="sw-guard-dot green"></span>
+                    <span class="sw-guard-title">Memory &amp; Heap Leak Audit</span>
+                    <span class="sw-guard-status">0 LEAKS</span>
+                  </div>
+                  <p class="sw-guard-desc">Miri and Valgrind sanitizers passed with zero heap fragmentation and constant-time crypto execution.</p>
+                  <div class="sw-guard-metric">42MB peak RSS · Constant-time OK</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Telemetry Footer -->
+          <div class="sw-stage-footer">
+            <div class="sw-footer-item">
+              <span class="sw-footer-dot green"></span>
+              <span class="sw-footer-label">Swarm Runtime:</span>
+              <span class="sw-footer-val" id="swRuntimeStatusVal">ACTIVE (4 AGENTS)</span>
+            </div>
+            <div class="sw-footer-item">
+              <span class="sw-footer-label">Branch Locks:</span>
+              <span class="sw-footer-val">0 COLLISIONS</span>
+            </div>
+            <div class="sw-footer-item">
+              <span class="sw-footer-label">Cosign Seal:</span>
+              <span class="sw-footer-val text-emerald">VALIDATED</span>
+            </div>
+            <div class="sw-footer-item">
+              <span class="sw-footer-label">Latency:</span>
+              <span class="sw-footer-val">18ms</span>
+            </div>
           </div>
         </div>
       </div>

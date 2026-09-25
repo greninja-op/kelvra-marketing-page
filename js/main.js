@@ -560,11 +560,12 @@ function initHeroModeSwitcher() {
   });
 }
 
-// Wire Mobile Showcase, Hero Mode Switcher & Accounts Router on DOMContentLoaded
+// Wire Mobile Showcase, Hero Mode Switcher, Accounts Router & Swarm Workbench on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   initMobileShowcaseAutoplay();
   initHeroModeSwitcher();
   initAccountsRouter();
+  initSwarmWorkbench();
 });
 
 /* ==========================================================================
@@ -1039,6 +1040,144 @@ function initAccountsRouter() {
   // Initial layout calculation
   setTimeout(updateSplines, 100);
 }
+
+/* ==========================================================================
+   SECTION 3: ASYMMETRIC SWARM WORKBENCH CONTROLLER
+   Interactive Agent Switcher, Live PR Diff Gate & Hardware Attestation
+   ========================================================================== */
+
+function initSwarmWorkbench() {
+  const workbench = document.getElementById("swWorkbench");
+  if (!workbench) return;
+
+  const agentCards = document.querySelectorAll(".sw-agent-card");
+  const tabs = document.querySelectorAll(".sw-tab");
+  const panes = {
+    terminal: document.getElementById("swPaneTerminal"),
+    diff: document.getElementById("swPaneDiff"),
+    guardrail: document.getElementById("swPaneGuardrail")
+  };
+  const activeBranchLabel = document.getElementById("swActiveBranchLabel");
+  const btnApproveMerge = document.getElementById("btnSwApproveMerge");
+  const btnRequestChanges = document.getElementById("btnSwRequestChanges");
+  const diffToast = document.getElementById("swDiffToast");
+  const toastTitle = document.getElementById("swToastTitle");
+  const toastSub = document.getElementById("swToastSub");
+  const runtimeStatusVal = document.getElementById("swRuntimeStatusVal");
+
+  // Agent profiles with their designated worktree and default preview pane
+  const agentProfiles = {
+    angel: {
+      branch: "main / supervisor",
+      preferredTab: "terminal",
+      statusText: "ACTIVE (4 AGENTS)"
+    },
+    scout: {
+      branch: ".worktrees/dep-audit",
+      preferredTab: "terminal",
+      statusText: "AUDITING CRATES (1 AGENT)"
+    },
+    sentinel: {
+      branch: ".worktrees/slsa-gate",
+      preferredTab: "guardrail",
+      statusText: "COSIGN ATTESTING (1 AGENT)"
+    },
+    architect: {
+      branch: ".worktrees/auth-mesh",
+      preferredTab: "diff",
+      statusText: "STAGED DIFF REVIEW (1 AGENT)"
+    }
+  };
+
+  /**
+   * Switch Active Stage Tab
+   */
+  function switchTab(tabKey) {
+    tabs.forEach(t => {
+      const isTarget = t.dataset.tab === tabKey;
+      t.classList.toggle("active", isTarget);
+      t.setAttribute("aria-selected", isTarget ? "true" : "false");
+    });
+
+    Object.keys(panes).forEach(k => {
+      if (panes[k]) {
+        panes[k].classList.toggle("active", k === tabKey);
+      }
+    });
+  }
+
+  // Bind Tab Click Handlers
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const tabKey = tab.dataset.tab;
+      if (tabKey) switchTab(tabKey);
+    });
+  });
+
+  // Bind Agent Card Click Handlers
+  agentCards.forEach(card => {
+    card.addEventListener("click", () => {
+      const agentKey = card.dataset.agent;
+      if (!agentKey || !agentProfiles[agentKey]) return;
+
+      agentCards.forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+
+      const profile = agentProfiles[agentKey];
+      if (activeBranchLabel) {
+        activeBranchLabel.textContent = profile.branch;
+      }
+
+      if (runtimeStatusVal) {
+        runtimeStatusVal.textContent = profile.statusText;
+      }
+
+      // Automatically switch to the agent's contextual view
+      switchTab(profile.preferredTab);
+    });
+  });
+
+  // Bind PR Diff Gate: Approve & Merge
+  if (btnApproveMerge) {
+    btnApproveMerge.addEventListener("click", () => {
+      btnApproveMerge.innerHTML = `
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Merged to Main</span>
+      `;
+      btnApproveMerge.style.background = "#3D8C66";
+      btnApproveMerge.style.pointerEvents = "none";
+
+      if (diffToast && toastTitle && toastSub) {
+        diffToast.style.display = "flex";
+        diffToast.style.borderColor = "rgba(82, 183, 136, 0.4)";
+        diffToast.style.background = "rgba(82, 183, 136, 0.12)";
+        toastTitle.textContent = "✔ Fast-forward merged into main @ commit 9f84a1e";
+        toastTitle.style.color = "#52B788";
+        toastSub.textContent = "Worktree .worktrees/auth-mesh reaped with 0 merge conflicts.";
+      }
+
+      if (runtimeStatusVal) {
+        runtimeStatusVal.textContent = "MERGED TO MAIN (0 CONFLICTS)";
+        runtimeStatusVal.classList.add("text-emerald");
+      }
+    });
+  }
+
+  // Bind PR Diff Gate: Request Revision
+  if (btnRequestChanges) {
+    btnRequestChanges.addEventListener("click", () => {
+      if (diffToast && toastTitle && toastSub) {
+        diffToast.style.display = "flex";
+        diffToast.style.borderColor = "rgba(217, 119, 87, 0.4)";
+        diffToast.style.background = "rgba(217, 119, 87, 0.12)";
+        toastTitle.textContent = "Revision Requested · Sent to Architect";
+        toastTitle.style.color = "#F0906F";
+        toastSub.textContent = "Agent prompted: 'Ensure constant-time verification for hardware key claims.'";
+      }
+    });
+  }
+}
+
 
 
 
