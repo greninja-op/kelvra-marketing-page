@@ -560,10 +560,322 @@ function initHeroModeSwitcher() {
   });
 }
 
-// Wire Mobile Showcase & Hero Mode Switcher on DOMContentLoaded
+/* ==========================================================================
+   CODE MODE LIVE WALKTHROUGH DEMO (Carbon Copy Bench Simulation)
+   ========================================================================== */
+
+function initCodeModeWalkthroughDemo() {
+  const stage = document.getElementById("codeModeStage");
+  if (!stage) return;
+
+  const scenes = {
+    1: document.getElementById("simScene1"),
+    2: document.getElementById("simScene2"),
+    3: document.getElementById("simScene3"),
+    4: document.getElementById("simScene4"),
+  };
+
+  const stepPills = document.querySelectorAll(".step-pill-btn");
+  const scrubberFill = document.getElementById("theaterScrubberFill");
+  const statusText = document.getElementById("theaterStatusText");
+  const whyText = document.getElementById("theaterWhyText");
+  const playPauseBtn = document.getElementById("btnTheaterPlayPause");
+  const playIcon = document.getElementById("theaterPlayIcon");
+  const pauseIcon = document.getElementById("theaterPauseIcon");
+  const playPauseText = document.getElementById("theaterPlayPauseText");
+  const restartBtn = document.getElementById("btnTheaterRestart");
+
+  const explanations = {
+    1: "<strong>Zero-Friction Orchestration:</strong> Launching multiple CLI tools manually requires juggling separate terminal windows. Kelvra’s pre-flight launcher lets you select any engine (Claude, AntiGravity, Codex, Gemini) and allocate up to 6 seats in a single click.",
+    2: "<strong>Worktree Isolation:</strong> When multiple autonomous agents edit the same working copy simultaneously, they trigger git lockups and destroy each other's code. Kelvra isolates every session in its own Git worktree branch sandbox.",
+    3: "<strong>Native TUI &amp; PromptGuard:</strong> No dumbed-down wrappers. You get the genuine CLI agent experience (AntiGravity, Claude, Codex) with an added AST security layer preventing indirect prompt injections before execution.",
+    4: "<strong>Parallel Swarm Velocity:</strong> Backend, frontend, database, test, and security agents run concurrently. Instead of waiting sequentially, full-stack features ship 5× faster with zero context contamination."
+  };
+
+  const statusLabels = {
+    1: "STEP 1/4 · PRE-FLIGHT LAUNCHER",
+    2: "STEP 2/4 · WORKTREE ISOLATION",
+    3: "STEP 3/4 · TUI DIRECTIVE & AST",
+    4: "STEP 4/4 · 6-AGENT SWARM RUNNING"
+  };
+
+  let currentStep = 1;
+  let isPlaying = true;
+  let stepTimeout = null;
+  let typingInterval = null;
+
+  function setStep(stepNum, userInitiated = false) {
+    currentStep = stepNum;
+
+    // Clear typing if any
+    if (typingInterval) {
+      clearInterval(typingInterval);
+      typingInterval = null;
+    }
+    if (stepTimeout) {
+      clearTimeout(stepTimeout);
+      stepTimeout = null;
+    }
+
+    // Toggle scenes
+    Object.keys(scenes).forEach((num) => {
+      if (scenes[num]) {
+        scenes[num].classList.toggle("active", parseInt(num) === stepNum);
+      }
+    });
+
+    // Update step pills
+    stepPills.forEach((pill) => {
+      const pNum = parseInt(pill.getAttribute("data-step"));
+      pill.classList.toggle("active", pNum === stepNum);
+    });
+
+    // Update scrubber & labels
+    const pct = stepNum === 1 ? 25 : stepNum === 2 ? 50 : stepNum === 3 ? 75 : 100;
+    if (scrubberFill) scrubberFill.style.width = pct + "%";
+    if (statusText) statusText.innerText = statusLabels[stepNum];
+    if (whyText && explanations[stepNum]) whyText.innerHTML = explanations[stepNum];
+
+    // Trigger step-specific animations
+    if (stepNum === 1) {
+      runScene1Animation();
+    } else if (stepNum === 2) {
+      runScene2Animation();
+    } else if (stepNum === 3) {
+      runScene3Animation();
+    } else if (stepNum === 4) {
+      runScene4Animation();
+    }
+  }
+
+  function runScene1Animation() {
+    const cursor = document.getElementById("simVirtualCursor");
+    const launchBtn = document.getElementById("simBtnLaunch");
+
+    if (cursor) {
+      cursor.style.transform = "translate(0, 0)";
+      setTimeout(() => {
+        if (currentStep !== 1) return;
+        cursor.style.transform = "translate(-80px, -20px) scale(0.92)";
+        if (launchBtn) {
+          launchBtn.style.transform = "scale(0.96)";
+          setTimeout(() => {
+            if (launchBtn) launchBtn.style.transform = "";
+          }, 200);
+        }
+      }, 2400);
+    }
+
+    if (isPlaying) {
+      stepTimeout = setTimeout(() => {
+        setStep(2);
+      }, 4200);
+    }
+  }
+
+  function runScene2Animation() {
+    if (isPlaying) {
+      stepTimeout = setTimeout(() => {
+        setStep(3);
+      }, 4000);
+    }
+  }
+
+  function runScene3Animation() {
+    const textTarget = document.getElementById("simTypingText");
+    const promptGuardPill = document.getElementById("simPromptGuardPill");
+    const promptGuardText = document.getElementById("simPromptGuardText");
+
+    if (!textTarget) return;
+    textTarget.innerText = "";
+    if (promptGuardPill) {
+      promptGuardPill.style.color = "#E5A93C";
+      promptGuardPill.style.borderColor = "rgba(229,169,60,0.3)";
+      promptGuardPill.style.background = "rgba(229,169,60,0.1)";
+    }
+    if (promptGuardText) promptGuardText.innerText = "PromptGuard: Scanning AST...";
+
+    const directiveStr = 'Refactor auth store to ed25519 tokens & fix session race condition';
+    let charIdx = 0;
+
+    typingInterval = setInterval(() => {
+      if (charIdx < directiveStr.length) {
+        textTarget.innerText += directiveStr[charIdx];
+        charIdx++;
+      } else {
+        clearInterval(typingInterval);
+        typingInterval = null;
+
+        // PromptGuard verification
+        setTimeout(() => {
+          if (currentStep !== 3) return;
+          if (promptGuardPill) {
+            promptGuardPill.style.color = "#52B788";
+            promptGuardPill.style.borderColor = "rgba(82, 183, 136, 0.4)";
+            promptGuardPill.style.background = "rgba(82, 183, 136, 0.15)";
+          }
+          if (promptGuardText) promptGuardText.innerText = "✔ 100% Clean · 0 Injections";
+
+          if (isPlaying) {
+            stepTimeout = setTimeout(() => {
+              setStep(4);
+            }, 1800);
+          }
+        }, 400);
+      }
+    }, 45);
+  }
+
+  function runScene4Animation() {
+    const ffFill = document.getElementById("simFfFill");
+    const ffPercent = document.getElementById("simFfPercent");
+
+    if (ffFill) ffFill.style.width = "0%";
+    if (ffPercent) ffPercent.innerText = "RUNNING...";
+
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+      if (currentStep !== 4) {
+        clearInterval(progressInterval);
+        return;
+      }
+      progress += 4;
+      if (progress <= 100) {
+        if (ffFill) ffFill.style.width = progress + "%";
+        if (ffPercent) ffPercent.innerText = progress + "% COMPLETE";
+      } else {
+        clearInterval(progressInterval);
+        if (ffPercent) ffPercent.innerText = "100% COMPLETE";
+
+        if (isPlaying) {
+          stepTimeout = setTimeout(() => {
+            setStep(1);
+          }, 6000);
+        }
+      }
+    }, 120);
+  }
+
+  // Hook Step Pills
+  stepPills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      const step = parseInt(pill.getAttribute("data-step"));
+      setStep(step, true);
+    });
+  });
+
+  // Play / Pause Toggle
+  if (playPauseBtn) {
+    playPauseBtn.addEventListener("click", () => {
+      isPlaying = !isPlaying;
+      if (playIcon) playIcon.style.display = isPlaying ? "none" : "inline";
+      if (pauseIcon) pauseIcon.style.display = isPlaying ? "inline" : "none";
+      if (playPauseText) playPauseText.innerText = isPlaying ? "Pause" : "Play";
+
+      if (isPlaying) {
+        setStep(currentStep);
+      } else {
+        if (stepTimeout) clearTimeout(stepTimeout);
+        if (typingInterval) clearInterval(typingInterval);
+      }
+    });
+  }
+
+  // Restart Button
+  if (restartBtn) {
+    restartBtn.addEventListener("click", () => {
+      isPlaying = true;
+      if (playIcon) playIcon.style.display = "none";
+      if (pauseIcon) pauseIcon.style.display = "inline";
+      if (playPauseText) playPauseText.innerText = "Pause";
+      setStep(1, true);
+    });
+  }
+
+  // Synchronize Section 3 Mode Cards with Theater Mode Switcher
+  const modeCards = document.querySelectorAll(".mode-card-interactive");
+  const theaterTabBtns = document.querySelectorAll(".theater-tab-btn");
+  const codeStage = document.getElementById("codeModeStage");
+  const agentStage = document.getElementById("agentModeStage");
+  const chatStage = document.getElementById("chatModeStage");
+
+  function switchModeTheater(mode) {
+    // Update card selection
+    modeCards.forEach((c) => {
+      c.classList.toggle("active", c.getAttribute("data-mode") === mode);
+    });
+
+    // Update theater tabs
+    theaterTabBtns.forEach((t) => {
+      t.classList.toggle("active", t.getAttribute("data-target-mode") === mode);
+    });
+
+    // Switch visible stage
+    if (codeStage) codeStage.style.display = mode === "code" ? "flex" : "none";
+    if (agentStage) agentStage.style.display = mode === "agent" ? "flex" : "none";
+    if (chatStage) chatStage.style.display = mode === "chat" ? "flex" : "none";
+
+    const codeActions = document.getElementById("codeTheaterActions");
+    const stepPillsContainer = document.getElementById("theaterStepPills");
+    const scrubber = document.querySelector(".theater-scrubber-track");
+
+    if (mode === "code") {
+      if (codeActions) codeActions.style.display = "inline-flex";
+      if (stepPillsContainer) stepPillsContainer.style.display = "flex";
+      if (scrubber) scrubber.style.display = "block";
+      isPlaying = true;
+      setStep(1);
+    } else {
+      if (codeActions) codeActions.style.display = "none";
+      if (stepPillsContainer) stepPillsContainer.style.display = "none";
+      if (scrubber) scrubber.style.display = "none";
+      if (stepTimeout) clearTimeout(stepTimeout);
+      if (typingInterval) clearInterval(typingInterval);
+      if (whyText) {
+        if (mode === "agent") {
+          whyText.innerHTML = "<strong>Autonomous DAG Decomposition:</strong> Agent Mode constructs a directed acyclic graph breaking high-level directives into parallel subtasks with conflict-free resource allocation.";
+        } else {
+          whyText.innerHTML = "<strong>Pair Programming &amp; Artifacts:</strong> Chat Mode pairs reasoning models with an integrated right-hand artifact drawer showing diffs, architecture plans, and live web previews.";
+        }
+      }
+      if (statusText) {
+        statusText.innerText = mode.toUpperCase() + " MODE PREVIEW";
+      }
+    }
+  }
+
+  modeCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const mode = card.getAttribute("data-mode");
+      if (mode) switchModeTheater(mode);
+    });
+  });
+
+  theaterTabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const mode = btn.getAttribute("data-target-mode");
+      if (mode) switchModeTheater(mode);
+    });
+  });
+
+  const btnSwitchFromAgent = document.getElementById("btnSwitchToCodeFromAgent");
+  const btnSwitchFromChat = document.getElementById("btnSwitchToCodeFromChat");
+  if (btnSwitchFromAgent) {
+    btnSwitchFromAgent.addEventListener("click", () => switchModeTheater("code"));
+  }
+  if (btnSwitchFromChat) {
+    btnSwitchFromChat.addEventListener("click", () => switchModeTheater("code"));
+  }
+
+  // Start the simulation loop at Step 1
+  setStep(1);
+}
+
+// Wire Mobile Showcase & Hero Mode Switcher & Code Mode Walkthrough on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   initMobileShowcaseAutoplay();
   initHeroModeSwitcher();
+  initCodeModeWalkthroughDemo();
 });
 
 

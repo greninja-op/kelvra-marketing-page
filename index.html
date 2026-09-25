@@ -634,9 +634,12 @@
 
       <div class="modes-grid">
         <!-- Card 1: Agent Mode -->
-        <div class="mode-card">
-          <div class="mode-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+        <div class="mode-card mode-card-interactive" data-mode="agent" id="modeCardAgent">
+          <div class="mode-card-header-row">
+            <div class="mode-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            </div>
+            <span class="mode-card-badge">DAG Kanban</span>
           </div>
           <h3 class="mode-name">Agent Mode</h3>
           <div class="mode-tagline">Autonomous Decomposition & Vibe Kanban</div>
@@ -646,9 +649,12 @@
         </div>
 
         <!-- Card 2: Code Mode -->
-        <div class="mode-card">
-          <div class="mode-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <div class="mode-card mode-card-interactive active" data-mode="code" id="modeCardCode">
+          <div class="mode-card-header-row">
+            <div class="mode-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <span class="mode-card-badge live"><span class="mode-badge-dot"></span> LIVE WALKTHROUGH</span>
           </div>
           <h3 class="mode-name">Code Mode</h3>
           <div class="mode-tagline">3×2 Magnetic Split-Grid Swarms</div>
@@ -658,15 +664,598 @@
         </div>
 
         <!-- Card 3: Chat Mode -->
-        <div class="mode-card">
-          <div class="mode-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <div class="mode-card mode-card-interactive" data-mode="chat" id="modeCardChat">
+          <div class="mode-card-header-row">
+            <div class="mode-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="mode-card-badge">Live Artifacts</span>
           </div>
           <h3 class="mode-name">Chat Mode</h3>
           <div class="mode-tagline">Pair Programming & Universal Artifacts</div>
           <p class="mode-body-text">
             Converse directly with flagship reasoning models. View generated architectural plans, real-time code diffs, and interactive live previews in an integrated right-hand artifact drawer.
           </p>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           LIVE MODE WALKTHROUGH THEATER (Carbon Copy of Kelvra Bench TUI)
+           ==================================================================== -->
+      <div class="modes-theater-wrapper" id="modesTheaterWrapper">
+        <!-- Top Mode Selector Strip -->
+        <div class="theater-control-strip">
+          <div class="theater-mode-tabs">
+            <button class="theater-tab-btn" data-target-mode="agent" id="tabBtnAgent">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              <span>Agent Mode</span>
+            </button>
+            <button class="theater-tab-btn active" data-target-mode="code" id="tabBtnCode">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span>Code Mode · Live Swarm Demo</span>
+              <span class="theater-badge-live">LIVE RUNTIME</span>
+            </button>
+            <button class="theater-tab-btn" data-target-mode="chat" id="tabBtnChat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <span>Chat Mode</span>
+            </button>
+          </div>
+
+          <!-- Video Playback & Step Controls -->
+          <div class="theater-actions-bar" id="codeTheaterActions">
+            <button class="theater-action-btn" id="btnTheaterPlayPause" title="Play / Pause simulation">
+              <svg id="theaterPlayIcon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <svg id="theaterPauseIcon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <span id="theaterPlayPauseText">Pause</span>
+            </button>
+            <button class="theater-action-btn" id="btnTheaterRestart" title="Restart simulation from Step 1">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              <span>Replay</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Theater Window Shell -->
+        <div class="theater-window-shell" id="theaterWindowShell">
+          <!-- Chrome Bar with Authentic Bench Header -->
+          <div class="theater-chrome-bar">
+            <div class="theater-window-dots">
+              <span class="theater-dot red"></span>
+              <span class="theater-dot yellow"></span>
+              <span class="theater-dot green"></span>
+            </div>
+            
+            <!-- Step Navigation Pills -->
+            <div class="theater-step-pills" id="theaterStepPills">
+              <button class="step-pill-btn active" data-step="1" id="stepPill1">
+                <span class="step-num">01</span>
+                <span class="step-label">Launcher &amp; Presets</span>
+              </button>
+              <button class="step-pill-btn" data-step="2" id="stepPill2">
+                <span class="step-num">02</span>
+                <span class="step-label">Worktree Isolation</span>
+              </button>
+              <button class="step-pill-btn" data-step="3" id="stepPill3">
+                <span class="step-num">03</span>
+                <span class="step-label">TUI Directive &amp; AST</span>
+              </button>
+              <button class="step-pill-btn" data-step="4" id="stepPill4">
+                <span class="step-num">04</span>
+                <span class="step-label">6-Agent Swarm</span>
+              </button>
+            </div>
+
+            <div class="theater-status-tag">
+              <span class="theater-pulse-dot"></span>
+              <span id="theaterStatusText">STEP 1/4 · PRE-FLIGHT</span>
+            </div>
+          </div>
+
+          <!-- Continuous Scrubber Progress Line -->
+          <div class="theater-scrubber-track">
+            <div class="theater-scrubber-fill" id="theaterScrubberFill" style="width: 20%;"></div>
+          </div>
+
+          <!-- Theater Viewport Container -->
+          <div class="theater-viewport" id="theaterViewport">
+            <!-- ==============================================================
+                 STAGE 1: CODE MODE WALKTHROUGH (4 Continuous Animated Scenes)
+                 ============================================================== -->
+            <div class="theater-stage code-mode-stage active" id="codeModeStage">
+              
+              <!-- SCENE 1: Authentic Pre-Flight Launcher (Kelvra Bench Carbon Copy) -->
+              <div class="sim-scene scene-1-launcher active" id="simScene1">
+                <div class="launcher-sim-card">
+                  <!-- Breadcrumbs -->
+                  <div class="sim-launcher-breadcrumb-row">
+                    <div class="sim-breadcrumb-left">
+                      <svg class="folder-outline-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                      <span class="sim-workspace-title">kelvra-bench</span>
+                      <span class="sim-breadcrumb-sep">/</span>
+                      <span class="sim-step-badge">New session</span>
+                      <span class="sim-breadcrumb-sep">·</span>
+                      <span class="sim-path-display">C:/projects/kelvra-core</span>
+                    </div>
+                    <span class="sim-launcher-esc-badge">Esc to cancel</span>
+                  </div>
+
+                  <!-- Launcher Inner Content -->
+                  <div class="sim-launcher-body">
+                    <!-- Presets Lineup -->
+                    <div class="sim-launcher-section">
+                      <div class="sim-section-header">PRESET LINEUP</div>
+                      <div class="sim-preset-chips">
+                        <div class="sim-preset-chip active">
+                          <span class="sim-preset-chip-dot"></span>
+                          <span>Full-Stack Swarm (6 Agents)</span>
+                        </div>
+                        <div class="sim-preset-chip">
+                          <span>Pair Debugging (1 Agent)</span>
+                        </div>
+                        <div class="sim-preset-chip">
+                          <span>QA Regression (3 Agents)</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Agent Grid Selection -->
+                    <div class="sim-launcher-section">
+                      <div class="sim-section-header">SELECT AGENTS &amp; CLI ENGINES</div>
+                      <div class="sim-agent-selection-grid">
+                        <!-- 1. Claude Code -->
+                        <div class="sim-agent-card active">
+                          <div class="sim-agent-icon">
+                            <img src="assets/icons/claude.svg" alt="Claude Code" width="18" height="18" />
+                          </div>
+                          <span class="sim-agent-name">Claude Code</span>
+                          <span class="sim-check-glyph">✔</span>
+                        </div>
+
+                        <!-- 2. Google AntiGravity -->
+                        <div class="sim-agent-card active">
+                          <div class="sim-agent-icon">
+                            <img src="assets/icons/antigravity.png" alt="Google AntiGravity" width="18" height="18" />
+                          </div>
+                          <span class="sim-agent-name">AntiGravity (agy)</span>
+                          <span class="sim-check-glyph">✔</span>
+                        </div>
+
+                        <!-- 3. OpenAI Codex -->
+                        <div class="sim-agent-card active">
+                          <div class="sim-agent-icon">
+                            <img src="assets/icons/openai.svg" alt="OpenAI Codex" width="18" height="18" />
+                          </div>
+                          <span class="sim-agent-name">Codex</span>
+                          <span class="sim-check-glyph">✔</span>
+                        </div>
+
+                        <!-- 4. Cursor Agent -->
+                        <div class="sim-agent-card active">
+                          <div class="sim-agent-icon">
+                            <img src="assets/icons/cursor.svg" alt="Cursor Agent" width="18" height="18" />
+                          </div>
+                          <span class="sim-agent-name">Cursor Agent</span>
+                          <span class="sim-check-glyph">✔</span>
+                        </div>
+
+                        <!-- 5. Gemini CLI -->
+                        <div class="sim-agent-card active">
+                          <div class="sim-agent-icon">
+                            <img src="assets/icons/gemini.svg" alt="Gemini CLI" width="18" height="18" />
+                          </div>
+                          <span class="sim-agent-name">Gemini CLI</span>
+                          <span class="sim-check-glyph">✔</span>
+                        </div>
+
+                        <!-- 6. DeepSeek Harness -->
+                        <div class="sim-agent-card active">
+                          <div class="sim-agent-icon">
+                            <img src="assets/icons/deepseek.svg" alt="DeepSeek Harness" width="18" height="18" />
+                          </div>
+                          <span class="sim-agent-name">DeepSeek</span>
+                          <span class="sim-check-glyph">✔</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Session Count & Isolation Grid -->
+                    <div class="sim-launcher-row-split">
+                      <div class="sim-launcher-section">
+                        <div class="sim-section-header">PARALLEL SESSIONS</div>
+                        <div class="sim-how-many-row">
+                          <span class="sim-count-pill">1</span>
+                          <span class="sim-count-pill">2</span>
+                          <span class="sim-count-pill">3</span>
+                          <span class="sim-count-pill">4</span>
+                          <span class="sim-count-pill">5</span>
+                          <span class="sim-count-pill active" id="simCountPill6">6</span>
+                          <span class="sim-how-many-label">sessions</span>
+                        </div>
+                      </div>
+
+                      <div class="sim-launcher-section">
+                        <div class="sim-section-header">ISOLATION MODE</div>
+                        <div class="sim-isolation-toggle">
+                          <span class="sim-iso-btn">Shared checkout</span>
+                          <span class="sim-iso-btn active">New worktree (Dedicated sandbox)</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Launcher Footer -->
+                  <div class="sim-launcher-footer-bar">
+                    <div class="sim-will-launch">
+                      <span class="sim-will-launch-label">WILL LAUNCH:</span>
+                      <span class="sim-will-launch-summary">6 × CLI Swarm (Isolated Git Worktrees in .worktrees/*)</span>
+                    </div>
+                    <div class="sim-launcher-actions">
+                      <span class="sim-status-note">Ready in C:/projects/kelvra-core</span>
+                      <button class="sim-btn-launch-confirm" id="simBtnLaunch">
+                        <span>Launch 6 Swarm Sessions</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Simulated Mouse Pointer (for video feel) -->
+                  <div class="sim-virtual-mouse-cursor" id="simVirtualCursor">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#E5A93C" stroke="#000" stroke-width="1.5"><polygon points="3 3 3 21 8.5 15.5 14 21 16.5 18.5 11 13 18.5 13 3 3"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SCENE 2: Worktree Isolation Mount Animation -->
+              <div class="sim-scene scene-2-worktrees" id="simScene2">
+                <div class="sim-worktree-banner">
+                  <div class="sim-banner-left">
+                    <span class="sim-spinner-icon"></span>
+                    <span class="sim-banner-title">PROVISIONING PARALLEL ISOLATION BOUNDARIES</span>
+                  </div>
+                  <span class="sim-banner-tag">GIT WORKTREE ENGINE · 6 ISOLATED TREES</span>
+                </div>
+
+                <div class="sim-worktrees-terminal-grid">
+                  <div class="sim-worktree-row-card">
+                    <div class="sim-wt-col-meta">
+                      <span class="sim-wt-badge">Pane 1 · AntiGravity</span>
+                      <code>.worktrees/feat-auth</code>
+                    </div>
+                    <div class="sim-wt-col-cmd">
+                      <code>$ git worktree add -b feat/auth-ed25519 .worktrees/feat-auth (HEAD -> main)</code>
+                      <span class="sim-wt-ok">✔ Sandbox mounted</span>
+                    </div>
+                  </div>
+
+                  <div class="sim-worktree-row-card">
+                    <div class="sim-wt-col-meta">
+                      <span class="sim-wt-badge">Pane 2 · Claude Code</span>
+                      <code>.worktrees/feat-nav</code>
+                    </div>
+                    <div class="sim-wt-col-cmd">
+                      <code>$ git worktree add -b feat/nav-drawer .worktrees/feat-nav (HEAD -> main)</code>
+                      <span class="sim-wt-ok">✔ Sandbox mounted</span>
+                    </div>
+                  </div>
+
+                  <div class="sim-worktree-row-card">
+                    <div class="sim-wt-col-meta">
+                      <span class="sim-wt-badge">Pane 3 · OpenAI Codex</span>
+                      <code>.worktrees/feat-db</code>
+                    </div>
+                    <div class="sim-wt-col-cmd">
+                      <code>$ git worktree add -b feat/db-migration .worktrees/feat-db (HEAD -> main)</code>
+                      <span class="sim-wt-ok">✔ Sandbox mounted</span>
+                    </div>
+                  </div>
+
+                  <div class="sim-worktree-row-card">
+                    <div class="sim-wt-col-meta">
+                      <span class="sim-wt-badge">Pane 4 · Cursor Agent</span>
+                      <code>.worktrees/test-qa</code>
+                    </div>
+                    <div class="sim-wt-col-cmd">
+                      <code>$ git worktree add -b test/e2e-playwright .worktrees/test-qa (HEAD -> main)</code>
+                      <span class="sim-wt-ok">✔ Sandbox mounted</span>
+                    </div>
+                  </div>
+
+                  <div class="sim-worktree-row-card">
+                    <div class="sim-wt-col-meta">
+                      <span class="sim-wt-badge">Pane 5 · Gemini CLI</span>
+                      <code>.worktrees/audit-sec</code>
+                    </div>
+                    <div class="sim-wt-col-cmd">
+                      <code>$ git worktree add -b sec/ast-audit .worktrees/audit-sec (HEAD -> main)</code>
+                      <span class="sim-wt-ok">✔ Sandbox mounted</span>
+                    </div>
+                  </div>
+
+                  <div class="sim-worktree-row-card">
+                    <div class="sim-wt-col-meta">
+                      <span class="sim-wt-badge">Pane 6 · DeepSeek</span>
+                      <code>.worktrees/mesh-net</code>
+                    </div>
+                    <div class="sim-wt-col-cmd">
+                      <code>$ git worktree add -b net/tailscale-mesh .worktrees/mesh-net (HEAD -> main)</code>
+                      <span class="sim-wt-ok">✔ Sandbox mounted</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sim-worktree-footer-status">
+                  <span class="sim-wt-dot green"></span>
+                  <span>All 6 git worktree branches provisioned simultaneously. Zero dirty tree lockups or branch collisions.</span>
+                </div>
+              </div>
+
+              <!-- SCENE 3: Focused TUI Directive & Real-time Typing (Google AntiGravity) -->
+              <div class="sim-scene scene-3-directive" id="simScene3">
+                <div class="sim-directive-backdrop-grid">
+                  <!-- The Focused AntiGravity Pane -->
+                  <div class="sim-focus-terminal-window">
+                    <div class="sim-term-header">
+                      <div class="sim-term-title-left">
+                        <span class="sim-dot-badge green"></span>
+                        <img src="assets/icons/antigravity.png" alt="AntiGravity" width="16" height="16" style="vertical-align:middle; margin-right:6px;" />
+                        <span class="sim-term-title-text">Google AntiGravity 2.4 · Gemini 2.5 Flash Thinking</span>
+                      </div>
+                      <div class="sim-term-meta-right">
+                        <span class="sim-model-tag">ISOLATED: .worktrees/feat-auth</span>
+                        <span class="sim-handback-tag">Ctrl+G Interactive Handback</span>
+                      </div>
+                    </div>
+
+                    <div class="sim-term-body-stream">
+                      <div class="sim-stream-line dim">AntiGravity Agentic CLI v2.4 (Gemini 2.5 Flash Thinking)</div>
+                      <div class="sim-stream-line dim">Workspace: C:/projects/kelvra-core/.worktrees/feat-auth (HEAD -> feat/auth-ed25519)</div>
+                      <div class="sim-stream-line dim">Context Window: 1,048,576 tokens · AST Inspection: ACTIVE</div>
+                      <div class="sim-stream-separator"></div>
+                      
+                      <!-- Physical Interactive Terminal Prompt Bar -->
+                      <div class="sim-tui-prompt-container">
+                        <div class="sim-tui-prompt-header">
+                          <span class="sim-prompt-tag">DIRECTIVE DISPATCH</span>
+                          <span class="sim-prompt-guard-pill" id="simPromptGuardPill">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span id="simPromptGuardText">PromptGuard: Scanning AST...</span>
+                          </span>
+                        </div>
+
+                        <div class="sim-tui-input-box" id="simTuiInputBox">
+                          <span class="sim-tui-prefix">❯ agy</span>
+                          <span class="sim-typing-text" id="simTypingText"></span>
+                          <span class="sim-blinking-cursor" id="simBlinkingCursor"></span>
+                        </div>
+                      </div>
+
+                      <div class="sim-prompt-meta-hint">
+                        <span>Press <strong>Enter</strong> to dispatch to swarm · PromptGuard screens prompts for indirect injection and tainted AST nodes.</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SCENE 4: 6-Agent Parallel Swarm Live Run -->
+              <div class="sim-scene scene-4-swarm" id="simScene4">
+                <!-- Swarm Top Status Bar -->
+                <div class="sim-swarm-top-bar">
+                  <div class="sim-swarm-metric">
+                    <span class="sim-metric-val">6</span>
+                    <span class="sim-metric-lbl">ACTIVE CLI AGENTS</span>
+                  </div>
+                  <div class="sim-swarm-metric">
+                    <span class="sim-metric-val" id="simTimeSavedVal">83%</span>
+                    <span class="sim-metric-lbl">TIME SAVED VS SEQUENTIAL</span>
+                  </div>
+                  <div class="sim-swarm-metric">
+                    <span class="sim-metric-val" id="simThroughputVal">148 tok/s</span>
+                    <span class="sim-metric-lbl">AGGREGATE BANDWIDTH</span>
+                  </div>
+                  <div class="sim-fastforward-progress-block">
+                    <div class="sim-ff-label">
+                      <span>SWARM RUNTIME PROGRESS</span>
+                      <span id="simFfPercent">100% COMPLETE</span>
+                    </div>
+                    <div class="sim-ff-track">
+                      <div class="sim-ff-fill" id="simFfFill"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 3x2 Magnetic Split Grid of Live Streaming Terminals -->
+                <div class="sim-swarm-grid-3x2">
+                  <!-- Terminal 1: AntiGravity -->
+                  <div class="sim-swarm-pane">
+                    <div class="sim-pane-header">
+                      <div class="sim-pane-id">
+                        <span class="sim-dot-badge green"></span>
+                        <img src="assets/icons/antigravity.png" alt="AntiGravity" width="13" height="13" />
+                        <span>1: Backend Auth</span>
+                      </div>
+                      <span class="sim-pane-cli">agy 2.4</span>
+                    </div>
+                    <div class="sim-pane-body">
+                      <div class="sim-log-line ok">✔ Checked out feat/auth-ed25519</div>
+                      <div class="sim-log-line">→ Refactoring internal/auth/token_store.go</div>
+                      <div class="sim-log-line">→ Replacing RSA with ed25519 token signatures</div>
+                      <div class="sim-log-line">→ Eliminating session race condition mutex</div>
+                      <div class="sim-log-line highlight">$ go test ./internal/auth/...</div>
+                      <div class="sim-log-line ok">✔ 24/24 unit tests passed (0.34s)</div>
+                    </div>
+                  </div>
+
+                  <!-- Terminal 2: Claude Code -->
+                  <div class="sim-swarm-pane">
+                    <div class="sim-pane-header">
+                      <div class="sim-pane-id">
+                        <span class="sim-dot-badge green"></span>
+                        <img src="assets/icons/claude.svg" alt="Claude Code" width="13" height="13" />
+                        <span>2: Frontend Nav</span>
+                      </div>
+                      <span class="sim-pane-cli">claude 3.7</span>
+                    </div>
+                    <div class="sim-pane-body">
+                      <div class="sim-log-line ok">✔ Checked out feat/nav-drawer</div>
+                      <div class="sim-log-line">→ Updating NavigationDrawer.tsx token provider</div>
+                      <div class="sim-log-line">→ Synchronizing mobile header auth state</div>
+                      <div class="sim-log-line highlight">$ npm run build</div>
+                      <div class="sim-log-line ok">✔ Vite build complete in 180ms (0 errors)</div>
+                      <div class="sim-log-line ok">✔ HMR synchronized with backend</div>
+                    </div>
+                  </div>
+
+                  <!-- Terminal 3: OpenAI Codex -->
+                  <div class="sim-swarm-pane">
+                    <div class="sim-pane-header">
+                      <div class="sim-pane-id">
+                        <span class="sim-dot-badge green"></span>
+                        <img src="assets/icons/openai.svg" alt="Codex" width="13" height="13" />
+                        <span>3: DB Schema</span>
+                      </div>
+                      <span class="sim-pane-cli">codex</span>
+                    </div>
+                    <div class="sim-pane-body">
+                      <div class="sim-log-line ok">✔ Checked out feat/db-migration</div>
+                      <div class="sim-log-line">→ Inspecting migrations/003_sessions.sql</div>
+                      <div class="sim-log-line">→ Generating 004_ed25519_sessions.sql</div>
+                      <div class="sim-log-line highlight">$ sqlite3 test.db &lt; 004_ed25519.sql</div>
+                      <div class="sim-log-line ok">✔ Dry-run schema check OK</div>
+                      <div class="sim-log-line ok">✔ Zero lock contention detected</div>
+                    </div>
+                  </div>
+
+                  <!-- Terminal 4: Cursor Agent -->
+                  <div class="sim-swarm-pane">
+                    <div class="sim-pane-header">
+                      <div class="sim-pane-id">
+                        <span class="sim-dot-badge green"></span>
+                        <img src="assets/icons/cursor.svg" alt="Cursor Agent" width="13" height="13" />
+                        <span>4: E2E Playwright</span>
+                      </div>
+                      <span class="sim-pane-cli">cursor</span>
+                    </div>
+                    <div class="sim-pane-body">
+                      <div class="sim-log-line ok">✔ Checked out test/e2e-playwright</div>
+                      <div class="sim-log-line">→ Running tests/auth_flow.spec.ts</div>
+                      <div class="sim-log-line">→ Simulating 50 concurrent login handshakes</div>
+                      <div class="sim-log-line highlight">$ npx playwright test --workers=4</div>
+                      <div class="sim-log-line ok">✔ 16/16 test scenarios passed (1.6s)</div>
+                      <div class="sim-log-line ok">✔ Zero flaky assertions</div>
+                    </div>
+                  </div>
+
+                  <!-- Terminal 5: Gemini CLI -->
+                  <div class="sim-swarm-pane">
+                    <div class="sim-pane-header">
+                      <div class="sim-pane-id">
+                        <span class="sim-dot-badge green"></span>
+                        <img src="assets/icons/gemini.svg" alt="Gemini CLI" width="13" height="13" />
+                        <span>5: Security Audit</span>
+                      </div>
+                      <span class="sim-pane-cli">gemini-cli</span>
+                    </div>
+                    <div class="sim-pane-body">
+                      <div class="sim-log-line ok">✔ Checked out sec/ast-audit</div>
+                      <div class="sim-log-line">→ AST taint analysis on ed25519 routines</div>
+                      <div class="sim-log-line">→ Verifying constant-time signature compare</div>
+                      <div class="sim-log-line highlight">$ agy audit --full-ast</div>
+                      <div class="sim-log-line ok">✔ 0 vulnerabilities / 0 secret leaks</div>
+                      <div class="sim-log-line ok">✔ Cryptographic attestation passed</div>
+                    </div>
+                  </div>
+
+                  <!-- Terminal 6: DeepSeek Harness -->
+                  <div class="sim-swarm-pane">
+                    <div class="sim-pane-header">
+                      <div class="sim-pane-id">
+                        <span class="sim-dot-badge green"></span>
+                        <img src="assets/icons/deepseek.svg" alt="DeepSeek" width="13" height="13" />
+                        <span>6: Mesh Telemetry</span>
+                      </div>
+                      <span class="sim-pane-cli">deepseek</span>
+                    </div>
+                    <div class="sim-pane-body">
+                      <div class="sim-log-line ok">✔ Checked out net/tailscale-mesh</div>
+                      <div class="sim-log-line">→ Pinging Tailscale mesh peer nodes</div>
+                      <div class="sim-log-line">→ WireGuard handshake latency: 9.4ms</div>
+                      <div class="sim-log-line highlight">$ tailscale status --peers</div>
+                      <div class="sim-log-line ok">✔ 4/4 mesh peers active and synchronized</div>
+                      <div class="sim-log-line ok">✔ Mesh telemetry stream healthy</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Swarm Completion & Handback Banner -->
+                <div class="sim-swarm-completion-banner">
+                  <div class="sim-banner-complete-left">
+                    <span class="sim-check-circle">✔</span>
+                    <div>
+                      <strong>Swarm Task Complete in 45s</strong>
+                      <span class="sim-sub">All 6 tasks finished in parallel. 6 pull requests ready for review.</span>
+                    </div>
+                  </div>
+                  <div class="sim-handback-pill">
+                    <kbd>Ctrl+G</kbd> <span>to take full interactive shell control of any pane</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- ==============================================================
+                 STAGE 2: AGENT MODE (Informative Preview State)
+                 ============================================================== -->
+            <div class="theater-stage agent-mode-stage" id="agentModeStage" style="display: none;">
+              <div class="stage-placeholder-card">
+                <div class="mode-icon-box" style="margin: 0 auto 16px auto;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+                </div>
+                <h3>Agent Mode · Autonomous DAG Decomposition</h3>
+                <p>
+                  High-level goals automatically resolve into an executable task graph. Personas coordinate across a real-time Vibe Kanban board with non-overlapping resource leases.
+                </p>
+                <div class="placeholder-action-row">
+                  <button class="theater-action-btn active" id="btnSwitchToCodeFromAgent">
+                    <span>View Live Code Mode Swarm Demo →</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==============================================================
+                 STAGE 3: CHAT MODE (Informative Preview State)
+                 ============================================================== -->
+            <div class="theater-stage chat-mode-stage" id="chatModeStage" style="display: none;">
+              <div class="stage-placeholder-card">
+                <div class="mode-icon-box" style="margin: 0 auto 16px auto;">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <h3>Chat Mode · Pair Programming &amp; Universal Artifacts</h3>
+                <p>
+                  Converse directly with frontier reasoning models. View generated architectural blueprints, real-time diffs, and interactive live previews in an integrated right-hand artifact drawer.
+                </p>
+                <div class="placeholder-action-row">
+                  <button class="theater-action-btn active" id="btnSwitchToCodeFromChat">
+                    <span>View Live Code Mode Swarm Demo →</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Architectural Value Callout ("WHY KELVRA DOES THIS") -->
+          <div class="theater-why-bar">
+            <div class="why-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-coral)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span>WHY KELVRA DOES THIS</span>
+            </div>
+            <div class="why-text-content" id="theaterWhyText">
+              <strong>Zero-Friction Orchestration:</strong> Launching multiple CLI tools manually requires juggling separate terminal windows. Kelvra’s pre-flight launcher lets you select any engine (Claude, AntiGravity, Codex, Gemini) and allocate up to 6 seats in a single click.
+            </div>
+          </div>
         </div>
       </div>
     </div>
