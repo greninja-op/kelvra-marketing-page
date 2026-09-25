@@ -31,6 +31,7 @@
       <ul class="nav-links">
         <li><a href="#modes" class="nav-link">Modes</a></li>
         <li><a href="#showcase" class="nav-link">Swarm Grid</a></li>
+        <li><a href="#accounts" class="nav-link">Switch Router</a></li>
         <li><a href="#mobile-showcase" class="nav-link">Mobile App</a></li>
         <li><a href="#voice" class="nav-link">Voice Orb</a></li>
         <li><a href="#ward" class="nav-link">Ward Gate</a></li>
@@ -1095,6 +1096,399 @@
           <h4 class="pillar-title">PR-Style Diff Gates</h4>
           <p class="pillar-desc">
             No agent writes directly to your main branch. Every change is staged into a human-in-the-loop review drawer with automated secret auditing and line-by-line diff approval.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ========================================================================
+       SECTION 5: MULTI-ACCOUNT ROUTING & CONTEXT PERSISTENCE (FEATURE 1)
+       ======================================================================== -->
+  <section class="accounts-section" id="accounts">
+    <div class="container accounts-container">
+      <div class="accounts-header">
+        <div class="accounts-eyebrow">
+          <span class="accounts-dot"></span>
+          <span>MULTI-ACCOUNT ROUTING & PERSISTENCE</span>
+        </div>
+        <h2 class="accounts-title">Switch accounts. <em>Keep the thread.</em></h2>
+        <p class="accounts-desc">
+          Hit an hourly rate limit or need an o3 deep-reasoning pass? Kelvra pivots between accounts, teams, and token buckets mid-session without clearing chat history, losing unstaged worktree diffs, or dropping terminal context.
+        </p>
+      </div>
+
+      <!-- Interactive Accounts Router Workspace -->
+      <div class="acs-workspace" id="acsWorkspace">
+        <!-- Left: Account Buckets Rail -->
+        <div class="acs-rail" id="acsRail">
+          <div class="acs-rail-header">
+            <span>CONNECTED ACCOUNTS</span>
+            <span class="acs-rail-count"><span class="acs-count-dot"></span> 4 CONNECTED</span>
+          </div>
+
+          <!-- Account Card 1: Work (Anthropic) -->
+          <div class="acs-card active" id="acsCardWork" data-account="work">
+            <div class="acs-card-top">
+              <div class="acs-card-identity">
+                <div class="acs-avatar-box">
+                  <img class="cli-glyph-icon" src="assets/icons/claude.svg" alt="Claude" width="20" height="20" />
+                </div>
+                <div class="acs-card-meta">
+                  <div class="acs-card-name">Work (Anthropic)</div>
+                  <div class="acs-card-model">Claude 3.7 Sonnet Max</div>
+                </div>
+              </div>
+              <span class="acs-badge-status" id="acsBadgeWork">Active</span>
+            </div>
+            <div class="acs-meter-wrap">
+              <div class="acs-meter-labels">
+                <span class="acs-meter-text" id="acsMeterLabelWork">Quota: 98% Used</span>
+                <span class="acs-meter-val" id="acsMeterValWork">24m to reset</span>
+              </div>
+              <div class="acs-meter-bar">
+                <div class="acs-meter-fill fill-amber" id="acsMeterFillWork" style="width: 98%;"></div>
+              </div>
+            </div>
+            <!-- Output Bezier Spline Port -->
+            <div class="acs-port" data-port="work"></div>
+          </div>
+
+          <!-- Account Card 2: Personal (Anthropic) -->
+          <div class="acs-card" id="acsCardPersonal" data-account="personal">
+            <div class="acs-card-top">
+              <div class="acs-card-identity">
+                <div class="acs-avatar-box">
+                  <img class="cli-glyph-icon" src="assets/icons/claude.svg" alt="Claude" width="20" height="20" />
+                </div>
+                <div class="acs-card-meta">
+                  <div class="acs-card-name">Personal (Pro)</div>
+                  <div class="acs-card-model">Claude 3.7 Sonnet Pro</div>
+                </div>
+              </div>
+              <span class="acs-badge-status standby" id="acsBadgePersonal">Standby</span>
+            </div>
+            <div class="acs-meter-wrap">
+              <div class="acs-meter-labels">
+                <span class="acs-meter-text">Quota: 14% Used</span>
+                <span class="acs-meter-val">500k ready</span>
+              </div>
+              <div class="acs-meter-bar">
+                <div class="acs-meter-fill fill-green" style="width: 14%;"></div>
+              </div>
+            </div>
+            <!-- Output Bezier Spline Port -->
+            <div class="acs-port" data-port="personal"></div>
+          </div>
+
+          <!-- Account Card 3: Team Codex (OpenAI) -->
+          <div class="acs-card" id="acsCardCodex" data-account="codex">
+            <div class="acs-card-top">
+              <div class="acs-card-identity">
+                <div class="acs-avatar-box">
+                  <img class="cli-glyph-icon" src="assets/icons/openai.svg" alt="OpenAI" width="20" height="20" />
+                </div>
+                <div class="acs-card-meta">
+                  <div class="acs-card-name">Team Codex (OpenAI)</div>
+                  <div class="acs-card-model">o3-mini & GPT-4.5</div>
+                </div>
+              </div>
+              <span class="acs-badge-status standby" id="acsBadgeCodex">Standby</span>
+            </div>
+            <div class="acs-meter-wrap">
+              <div class="acs-meter-labels">
+                <span class="acs-meter-text">Quota: 32% Used</span>
+                <span class="acs-meter-val">1.2M ready</span>
+              </div>
+              <div class="acs-meter-bar">
+                <div class="acs-meter-fill fill-green" style="width: 32%;"></div>
+              </div>
+            </div>
+            <!-- Output Bezier Spline Port -->
+            <div class="acs-port" data-port="codex"></div>
+          </div>
+
+          <!-- Account Card 4: Antigravity Lab (Google) -->
+          <div class="acs-card" id="acsCardAntigravity" data-account="antigravity">
+            <div class="acs-card-top">
+              <div class="acs-card-identity">
+                <div class="acs-avatar-box">
+                  <img class="cli-glyph-icon" src="assets/icons/antigravity.png" alt="Google Antigravity" width="20" height="20" />
+                </div>
+                <div class="acs-card-meta">
+                  <div class="acs-card-name">Antigravity Lab</div>
+                  <div class="acs-card-model">Gemini 2.5 Ultra / Flash</div>
+                </div>
+              </div>
+              <span class="acs-badge-status standby" id="acsBadgeAntigravity">Standby</span>
+            </div>
+            <div class="acs-meter-wrap">
+              <div class="acs-meter-labels">
+                <span class="acs-meter-text">Quota: 5% Used</span>
+                <span class="acs-meter-val">Unlimited</span>
+              </div>
+              <div class="acs-meter-bar">
+                <div class="acs-meter-fill fill-green" style="width: 5%;"></div>
+              </div>
+            </div>
+            <!-- Output Bezier Spline Port -->
+            <div class="acs-port" data-port="antigravity"></div>
+          </div>
+
+          <div class="acs-rail-hint">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4"/>
+              <path d="M12 8h.01"/>
+            </svg>
+            <span>Click any account card to switch routing manually</span>
+          </div>
+        </div>
+
+        <!-- Center: Dynamic Animated Bezier Spline Canvas / SVG -->
+        <div class="acs-bridge" id="acsBridge">
+          <svg class="acs-svg" id="acsSvg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="acsWireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#D97757" stop-opacity="0.9" />
+                <stop offset="100%" stop-color="#F0906F" stop-opacity="1" />
+              </linearGradient>
+              <filter id="acsGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            <!-- Background faint guide lines for depth -->
+            <path id="acsGuidePath1" class="acs-guide-path" d="" />
+            <path id="acsGuidePath2" class="acs-guide-path" d="" />
+            <path id="acsGuidePath3" class="acs-guide-path" d="" />
+            <path id="acsGuidePath4" class="acs-guide-path" d="" />
+            <!-- Active Dynamic Splines -->
+            <path id="acsWireGlow" class="acs-wire-glow" d="" filter="url(#acsGlowFilter)" />
+            <path id="acsWireCore" class="acs-wire-core" d="" />
+            <!-- Spark particle traveling along spline -->
+            <circle id="acsSpark" class="acs-spark" r="3.5" cx="-100" cy="-100" />
+          </svg>
+        </div>
+
+        <!-- Right: Active Thread Terminal Window -->
+        <div class="acs-thread" id="acsThread">
+          <!-- Terminal Chrome Bar -->
+          <div class="acs-thread-chrome">
+            <div class="acs-chrome-dots">
+              <span class="mockup-term-dot red"></span>
+              <span class="mockup-term-dot yellow"></span>
+              <span class="mockup-term-dot green"></span>
+            </div>
+            <div class="acs-chrome-title">
+              <svg class="folder-outline-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#E5A93C" stroke-width="1.8">
+                <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/>
+              </svg>
+              <span>src/workers/auth-sync.ts</span>
+              <span class="acs-branch-tag">wt-payment-auth</span>
+            </div>
+            <div class="acs-thread-status-badge" id="acsThreadStatus">
+              <span class="acs-status-dot pulse" id="acsStatusDot"></span>
+              <span id="acsStatusText">Streaming Reasoning</span>
+            </div>
+          </div>
+
+          <!-- Input Wire Receiver Port (left edge) -->
+          <div class="acs-thread-port" id="acsThreadPort"></div>
+
+          <!-- Thread Body Content -->
+          <div class="acs-thread-body" id="acsThreadBody">
+            <!-- User Prompt Message -->
+            <div class="acs-msg-human">
+              <div class="acs-msg-header">
+                <div class="acs-msg-author">
+                  <div class="acs-author-avatar">HL</div>
+                  <span>Human Directive</span>
+                </div>
+                <span class="acs-msg-time">Just now</span>
+              </div>
+              <div class="acs-msg-content">
+                Fix the retry exponential backoff race condition in <code>auth-sync-worker.ts</code>. Add full jitter to prevent thundering herd under load.
+              </div>
+            </div>
+
+            <!-- Agent Active Execution Stream -->
+            <div class="acs-agent-stream" id="acsAgentStream">
+              <div class="acs-stream-header">
+                <div class="acs-stream-identity">
+                  <img id="acsStreamIcon" class="cli-glyph-icon" src="assets/icons/claude.svg" alt="Claude" width="14" height="14" />
+                  <span id="acsStreamAgentName">Claude 3.7 Sonnet Max</span>
+                  <span class="acs-stream-org" id="acsStreamOrgTag">(Work Org)</span>
+                </div>
+                <span class="acs-stream-tokens">48,210 tokens loaded</span>
+              </div>
+
+              <!-- Code Diff Preview -->
+              <div class="acs-diff-viewer">
+                <div class="acs-diff-line diff-meta">@@ -42,6 +42,9 @@ export async function handleAuthSync(payload: SyncPayload) {</div>
+                <div class="acs-diff-line diff-del"><span class="diff-sign">-</span>  await delay(retries * 1000);</div>
+                <div class="acs-diff-line diff-add"><span class="diff-sign">+</span>  const base = 1000;</div>
+                <div class="acs-diff-line diff-add"><span class="diff-sign">+</span>  const cap = 30000;</div>
+                <div class="acs-diff-line diff-add"><span class="diff-sign">+</span>  const waitTime = Math.min(cap, base * Math.pow(2, retries));</div>
+                <div class="acs-diff-line diff-add"><span class="diff-sign">+</span>  const jitter = Math.floor(Math.random() * (waitTime * 0.4));</div>
+                <div class="acs-diff-line diff-add"><span class="diff-sign">+</span>  await delay(waitTime + jitter);</div>
+              </div>
+            </div>
+
+            <!-- STAGE 2: Rate Limit Notice Card -->
+            <div class="acs-notice-card" id="acsLimitNotice">
+              <div class="acs-notice-top">
+                <div class="acs-notice-icon-box">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFD43B" stroke-width="2">
+                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div class="acs-notice-text">
+                  <div class="acs-notice-title">Work Org Hourly Token Limit Reached</div>
+                  <div class="acs-notice-sub">
+                    Execution safely paused at step 3/4. <strong>Zero context lost.</strong> 48.2k tokens serialized. Unstaged diff preserved in <code>wt-payment-auth</code> branch.
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn-acs-action" id="btnAcsTriggerSwitch">
+                <span>Switch Provider & Continue Thread</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- STAGE 3 & 4: Interactive Switcher Popup Modal -->
+            <div class="acs-picker-modal" id="acsPickerModal">
+              <div class="acs-picker-header">
+                <div class="acs-picker-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 3 21 3 21 8"/>
+                    <line x1="4" y1="20" x2="21" y2="3"/>
+                    <polyline points="21 16 21 21 16 21"/>
+                    <line x1="15" y1="15" x2="21" y2="21"/>
+                    <line x1="4" y1="4" x2="9" y2="9"/>
+                  </svg>
+                  <span>Select Standby Account for Zero-Loss Handoff</span>
+                </div>
+                <span class="acs-picker-tag">Seamless Bridge</span>
+              </div>
+
+              <div class="acs-picker-options">
+                <!-- Option 1: Personal (Recommended) -->
+                <div class="acs-picker-option selected" id="acsPickPersonal" data-pick="personal">
+                  <div class="acs-option-left">
+                    <input type="radio" name="acsTargetAccount" checked />
+                    <img class="cli-glyph-icon" src="assets/icons/claude.svg" alt="Claude" width="16" height="16" />
+                    <div class="acs-option-info">
+                      <div class="acs-option-name">Personal (Pro) <span class="acs-rec-badge">Recommended</span></div>
+                      <div class="acs-option-sub">Claude 3.7 Sonnet · 14% used · 500k ready</div>
+                    </div>
+                  </div>
+                  <span class="acs-option-check">✔</span>
+                </div>
+
+                <!-- Option 2: Team Codex -->
+                <div class="acs-picker-option" id="acsPickCodex" data-pick="codex">
+                  <div class="acs-option-left">
+                    <input type="radio" name="acsTargetAccount" />
+                    <img class="cli-glyph-icon" src="assets/icons/openai.svg" alt="OpenAI" width="16" height="16" />
+                    <div class="acs-option-info">
+                      <div class="acs-option-name">Team Codex (OpenAI)</div>
+                      <div class="acs-option-sub">o3-mini & GPT-4.5 · 32% used · 1.2M ready</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Option 3: Antigravity Lab -->
+                <div class="acs-picker-option" id="acsPickAntigravity" data-pick="antigravity">
+                  <div class="acs-option-left">
+                    <input type="radio" name="acsTargetAccount" />
+                    <img class="cli-glyph-icon" src="assets/icons/antigravity.png" alt="Google Antigravity" width="16" height="16" />
+                    <div class="acs-option-info">
+                      <div class="acs-option-name">Antigravity Lab</div>
+                      <div class="acs-option-sub">Gemini 2.5 Ultra / Flash · 5% used</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="acs-picker-summary">
+                <span>Preserving: <strong>48,210 tokens</strong></span>
+                <span>Worktree: <strong>wt-payment-auth</strong></span>
+                <span>Downtime: <strong>0s</strong></span>
+              </div>
+
+              <button type="button" class="btn-acs-confirm" id="btnAcsConfirm">
+                <span>Continue with Personal (Pro)</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                  <polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- STAGE 5: Resumed & Verified Execution -->
+            <div class="acs-resumed-card" id="acsResumedCard">
+              <div class="acs-resumed-header">
+                <span class="acs-resumed-badge">
+                  <span class="acs-green-dot"></span>
+                  <span>Rerouted to Personal (Pro) · Context Intact</span>
+                </span>
+                <span class="acs-resumed-time">Elapsed: +1.2s</span>
+              </div>
+              <div class="acs-resumed-terminal">
+                <span class="dollar">$</span> <span class="hi-code">kelvra test auth-sync</span><br />
+                <span class="resumed-output">• Loading context snapshot: 48,210 tokens verified</span><br />
+                <span class="resumed-output">• Testing backoff jitter algorithm against 1,000 synthetic bursts...</span><br />
+                <span class="status-ok">✔ PASS src/workers/auth-sync.test.ts (20/20 passing, 312ms)</span><br />
+                <span class="resumed-closing">✔ Diff staged into human review drawer. Zero context lost across account handoff.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terminal Bottom Meta Bar -->
+          <div class="acs-thread-footer">
+            <div class="acs-meta-item">
+              <span class="acs-meta-label">Active Context:</span>
+              <span class="acs-meta-val" id="acsFooterTokens">48.2k tokens (Preserved)</span>
+            </div>
+            <div class="acs-meta-item">
+              <span class="acs-meta-label">Worktree:</span>
+              <span class="acs-meta-val">wt-payment-auth</span>
+            </div>
+            <div class="acs-meta-item">
+              <span class="acs-meta-label">Handoff:</span>
+              <span class="acs-meta-val" style="color: #52B788;">Zero-Loss Persistent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Technical Architecture Pillars for Feature 1 -->
+      <div class="pillars-grid accounts-pillars">
+        <div class="pillar-card">
+          <h4 class="pillar-title">Stateful Worktree Handoff</h4>
+          <p class="pillar-desc">
+            When pivoting models or token buckets mid-session, unstaged code modifications, AST symbol caches, and compile artifacts remain strictly isolated in the agent's Git worktree. No directory resets or lost edits.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <h4 class="pillar-title">Zero-Loss Context Serialization</h4>
+          <p class="pillar-desc">
+            Conversational reasoning trajectories, terminal tool call receipts, and error tracebacks are serialized into a universal format and injected directly into the successor model without restarting the session.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <h4 class="pillar-title">BYOK & Zero Gateway Markups</h4>
+          <p class="pillar-desc">
+            Bring your own direct Anthropic Claude Max, OpenAI Team Codex, or Google Antigravity credentials. Kelvra routes queries natively from your machine without proxy interceptors or subscription surcharges.
           </p>
         </div>
       </div>

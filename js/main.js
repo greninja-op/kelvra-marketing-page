@@ -560,11 +560,486 @@ function initHeroModeSwitcher() {
   });
 }
 
-// Wire Mobile Showcase & Hero Mode Switcher on DOMContentLoaded
+// Wire Mobile Showcase, Hero Mode Switcher & Accounts Router on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   initMobileShowcaseAutoplay();
   initHeroModeSwitcher();
+  initAccountsRouter();
 });
+
+/* ==========================================================================
+   FEATURE 1: DYNAMIC MULTI-ACCOUNT ROUTER & SPLINE BRIDGE STATE MACHINE
+   Inspired by BridgeMind · Seamless Zero-Loss Handoff & Cubic Bezier Math
+   ========================================================================== */
+
+function initAccountsRouter() {
+  const workspace = document.getElementById("acsWorkspace");
+  const bridge = document.getElementById("acsBridge");
+  const svg = document.getElementById("acsSvg");
+  const wireGlow = document.getElementById("acsWireGlow");
+  const wireCore = document.getElementById("acsWireCore");
+  const spark = document.getElementById("acsSpark");
+  const threadPort = document.getElementById("acsThreadPort");
+
+  if (!workspace || !bridge || !svg || !wireCore) return;
+
+  // Account cards & state targets
+  const cards = document.querySelectorAll(".acs-card");
+  const cardWork = document.getElementById("acsCardWork");
+  const cardPersonal = document.getElementById("acsCardPersonal");
+  const cardCodex = document.getElementById("acsCardCodex");
+  const cardAntigravity = document.getElementById("acsCardAntigravity");
+
+  const badgeWork = document.getElementById("acsBadgeWork");
+  const badgePersonal = document.getElementById("acsBadgePersonal");
+  const meterValWork = document.getElementById("acsMeterValWork");
+
+  const statusBadge = document.getElementById("acsThreadStatus");
+  const statusDot = document.getElementById("acsStatusDot");
+  const statusText = document.getElementById("acsStatusText");
+
+  const streamIcon = document.getElementById("acsStreamIcon");
+  const streamAgentName = document.getElementById("acsStreamAgentName");
+  const streamOrgTag = document.getElementById("acsStreamOrgTag");
+
+  const limitNotice = document.getElementById("acsLimitNotice");
+  const btnTriggerSwitch = document.getElementById("btnAcsTriggerSwitch");
+  const pickerModal = document.getElementById("acsPickerModal");
+  const pickerOptions = document.querySelectorAll(".acs-picker-option");
+  const btnConfirm = document.getElementById("btnAcsConfirm");
+  const resumedCard = document.getElementById("acsResumedCard");
+
+  let activeCardId = "work";
+  let currentStage = 1; // 1: Live, 2: RateLimit, 3: Picker, 4: Switching, 5: Resumed
+  let isManualMode = false;
+  let manualTimeout = null;
+  let sparkProgress = 0;
+  let animFrameId = null;
+
+  // Account profile metadata for interactive switching
+  const accountData = {
+    work: {
+      name: "Claude 3.7 Sonnet Max",
+      org: "(Work Org)",
+      icon: "assets/icons/claude.svg",
+      color: "#D97757",
+      glow: "rgba(217, 119, 87, 0.4)",
+    },
+    personal: {
+      name: "Claude 3.7 Sonnet Pro",
+      org: "(Personal Pro)",
+      icon: "assets/icons/claude.svg",
+      color: "#F0906F",
+      glow: "rgba(240, 144, 111, 0.45)",
+    },
+    codex: {
+      name: "OpenAI o3-mini",
+      org: "(Team Codex)",
+      icon: "assets/icons/openai.svg",
+      color: "#52B788",
+      glow: "rgba(82, 183, 136, 0.45)",
+    },
+    antigravity: {
+      name: "Gemini 2.5 Ultra",
+      org: "(Antigravity Lab)",
+      icon: "assets/icons/antigravity.png",
+      color: "#4285F4",
+      glow: "rgba(66, 133, 244, 0.45)",
+    },
+  };
+
+  /**
+   * Recalculate Dynamic SVG Splines & Guides
+   */
+  function updateSplines() {
+    const bridgeRect = bridge.getBoundingClientRect();
+    if (bridgeRect.width <= 0 || bridgeRect.height <= 0) return;
+
+    // Set SVG internal viewBox to match container pixels exactly
+    svg.setAttribute("viewBox", `0 0 ${bridgeRect.width} ${bridgeRect.height}`);
+
+    const isStacked = window.innerWidth <= 992;
+    let startX = 0;
+    let startY = bridgeRect.height / 2;
+    let endX = bridgeRect.width;
+    let endY = bridgeRect.height / 2;
+
+    if (isStacked) {
+      // Clean top-to-bottom pipeline on mobile/tablet
+      startX = bridgeRect.width / 2;
+      startY = 4;
+      endX = bridgeRect.width / 2;
+      endY = bridgeRect.height - 4;
+
+      const vPath = `M ${startX} ${startY} L ${endX} ${endY}`;
+      wireGlow.setAttribute("d", vPath);
+      wireCore.setAttribute("d", vPath);
+      return;
+    }
+
+    // Desktop view: Compute exact anchor point of active card's port
+    const activeCard = document.querySelector(`.acs-card[data-account="${activeCardId}"]`);
+    if (activeCard) {
+      const port = activeCard.querySelector(".acs-port");
+      if (port) {
+        const pRect = port.getBoundingClientRect();
+        startX = Math.max(0, pRect.left + pRect.width / 2 - bridgeRect.left);
+        startY = pRect.top + pRect.height / 2 - bridgeRect.top;
+      }
+    }
+
+    // Thread port target
+    if (threadPort) {
+      const tRect = threadPort.getBoundingClientRect();
+      endX = Math.min(bridgeRect.width, tRect.left + tRect.width / 2 - bridgeRect.left);
+      endY = tRect.top + tRect.height / 2 - bridgeRect.top;
+    }
+
+    // Smooth cubic bezier spline
+    const dx = endX - startX;
+    const c1x = startX + dx * 0.48;
+    const c1y = startY;
+    const c2x = endX - dx * 0.48;
+    const c2y = endY;
+
+    const pathD = `M ${startX.toFixed(1)} ${startY.toFixed(1)} C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}`;
+
+    wireGlow.setAttribute("d", pathD);
+    wireCore.setAttribute("d", pathD);
+
+    // Compute faint background guide lines for other cards
+    cards.forEach((card, idx) => {
+      const gPath = document.getElementById(`acsGuidePath${idx + 1}`);
+      if (!gPath) return;
+      const port = card.querySelector(".acs-port");
+      if (port) {
+        const pRect = port.getBoundingClientRect();
+        const gx = Math.max(0, pRect.left + pRect.width / 2 - bridgeRect.left);
+        const gy = pRect.top + pRect.height / 2 - bridgeRect.top;
+        const gdx = endX - gx;
+        const gd = `M ${gx.toFixed(1)} ${gy.toFixed(1)} C ${(gx + gdx * 0.48).toFixed(1)} ${gy.toFixed(1)}, ${(endX - gdx * 0.48).toFixed(1)} ${endY.toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}`;
+        gPath.setAttribute("d", gd);
+      }
+    });
+  }
+
+  /**
+   * 60fps Energy Spark Particle Traversal Loop
+   */
+  function animateSpark() {
+    if (wireCore && spark) {
+      try {
+        const pathLength = wireCore.getTotalLength();
+        if (pathLength > 0) {
+          sparkProgress = (sparkProgress + 1.8) % pathLength;
+          const pt = wireCore.getPointAtLength(sparkProgress);
+          spark.setAttribute("cx", pt.x.toFixed(1));
+          spark.setAttribute("cy", pt.y.toFixed(1));
+          spark.style.opacity = currentStage === 2 ? "0.3" : "0.95";
+        }
+      } catch (e) {
+        // Fallback if SVG not rendered yet
+      }
+    }
+    animFrameId = requestAnimationFrame(animateSpark);
+  }
+
+  /**
+   * Set Visual Wire Styles based on account & stage
+   */
+  function setWireStyle(color, glow, isMarching = false) {
+    wireCore.style.stroke = color;
+    wireGlow.style.stroke = glow;
+    if (isMarching) {
+      wireCore.classList.add("acs-wire-marching");
+    } else {
+      wireCore.classList.remove("acs-wire-marching");
+    }
+  }
+
+  /**
+   * Set Active Account Card
+   */
+  function setActiveAccount(accId, updateStreamUI = true) {
+    activeCardId = accId;
+    cards.forEach((c) => {
+      const isTarget = c.dataset.account === accId;
+      c.classList.toggle("active", isTarget);
+      if (!isTarget) {
+        c.classList.remove("limit-warning");
+        const b = c.querySelector(".acs-badge-status");
+        if (b) {
+          b.textContent = "Standby";
+          b.className = "acs-badge-status standby";
+        }
+      }
+    });
+
+    const activeEl = document.querySelector(`.acs-card[data-account="${accId}"]`);
+    if (activeEl) {
+      const b = activeEl.querySelector(".acs-badge-status");
+      if (b && currentStage !== 2) {
+        b.textContent = "Active";
+        b.className = "acs-badge-status";
+      }
+    }
+
+    if (updateStreamUI && accountData[accId]) {
+      const meta = accountData[accId];
+      if (streamIcon) streamIcon.src = meta.icon;
+      if (streamAgentName) streamAgentName.textContent = meta.name;
+      if (streamOrgTag) streamOrgTag.textContent = meta.org;
+      setWireStyle(meta.color, meta.glow);
+    }
+
+    updateSplines();
+  }
+
+  /**
+   * 5-Stage Story Timeline Controller
+   */
+  let stageTimer = null;
+
+  function runStage1() {
+    if (isManualMode) return;
+    currentStage = 1;
+    setActiveAccount("work", true);
+
+    if (cardWork) cardWork.classList.remove("limit-warning");
+    if (badgeWork) {
+      badgeWork.textContent = "Active";
+      badgeWork.className = "acs-badge-status";
+    }
+    if (meterValWork) meterValWork.textContent = "24m to reset";
+
+    if (statusBadge) {
+      statusBadge.style.color = "var(--accent-coral)";
+      statusBadge.style.background = "rgba(217, 119, 87, 0.12)";
+      statusBadge.style.borderColor = "rgba(217, 119, 87, 0.3)";
+    }
+    if (statusDot) {
+      statusDot.style.background = "var(--accent-terracotta)";
+      statusDot.style.boxShadow = "0 0 6px var(--accent-terracotta)";
+    }
+    if (statusText) statusText.textContent = "Streaming Reasoning";
+
+    if (limitNotice) limitNotice.classList.remove("active");
+    if (pickerModal) pickerModal.style.display = "none";
+    if (resumedCard) resumedCard.style.display = "none";
+
+    setWireStyle("#D97757", "rgba(217, 119, 87, 0.4)", false);
+
+    stageTimer = setTimeout(runStage2, 3800);
+  }
+
+  function runStage2() {
+    if (isManualMode) return;
+    currentStage = 2;
+
+    // Rate limit hit on Work card
+    if (cardWork) cardWork.classList.add("limit-warning");
+    if (badgeWork) {
+      badgeWork.textContent = "Limit";
+      badgeWork.className = "acs-badge-status limit";
+    }
+    if (meterValWork) meterValWork.textContent = "Limit Reached";
+
+    if (statusBadge) {
+      statusBadge.style.color = "#FFD43B";
+      statusBadge.style.background = "rgba(255, 212, 59, 0.12)";
+      statusBadge.style.borderColor = "rgba(255, 212, 59, 0.4)";
+    }
+    if (statusDot) {
+      statusDot.style.background = "#FFD43B";
+      statusDot.style.boxShadow = "0 0 8px #FFD43B";
+    }
+    if (statusText) statusText.textContent = "Rate Limit Reached (Work)";
+
+    if (limitNotice) limitNotice.classList.add("active");
+    setWireStyle("#FFD43B", "rgba(255, 212, 59, 0.4)", false);
+
+    stageTimer = setTimeout(runStage3, 3400);
+  }
+
+  function runStage3() {
+    if (isManualMode) return;
+    currentStage = 3;
+
+    // Open Picker Modal
+    if (pickerModal) pickerModal.style.display = "flex";
+    if (statusText) statusText.textContent = "Selecting Standby Provider...";
+    setWireStyle("#D97757", "rgba(217, 119, 87, 0.4)", true);
+
+    stageTimer = setTimeout(runStage4, 2800);
+  }
+
+  function runStage4() {
+    if (isManualMode) return;
+    currentStage = 4;
+
+    // Visual button press simulation
+    if (btnConfirm) {
+      btnConfirm.style.transform = "scale(0.96)";
+      setTimeout(() => {
+        if (btnConfirm) btnConfirm.style.transform = "";
+      }, 250);
+    }
+
+    if (statusText) statusText.textContent = "Preserving 48.2k tokens & worktree...";
+
+    // Bend spline towards Personal card
+    activeCardId = "personal";
+    updateSplines();
+
+    stageTimer = setTimeout(runStage5, 1800);
+  }
+
+  function runStage5() {
+    if (isManualMode) return;
+    currentStage = 5;
+
+    if (pickerModal) pickerModal.style.display = "none";
+    if (limitNotice) limitNotice.classList.remove("active");
+
+    setActiveAccount("personal", true);
+    if (badgePersonal) {
+      badgePersonal.textContent = "Active";
+      badgePersonal.className = "acs-badge-status";
+    }
+
+    if (resumedCard) resumedCard.style.display = "flex";
+
+    if (statusBadge) {
+      statusBadge.style.color = "#52B788";
+      statusBadge.style.background = "rgba(82, 183, 136, 0.12)";
+      statusBadge.style.borderColor = "rgba(82, 183, 136, 0.4)";
+    }
+    if (statusDot) {
+      statusDot.style.background = "#52B788";
+      statusDot.style.boxShadow = "0 0 8px #52B788";
+    }
+    if (statusText) statusText.textContent = "Resumed on Personal (Pro)";
+
+    setWireStyle("#52B788", "rgba(82, 183, 136, 0.4)", false);
+
+    // After 6 seconds of success showcase, seamlessly restart loop
+    stageTimer = setTimeout(runStage1, 6000);
+  }
+
+  /**
+   * Enter Interactive Override Mode (Pauses auto-loop when user clicks)
+   */
+  function enterManualMode() {
+    isManualMode = true;
+    clearTimeout(stageTimer);
+    clearTimeout(manualTimeout);
+    manualTimeout = setTimeout(() => {
+      isManualMode = false;
+      runStage1();
+    }, 12000);
+  }
+
+  // Bind clicks on Account Cards
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      enterManualMode();
+      const targetAcc = card.dataset.account;
+      setActiveAccount(targetAcc, true);
+
+      if (limitNotice) limitNotice.classList.remove("active");
+      if (pickerModal) pickerModal.style.display = "none";
+      if (resumedCard) resumedCard.style.display = "flex";
+
+      if (statusBadge) {
+        statusBadge.style.color = "#52B788";
+        statusBadge.style.background = "rgba(82, 183, 136, 0.12)";
+        statusBadge.style.borderColor = "rgba(82, 183, 136, 0.4)";
+      }
+      if (statusDot) {
+        statusDot.style.background = "#52B788";
+        statusDot.style.boxShadow = "0 0 8px #52B788";
+      }
+      if (statusText) statusText.textContent = `Routed to ${accountData[targetAcc]?.name || targetAcc}`;
+    });
+  });
+
+  // Bind Switch Button
+  if (btnTriggerSwitch) {
+    btnTriggerSwitch.addEventListener("click", () => {
+      enterManualMode();
+      runStage3();
+    });
+  }
+
+  // Bind Picker Options
+  pickerOptions.forEach((opt) => {
+    opt.addEventListener("click", () => {
+      pickerOptions.forEach((o) => {
+        o.classList.remove("selected");
+        const r = o.querySelector("input[type='radio']");
+        if (r) r.checked = false;
+        const check = o.querySelector(".acs-option-check");
+        if (check) check.remove();
+      });
+      opt.classList.add("selected");
+      const r = opt.querySelector("input[type='radio']");
+      if (r) r.checked = true;
+      if (!opt.querySelector(".acs-option-check")) {
+        const chk = document.createElement("span");
+        chk.className = "acs-option-check";
+        chk.textContent = "✔";
+        opt.appendChild(chk);
+      }
+      const targetPick = opt.dataset.pick;
+      if (targetPick && btnConfirm) {
+        btnConfirm.innerHTML = `<span>Continue with ${accountData[targetPick]?.name || targetPick}</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+      }
+    });
+  });
+
+  // Bind Confirm Button
+  if (btnConfirm) {
+    btnConfirm.addEventListener("click", () => {
+      enterManualMode();
+      const selectedOpt = document.querySelector(".acs-picker-option.selected");
+      const pickId = selectedOpt ? selectedOpt.dataset.pick : "personal";
+      activeCardId = pickId;
+      runStage5();
+    });
+  }
+
+  // Window resize & scroll listeners for responsive spline recalculation
+  window.addEventListener("resize", updateSplines, { passive: true });
+  window.addEventListener("scroll", updateSplines, { passive: true });
+
+  // Start animated spark particle
+  animateSpark();
+
+  // Trigger state loop when scrolled into view
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            updateSplines();
+            if (!isManualMode && currentStage === 1) {
+              runStage1();
+            }
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(workspace);
+  } else {
+    updateSplines();
+    runStage1();
+  }
+
+  // Initial layout calculation
+  setTimeout(updateSplines, 100);
+}
+
 
 
 
