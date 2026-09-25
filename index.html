@@ -1783,25 +1783,44 @@
 
                 <!-- VIEW 1: COMPANION STAGE -->
                 <div class="iphone-screen-layer active" id="layerCompanion">
+                  <!-- Live iOS Push Notification Banner -->
+                  <div class="m-push-banner" id="mPushBanner">
+                    <div class="m-push-top">
+                      <div class="m-push-icon-title">
+                        <img src="assets/kelvra-logo.png" alt="Kelvra" class="m-push-logo" />
+                        <span class="m-push-app">KELVRA SWARM GATE</span>
+                      </div>
+                      <span class="m-push-time">Just now</span>
+                    </div>
+                    <div class="m-push-content">
+                      <strong>PR #18 Approval Needed</strong>
+                      <p>Claude Code finished auth refactor. 3 unit tests passed. Authorize merge?</p>
+                    </div>
+                    <div class="m-push-actions">
+                      <button class="m-push-btn approve" id="mPushApproveBtn" type="button">✔ Authorize</button>
+                      <button class="m-push-btn view" id="mPushViewBtn" type="button">Inspect Diff</button>
+                    </div>
+                  </div>
+
                   <div class="m-stage-card">
                     <div class="m-stage-badge">
                       <span class="m-pulse-amber"></span>
-                      <span>SWARM RUNNING · 6 AGENTS</span>
+                      <span id="mSwarmStatusText">SWARM RUNNING · 6 AGENTS</span>
                     </div>
 
                     <div class="m-mascot-container">
-                      <img src="assets/angel-bot-idle.gif" alt="Angel Bot" class="m-mascot-pixel" />
+                      <img src="assets/angel-bot-idle.gif" alt="Angel Bot" class="m-mascot-pixel" id="mMascotImg" />
                     </div>
 
                     <h3 class="m-character-name">Angel Bot</h3>
                     <p class="m-character-sub">Orchestrator Persona · Idle / Monitoring</p>
-                    <div class="m-task-quote">“6 Git worktrees clean. Watching file events on .worktrees/fe-mobile”</div>
+                    <div class="m-task-quote" id="mMascotQuote">“6 Git worktrees clean. Watching file events on .worktrees/fe-mobile”</div>
                   </div>
 
                   <div class="m-info-card">
                     <div class="m-card-header-row">
                       <span class="m-card-tag">SYSTEM BRIDGE</span>
-                      <span class="m-card-meta">100.78.61.27</span>
+                      <span class="m-card-meta">100.78.61.27 :8099</span>
                     </div>
                     <div class="m-card-title-lg">WebSocket P-256 Authenticated</div>
                     <p class="m-card-desc-sm">Zero cloud egress. 100% encrypted direct mesh traffic between laptop and handheld.</p>
@@ -1810,32 +1829,32 @@
 
                 <!-- VIEW 2: TELEMETRY -->
                 <div class="iphone-screen-layer" id="layerTelemetry">
-                  <div class="m-section-label">WORKSTATION TELEMETRY</div>
+                  <div class="m-section-label">WORKSTATION &amp; TOKEN TELEMETRY</div>
 
                   <div class="m-telemetry-grid">
                     <div class="m-stat-box">
                       <div class="stat-label">HOST CPU</div>
-                      <div class="stat-value">14.8%</div>
+                      <div class="stat-value" id="mCpuVal">14.8%</div>
                       <div class="stat-sub">16 Cores · AMD 7950X</div>
                     </div>
                     <div class="m-stat-box">
                       <div class="stat-label">VRAM USED</div>
-                      <div class="stat-value" style="color: #60A5FA;">18.2 GB</div>
+                      <div class="stat-value" style="color: #60A5FA;" id="mVramVal">18.2 GB</div>
                       <div class="stat-sub">RTX 4090 · 24GB Total</div>
                     </div>
                     <div class="m-stat-box">
-                      <div class="stat-label">FLEET WORKTREES</div>
-                      <div class="stat-value" style="color: #52B788;">6 Isolated</div>
-                      <div class="stat-sub">0 Lock Collisions</div>
+                      <div class="stat-label">TOKEN BURN RATE</div>
+                      <div class="stat-value" style="color: var(--accent-coral);" id="mTokenBurnVal">24.8k /m</div>
+                      <div class="stat-sub">6 Active Contexts</div>
                     </div>
                     <div class="m-stat-box">
-                      <div class="stat-label">BATTERY / POWER</div>
-                      <div class="stat-value" style="color: #52B788;">94% AC</div>
-                      <div class="stat-sub">12ms Mesh Latency</div>
+                      <div class="stat-label">COST SAVED</div>
+                      <div class="stat-value" style="color: #52B788;" id="mCostSavedVal">$18.40</div>
+                      <div class="stat-sub">via Local Ollama Router</div>
                     </div>
                   </div>
 
-                  <div class="m-info-card" style="margin-top: 12px;">
+                  <div class="m-info-card" style="margin-top: 10px;">
                     <div class="m-card-header-row">
                       <span class="m-card-tag" style="color:#52B788;">PROMPTGUARD SCREEN</span>
                       <span class="m-card-meta">100% PASS</span>
@@ -1843,17 +1862,26 @@
                     <div class="m-card-title-lg">0 Injections · 0 Secret Leaks</div>
                     <p class="m-card-desc-sm">Pre-tool use verification gates active on every dispatched task.</p>
                   </div>
+
+                  <!-- Low Power vs Turbo Switcher -->
+                  <div class="m-power-profile-card">
+                    <span class="m-power-title">Power Profile</span>
+                    <div class="m-power-toggle-group">
+                      <button class="m-power-btn active" data-profile="balanced" type="button">Balanced</button>
+                      <button class="m-power-btn" data-profile="turbo" type="button">Swarm Turbo</button>
+                    </div>
+                  </div>
                 </div>
 
-                <!-- VIEW 3: TERMINAL STREAM -->
+                <!-- VIEW 3: TERMINAL STREAM & EMERGENCY KILLSWITCH -->
                 <div class="iphone-screen-layer" id="layerTerminal">
                   <div class="m-terminal-window">
                     <div class="m-term-head">
                       <div class="m-term-head-left">
-                        <span class="m-dot-emerald"></span>
-                        <span>Frontend · Claude Code</span>
+                        <span class="m-dot-emerald" id="mTermDot"></span>
+                        <span id="mTermProcessName">Frontend · Claude Code</span>
                       </div>
-                      <span class="m-term-pill">Claude 3.7</span>
+                      <span class="m-term-pill" id="mTermPill">PID: 8192</span>
                     </div>
                     <div class="m-term-body" id="mTermLiveLogs">
                       <div class="term-row"><span class="term-prompt">$</span> <span class="term-code">git worktree add .worktrees/fe</span></div>
@@ -1866,9 +1894,17 @@
                     </div>
                   </div>
 
-                  <div class="m-info-card" style="margin-top: 10px;">
+                  <!-- Emergency Killswitch Strip -->
+                  <div class="m-killswitch-strip">
+                    <button class="m-killswitch-btn" id="mEmergencyKillswitch" type="button">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                      <span id="mKillswitchLabel">EMERGENCY KILLSWITCH (SIGKILL)</span>
+                    </button>
+                  </div>
+
+                  <div class="m-info-card" style="margin-top: 8px;">
                     <div class="m-card-title-lg">True Shell Handback</div>
-                    <p class="m-card-desc-sm">Background agents run in interactive PTYs. Never drops or kills process state.</p>
+                    <p class="m-card-desc-sm">Background agents run in interactive PTYs. You can terminate rogue subtrees with one tap.</p>
                   </div>
                 </div>
 
@@ -1887,12 +1923,16 @@
                       <div class="diff-line add">+ let signed_claim = Claims::sign_ed25519(key)?;</div>
                     </div>
                     <div class="m-review-buttons-row">
-                      <button class="btn-diff-reject" id="btnDiffReject">Reject</button>
-                      <button class="btn-diff-approve" id="btnDiffApprove">✔ Approve &amp; Merge</button>
+                      <button class="btn-diff-reject" id="btnDiffReject" type="button">Reject</button>
+                      <button class="btn-diff-approve" id="btnDiffApprove" type="button">✔ Approve &amp; Merge</button>
                     </div>
                   </div>
 
                   <div class="m-info-card" style="margin-top: 10px;">
+                    <div class="m-card-header-row">
+                      <span class="m-card-tag" style="color: #52B788;">WARD GATE STATUS</span>
+                      <span class="m-card-meta">Cosign Keyless</span>
+                    </div>
                     <div class="m-card-title-lg">Human-in-the-Loop Gating</div>
                     <p class="m-card-desc-sm">No unreviewed code touches production. One thumb tap verifies or rejects agent commits.</p>
                   </div>
@@ -1903,7 +1943,7 @@
                   <div class="m-section-label">PUSH-TO-TALK DIRECTIVE</div>
 
                   <div class="m-voice-active-stage">
-                    <div class="m-voice-waves">
+                    <div class="m-voice-waves active" id="mVoiceWaves">
                       <span class="voice-wave-bar"></span>
                       <span class="voice-wave-bar"></span>
                       <span class="voice-wave-bar"></span>
@@ -1911,16 +1951,17 @@
                       <span class="voice-wave-bar"></span>
                     </div>
 
-                    <div class="m-voice-mic-circle pulsing">
+                    <button class="m-voice-mic-circle pulsing" id="mVoicePttBtn" type="button" aria-label="Hold to talk">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-                    </div>
+                    </button>
+                    <span class="m-voice-tap-hint">Tap to trigger voice directive</span>
 
                     <div class="m-transcription-preview">
                       <div class="transcription-label">🎙️ LOCAL WHISPER ON-DEVICE</div>
                       <div class="transcription-text" id="iphoneVoiceText">“Spin up 3 Claude Code agents in isolated worktrees to optimize responsive CSS”</div>
                     </div>
 
-                    <div class="m-dispatch-status">
+                    <div class="m-dispatch-status" id="mVoiceDispatchStatus">
                       <span class="m-dot-emerald"></span>
                       <span>DISPATCHED TO BENCH (seq #49)</span>
                     </div>

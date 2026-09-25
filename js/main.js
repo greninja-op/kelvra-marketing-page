@@ -484,6 +484,141 @@ function initMobileShowcaseAutoplay() {
     });
   }
 
+  // Interactive Push Notification Triage
+  const pushApproveBtn = document.getElementById("mPushApproveBtn");
+  const pushViewBtn = document.getElementById("mPushViewBtn");
+  const pushBanner = document.getElementById("mPushBanner");
+  const mascotQuote = document.getElementById("mMascotQuote");
+
+  if (pushApproveBtn) {
+    pushApproveBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      pushApproveBtn.textContent = "✔ Authorized";
+      pushApproveBtn.style.background = "#52B788";
+      pushApproveBtn.style.color = "#0B0B09";
+      if (pushBanner) {
+        const contentP = pushBanner.querySelector(".m-push-content p");
+        if (contentP) contentP.textContent = "Cosign ECDSA P-256 signature committed. Merged to main branch.";
+      }
+      if (mascotQuote) {
+        mascotQuote.textContent = "“Operator authorized PR #18. All 6 worktrees green on main.”";
+      }
+    });
+  }
+
+  if (pushViewBtn) {
+    pushViewBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      switchScenario("review", true);
+    });
+  }
+
+  // Interactive Emergency Killswitch (SIGKILL)
+  const killswitchBtn = document.getElementById("mEmergencyKillswitch");
+  const killswitchLabel = document.getElementById("mKillswitchLabel");
+  const termDot = document.getElementById("mTermDot");
+  const termProcessName = document.getElementById("mTermProcessName");
+  const termPill = document.getElementById("mTermPill");
+  let isSwarmKilled = false;
+
+  if (killswitchBtn) {
+    killswitchBtn.addEventListener("click", () => {
+      if (!isSwarmKilled) {
+        isSwarmKilled = true;
+        killswitchBtn.classList.add("halted");
+        if (killswitchLabel) killswitchLabel.textContent = "▶ RESTART SWARM ENGINE";
+        if (termDot) {
+          termDot.style.background = "#EF4444";
+          termDot.style.boxShadow = "0 0 8px #EF4444";
+        }
+        if (termProcessName) termProcessName.textContent = "Frontend · [HALTED]";
+        if (termPill) termPill.textContent = "KILLED (SIGKILL)";
+
+        if (terminalLogs) {
+          const killRow1 = document.createElement("div");
+          killRow1.className = "term-row";
+          killRow1.style.color = "#F87171";
+          killRow1.style.fontWeight = "700";
+          killRow1.textContent = "▲ [EMERGENCY SIGKILL] WebSocket broadcast sent. PID 8192 killed.";
+          terminalLogs.appendChild(killRow1);
+
+          const killRow2 = document.createElement("div");
+          killRow2.className = "term-row text-muted";
+          killRow2.textContent = "• Worktree isolated & locked against uncommitted writes.";
+          terminalLogs.appendChild(killRow2);
+        }
+      } else {
+        isSwarmKilled = false;
+        killswitchBtn.classList.remove("halted");
+        if (killswitchLabel) killswitchLabel.textContent = "EMERGENCY KILLSWITCH (SIGKILL)";
+        if (termDot) {
+          termDot.style.background = "";
+          termDot.style.boxShadow = "";
+        }
+        if (termProcessName) termProcessName.textContent = "Frontend · Claude Code";
+        if (termPill) termPill.textContent = "PID: 8192";
+        runTerminalSimulation();
+      }
+    });
+  }
+
+  // Interactive Power Profile Buttons (Telemetry)
+  const powerBtns = showcaseSection.querySelectorAll(".m-power-btn");
+  const cpuVal = document.getElementById("mCpuVal");
+  const vramVal = document.getElementById("mVramVal");
+  const tokenBurnVal = document.getElementById("mTokenBurnVal");
+  const costSavedVal = document.getElementById("mCostSavedVal");
+
+  powerBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      powerBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const profile = btn.dataset.profile;
+      if (profile === "turbo") {
+        if (cpuVal) cpuVal.textContent = "42.5%";
+        if (vramVal) vramVal.textContent = "21.4 GB";
+        if (tokenBurnVal) tokenBurnVal.textContent = "52.0k /m";
+        if (costSavedVal) costSavedVal.textContent = "$34.10";
+      } else {
+        if (cpuVal) cpuVal.textContent = "14.8%";
+        if (vramVal) vramVal.textContent = "18.2 GB";
+        if (tokenBurnVal) tokenBurnVal.textContent = "24.8k /m";
+        if (costSavedVal) costSavedVal.textContent = "$18.40";
+      }
+    });
+  });
+
+  // Interactive Walkie-Talkie Button
+  const voicePttBtn = document.getElementById("mVoicePttBtn");
+  const iphoneVoiceText = document.getElementById("iphoneVoiceText");
+  const voiceDispatchStatus = document.getElementById("mVoiceDispatchStatus");
+  const voiceWaves = document.getElementById("mVoiceWaves");
+
+  const pttPhrases = [
+    "“Spin up 3 Claude Code agents in isolated worktrees to optimize responsive CSS”",
+    "“Run cargo test on backend and report failing assertions”",
+    "“Quarantine PR #412 and verify SLSA Level 3 signature before merging”"
+  ];
+  let pttIdx = 0;
+
+  if (voicePttBtn) {
+    voicePttBtn.addEventListener("click", () => {
+      pttIdx = (pttIdx + 1) % pttPhrases.length;
+      if (iphoneVoiceText) iphoneVoiceText.textContent = pttPhrases[pttIdx];
+      if (voiceWaves) {
+        voiceWaves.classList.add("active");
+      }
+      if (voiceDispatchStatus) {
+        voiceDispatchStatus.innerHTML = `<span class="m-dot-emerald"></span><span>TRANSMITTING TO BENCH (seq #${50 + pttIdx})</span>`;
+      }
+      setTimeout(() => {
+        if (voiceDispatchStatus) {
+          voiceDispatchStatus.innerHTML = `<span class="m-dot-emerald"></span><span>DISPATCHED TO BENCH (seq #${50 + pttIdx})</span>`;
+        }
+      }, 1200);
+    });
+  }
+
   // Initial activate & start timer
   switchScenario(scenarios[0], false);
   startAutoplay();

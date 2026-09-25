@@ -5222,7 +5222,7 @@ button {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .m-voice-waves {
@@ -5257,10 +5257,17 @@ button {
   height: 52px;
   border-radius: 50%;
   background: var(--accent-terracotta);
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 20px rgba(217, 119, 87, 0.5);
+  transition: transform var(--transition-fast);
+}
+
+.m-voice-mic-circle:hover {
+  transform: scale(1.08);
 }
 
 .m-voice-mic-circle.pulsing {
@@ -5271,6 +5278,196 @@ button {
   0% { box-shadow: 0 0 0 0 rgba(217, 119, 87, 0.7); }
   70% { box-shadow: 0 0 0 14px rgba(217, 119, 87, 0); }
   100% { box-shadow: 0 0 0 0 rgba(217, 119, 87, 0); }
+}
+
+.m-voice-tap-hint {
+  display: block;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+
+/* iOS Push Notification Banner */
+.m-push-banner {
+  background: rgba(30, 30, 26, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 119, 87, 0.35);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  animation: slideDownPush 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDownPush {
+  from { transform: translateY(-16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.m-push-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.m-push-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.m-push-logo {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.m-push-app {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--accent-coral);
+  letter-spacing: 0.5px;
+}
+
+.m-push-time {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-muted);
+}
+
+.m-push-content strong {
+  display: block;
+  font-size: 11px;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.m-push-content p {
+  font-size: 9.5px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0 0 8px 0;
+}
+
+.m-push-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.m-push-btn {
+  flex: 1;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-size: 9.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.m-push-btn.approve {
+  background: var(--accent-terracotta);
+  color: #FFFFFF;
+}
+
+.m-push-btn.approve:hover {
+  background: var(--accent-coral);
+}
+
+.m-push-btn.view {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border: 1px solid var(--border-hairline);
+}
+
+.m-push-btn.view:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Power Profile Card */
+.m-power-profile-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #171714;
+  border: 1px solid var(--border-hairline);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 10px;
+}
+
+.m-power-title {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.m-power-toggle-group {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-card);
+  padding: 2px;
+  border-radius: 6px;
+}
+
+.m-power-btn {
+  font-size: 9.5px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.m-power-btn.active {
+  background: var(--bg-elevated);
+  color: var(--accent-coral);
+  font-weight: 600;
+}
+
+/* Killswitch Strip */
+.m-killswitch-strip {
+  margin-top: 8px;
+}
+
+.m-killswitch-btn {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.16);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #F87171;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.m-killswitch-btn:hover {
+  background: rgba(239, 68, 68, 0.28);
+  border-color: #EF4444;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.35);
+  transform: translateY(-1px);
+}
+
+.m-killswitch-btn.halted {
+  background: rgba(82, 183, 136, 0.18);
+  border-color: #52B788;
+  color: #52B788;
 }
 
 .m-transcription-preview {
