@@ -2028,7 +2028,7 @@ button {
 /* Agent Mode Preview Specifics */
 .preview-agent-layout {
   display: grid;
-  grid-template-columns: 92px 1fr;
+  grid-template-columns: 104px 1fr;
   height: 100%;
 }
 
@@ -2061,44 +2061,49 @@ button {
 
 .preview-agent-card-featured {
   background: #1B1B18;
-  border: 1px solid rgba(217, 119, 87, 0.25);
+  border: 1px solid rgba(217, 119, 87, 0.35);
   border-radius: 7px;
   padding: 6px 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 4px;
+  gap: 3px;
 }
 
 .preview-mascot-avatar {
-  width: 32px;
+  width: 28px;
   height: 24px;
-  background: #E86141;
-  border-radius: 8px;
+  background: rgba(217, 119, 87, 0.15);
+  border: 1px solid rgba(217, 119, 87, 0.3);
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(232, 97, 65, 0.35);
 }
 
-.preview-mascot-eyes {
-  display: flex;
-  gap: 6px;
-}
-
-.preview-mascot-eyes span {
-  width: 3px;
-  height: 3px;
-  background: #FFFFFF;
-  border-radius: 50%;
+.preview-mascot-avatar img {
+  display: block;
+  image-rendering: pixelated;
 }
 
 .preview-featured-name {
-  font-size: 7.5px;
+  font-size: 8px;
   font-weight: 600;
   color: #EDE8DF;
   line-height: 1.15;
+}
+
+.preview-featured-role {
+  font-size: 6px;
+  color: var(--accent-coral);
+  background: rgba(217, 119, 87, 0.16);
+  border: 1px solid rgba(217, 119, 87, 0.3);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 .preview-agent-item {
@@ -2110,6 +2115,11 @@ button {
   color: #8C887E;
 }
 
+.preview-agent-item.active {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+}
+
 .agent-item-glyph {
   width: 8px;
   height: 8px;
@@ -2117,9 +2127,10 @@ button {
   flex-shrink: 0;
 }
 .agent-item-glyph.scout-glyph { background: #3B82F6; }
-.agent-item-glyph.notes-glyph { background: #10B981; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
-.agent-item-glyph.video-glyph { background: #F59E0B; border-radius: 50%; }
+.agent-item-glyph.notes-glyph { background: #10B981; }
+.agent-item-glyph.video-glyph { background: #F59E0B; }
 .agent-item-glyph.charter-glyph { background: #8B5CF6; }
+.agent-item-glyph.ward-glyph { background: #EF4444; border-radius: 50%; }
 
 .agent-item-name {
   flex: 1;
