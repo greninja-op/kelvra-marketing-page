@@ -279,6 +279,34 @@ function initCloneCopy() {
       console.warn("Clipboard copy error:", e);
     }
   });
+
+  // Hero Quick-Install Pill 1-Click Copy
+  const heroCopyBtn = document.getElementById("btnCopyHeroCli");
+  const heroCliCmd = document.getElementById("heroCliCmd");
+
+  heroCopyBtn?.addEventListener("click", async () => {
+    const textToCopy = heroCliCmd ? heroCliCmd.innerText.trim() : "curl -fsSL https://kelvra.dev/install.sh | sh";
+    try {
+      await navigator.clipboard.writeText(textToCopy);
+      heroCopyBtn.classList.add("copied");
+      heroCopyBtn.innerHTML = `
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#52B788" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="copy-status" style="color: #52B788;">Copied!</span>
+      `;
+      setTimeout(() => {
+        heroCopyBtn.classList.remove("copied");
+        heroCopyBtn.innerHTML = `
+          <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span class="copy-status">Copy</span>
+        `;
+      }, 2000);
+    } catch (e) {
+      console.warn("Clipboard copy error:", e);
+    }
+  });
 }
 
 /* ==========================================================================

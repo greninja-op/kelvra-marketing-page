@@ -32,11 +32,12 @@
         <li><a href="#modes" class="nav-link">Modes</a></li>
         <li><a href="#showcase" class="nav-link">Swarm Grid</a></li>
         <li><a href="#accounts" class="nav-link">Switch Router</a></li>
+        <li><a href="#skills" class="nav-link">Skills (121)</a></li>
         <li><a href="#mobile-showcase" class="nav-link">Mobile App</a></li>
         <li><a href="#voice" class="nav-link">Voice Orb</a></li>
-        <li><a href="#ward" class="nav-link">Ward Gate</a></li>
         <li><a href="#worktrees" class="nav-link">Worktrees</a></li>
-        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#benchmarks" class="nav-link">Benchmarks</a></li>
+        <li><a href="features.html" class="nav-link" style="color: var(--accent-coral); font-weight: 600;">Deep Dives →</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -66,14 +67,15 @@
     <div class="nav-mobile-drawer" id="navMobileDrawer">
       <div class="nav-mobile-drawer-inner">
         <ul class="nav-mobile-links">
-          <li><a href="#modes" class="nav-mobile-link">Modes</a></li>
+          <li><a href="#modes" class="nav-mobile-link">Modes & Workbench</a></li>
           <li><a href="#showcase" class="nav-mobile-link">Swarm Grid</a></li>
           <li><a href="#accounts" class="nav-mobile-link">Switch Router</a></li>
+          <li><a href="#skills" class="nav-mobile-link">121 Attested Skills</a></li>
           <li><a href="#mobile-showcase" class="nav-mobile-link">Mobile App</a></li>
-          <li><a href="#voice" class="nav-mobile-link">Voice Orb</a></li>
-          <li><a href="#ward" class="nav-mobile-link">Ward Gate</a></li>
-          <li><a href="#worktrees" class="nav-mobile-link">Worktrees</a></li>
-          <li><a href="#faq" class="nav-mobile-link">FAQ</a></li>
+          <li><a href="#voice" class="nav-mobile-link">Voice & Ward Security</a></li>
+          <li><a href="#worktrees" class="nav-mobile-link">Git Worktrees</a></li>
+          <li><a href="#benchmarks" class="nav-mobile-link">Verified Benchmarks</a></li>
+          <li><a href="features.html" class="nav-mobile-link" style="color: var(--accent-coral); font-weight: 600;">Full Demos & Deep Dives →</a></li>
         </ul>
         <div class="nav-mobile-actions">
           <a href="https://github.com/greninja-op/kelvra-marketing-page.git" target="_blank" rel="noopener" class="btn-nav-github mobile">
@@ -126,6 +128,21 @@
           </svg>
           <span>View on GitHub</span>
         </a>
+      </div>
+
+      <!-- Hero Quick-Install CLI Pill (1-Click Copy Snippet) -->
+      <div class="hero-cli-pill-wrapper">
+        <div class="hero-cli-pill">
+          <span class="cli-pill-prefix">$</span>
+          <code class="cli-pill-cmd" id="heroCliCmd">curl -fsSL https://kelvra.dev/install.sh | sh</code>
+          <button type="button" class="cli-pill-copy" id="btnCopyHeroCli" title="Copy to clipboard" aria-label="Copy install command">
+            <svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span class="copy-status">Copy</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -670,6 +687,10 @@
         <p class="section-desc">
           Move past single-prompt chat windows. Command specialized agent fleets operating in isolated Git worktrees, review staged diffs in real time, and merge without lock contention.
         </p>
+        <a href="features.html#modes" class="btn-section-explore">
+          <span>Full Interactive Demo & Specs</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
 
       <div class="sw-workbench" id="swWorkbench">
@@ -1025,6 +1046,10 @@
         <p class="section-desc">
           Six simultaneous CLI sessions. Zero file write collisions. Magnetic split grid with real interactive shell handback.
         </p>
+        <a href="features.html#showcase" class="btn-section-explore">
+          <span>Inspect Full Swarm Telemetry & Matrix</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
 
       <!-- Live Terminal Grid Mockup -->
@@ -1312,30 +1337,6 @@
         </div>
       </div>
       <div class="marquee-closing-note">If it runs in a terminal, it runs inside Kelvra. Zero proprietary wrappers.</div>
-
-      <!-- 3 Feature Pillars Below -->
-      <div class="pillars-grid">
-        <div class="pillar-card">
-          <h4 class="pillar-title">True Terminal Handback</h4>
-          <p class="pillar-desc">
-            Unlike sandbox wrappers that kill session state upon process exit, Kelvra leaves interactive shells open. Inspect history, run diagnostics, and type follow-up commands directly.
-          </p>
-        </div>
-
-        <div class="pillar-card">
-          <h4 class="pillar-title">Git Worktree Isolation</h4>
-          <p class="pillar-desc">
-            Agents never overwrite each other's work. Every session runs in an isolated Git worktree branch, allowing 6 agents to modify, build, and test simultaneously without file locking collisions.
-          </p>
-        </div>
-
-        <div class="pillar-card">
-          <h4 class="pillar-title">PR-Style Diff Gates</h4>
-          <p class="pillar-desc">
-            No agent writes directly to your main branch. Every change is staged into a human-in-the-loop review drawer with automated secret auditing and line-by-line diff approval.
-          </p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1355,6 +1356,10 @@
         <p class="accounts-desc">
           Hit an hourly rate limit or need an o3 deep-reasoning pass? Kelvra pivots between accounts, teams, and token buckets mid-session without clearing chat history, losing unstaged worktree diffs, or dropping terminal context.
         </p>
+        <a href="features.html#accounts" class="btn-section-explore">
+          <span>Full Multi-Account Architecture & Specs</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
 
       <!-- Interactive Accounts Router Workspace -->
@@ -1706,27 +1711,59 @@
         </div>
       </div>
 
-      <!-- 3 Technical Architecture Pillars for Feature 1 -->
-      <div class="pillars-grid accounts-pillars">
-        <div class="pillar-card">
-          <h4 class="pillar-title">Stateful Worktree Handoff</h4>
-          <p class="pillar-desc">
-            When pivoting models or token buckets mid-session, unstaged code modifications, AST symbol caches, and compile artifacts remain strictly isolated in the agent's Git worktree. No directory resets or lost edits.
-          </p>
-        </div>
+    </div>
+  </section>
 
-        <div class="pillar-card">
-          <h4 class="pillar-title">Zero-Loss Context Serialization</h4>
-          <p class="pillar-desc">
-            Conversational reasoning trajectories, terminal tool call receipts, and error tracebacks are serialized into a universal format and injected directly into the successor model without restarting the session.
-          </p>
-        </div>
+  <hr class="section-divider" />
 
-        <div class="pillar-card">
-          <h4 class="pillar-title">BYOK & Zero Gateway Markups</h4>
-          <p class="pillar-desc">
-            Bring your own direct Anthropic Claude Max, OpenAI Team Codex, or Google Antigravity credentials. Kelvra routes queries natively from your machine without proxy interceptors or subscription surcharges.
-          </p>
+  <!-- ========================================================================
+       SECTION 6: 121 ATTESTED AGENTIC SKILLS ECOSYSTEM (MARQUEE SHOWCASE)
+       ======================================================================== -->
+  <section class="skills-ecosystem-section" id="skills">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">DECLARATIVE EXTENSIBILITY</span>
+        <h2 class="section-title">121 Attested Agentic Skills</h2>
+        <p class="section-desc">
+          Modular capabilities loaded on demand via progressive disclosure without bloating LLM context.
+        </p>
+        <a href="features.html#skills" class="btn-section-explore">
+          <span>Explore All 121 Skills Across 7 Bundles</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="skills-marquee-wrapper">
+        <div class="skills-marquee-track">
+          <span class="skill-chip">git-worktree</span>
+          <span class="skill-chip">goal-loop</span>
+          <span class="skill-chip">handoff</span>
+          <span class="skill-chip">global-guardrails</span>
+          <span class="skill-chip">slsa-provenance</span>
+          <span class="skill-chip">sigstore-cosign</span>
+          <span class="skill-chip">streaming-stt</span>
+          <span class="skill-chip">vad-detection</span>
+          <span class="skill-chip">total-review</span>
+          <span class="skill-chip">diff-synthesizer</span>
+          <span class="skill-chip">playwright-driver</span>
+          <span class="skill-chip">swe-bench-runner</span>
+          <span class="skill-chip">token-profiler</span>
+          <span class="skill-chip">threat-intel</span>
+          <!-- Seamless loop clones -->
+          <span class="skill-chip">git-worktree</span>
+          <span class="skill-chip">goal-loop</span>
+          <span class="skill-chip">handoff</span>
+          <span class="skill-chip">global-guardrails</span>
+          <span class="skill-chip">slsa-provenance</span>
+          <span class="skill-chip">sigstore-cosign</span>
+          <span class="skill-chip">streaming-stt</span>
+          <span class="skill-chip">vad-detection</span>
+          <span class="skill-chip">total-review</span>
+          <span class="skill-chip">diff-synthesizer</span>
+          <span class="skill-chip">playwright-driver</span>
+          <span class="skill-chip">swe-bench-runner</span>
+          <span class="skill-chip">token-profiler</span>
+          <span class="skill-chip">threat-intel</span>
         </div>
       </div>
     </div>
@@ -1748,6 +1785,10 @@
         <p class="mobile-showcase-desc">
           Monitor hardware telemetry, approve pull request diffs, inspect live agent terminal streams, and speak directives directly to your swarm from iOS and Android.
         </p>
+        <a href="features.html#mobile-showcase" class="btn-section-explore">
+          <span>Full Mobile Architecture & Kotlin Specs</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
 
         <!-- Live Animation Scenario Controls -->
         <div class="mobile-demo-controller">
@@ -2059,9 +2100,13 @@
       <div class="section-header text-center" style="margin-bottom: var(--space-12);">
         <span class="section-eyebrow">INTELLIGENT TELEMETRY &amp; RUNTIME INTEGRITY</span>
         <h2 class="section-title">Zero Trust. Natural Voice. Absolute Control.</h2>
-        <p class="section-desc" style="max-width: 740px; margin: 0 auto;">
+        <p class="section-desc" style="max-width: 740px; margin: 0 auto 20px;">
           Speak multi-agent directives with sub-150ms streaming latency. Every directive is screened against malicious prompt injections before LLM dispatch, while Kelvra Ward cryptographically attests release artifacts with Sigstore Cosign.
         </p>
+        <a href="features.html#voice" class="btn-section-explore">
+          <span>Full Voice Telemetry & Security Specs</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
 
       <div class="voice-sec-grid">
@@ -2243,214 +2288,25 @@
           </div>
         </div>
 
-        <!-- Wide Card 3: Kelvra Ward SLSA & Release Gatekeeper Studio -->
+        <!-- Wide Card 3: Kelvra Ward SLSA & Release Gatekeeper Studio Preview -->
         <div class="ward-card-wide" id="ward">
-          <div class="ward-header-area">
+          <div class="ward-header-area" style="margin-bottom: 0;">
             <div class="ward-title-group">
               <span class="section-eyebrow">SLSA LEVEL 3 &amp; PRE-SHIPMENT GATEKEEPER</span>
               <h3 class="section-title ward-main-title">Signed, Attested &amp; Verified.</h3>
-              <p class="section-desc" style="max-width: 780px; font-size: 14.5px; line-height: 1.55; margin-bottom: 0;">
-                Kelvra Ward acts as the pre-shipment boundary on port :8101. No unverified code leaves your machine without Sigstore Cosign ECDSA P-256 signatures, SPDX license validation, and in-toto SLSA Level 3 provenance.
+              <p class="section-desc" style="max-width: 780px; font-size: 14.5px; line-height: 1.55; margin-bottom: 18px;">
+                Kelvra Ward acts as the pre-shipment boundary on port :8101. Every release artifact is attested with Sigstore Cosign ECDSA P-256 signatures, SPDX license validation, and in-toto SLSA Level 3 provenance before deployment.
               </p>
-            </div>
-
-            <!-- Tab Switcher for Ward -->
-            <div class="ward-tabs-nav" role="tablist">
-              <button class="ward-tab-btn active" data-ward-tab="ledger" type="button" role="tab" aria-selected="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                Tamper-Evident Ledger
-              </button>
-              <button class="ward-tab-btn" data-ward-tab="sbom" type="button" role="tab" aria-selected="false">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                CycloneDX SBOM &amp; SPDX
-              </button>
-              <button class="ward-tab-btn" data-ward-tab="gate" type="button" role="tab" aria-selected="false">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Pre-Ship Gate Simulator
-              </button>
-            </div>
-          </div>
-
-          <!-- Ward Tab Content 1: Ledger -->
-          <div class="ward-tab-panel active" id="wardTabLedger">
-            <div class="ward-ledger-container">
-              <table class="ward-ledger-table">
-                <thead>
-                  <tr>
-                    <th>Release Artifact</th>
-                    <th>SHA-256 Digest</th>
-                    <th>Cosign Signature (ECDSA P-256)</th>
-                    <th>Provenance</th>
-                    <th>Audit Decision</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="ledger-row verified">
-                    <td class="artifact-cell">
-                      <span class="artifact-outline-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                      </span>
-                      <div>
-                        <strong>kelvra-space-v1.4.2-arm64.apk</strong>
-                        <span class="sub-label">Mobile Companion Release</span>
-                      </div>
-                    </td>
-                    <td class="mono-cell"><code>sha256:e83f91...c4a1</code></td>
-                    <td class="mono-cell"><span class="cosign-badge">MEQCIA7bX...Verified</span></td>
-                    <td><span class="slsa-badge level-3">SLSA Level 3</span></td>
-                    <td><span class="decision-badge approved">APPROVED &amp; SIGNED</span></td>
-                  </tr>
-                  <tr class="ledger-row verified">
-                    <td class="artifact-cell">
-                      <span class="artifact-outline-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                      </span>
-                      <div>
-                        <strong>kelvra-swarm-worker-x86_64.tar.gz</strong>
-                        <span class="sub-label">Swarm Container Runtime</span>
-                      </div>
-                    </td>
-                    <td class="mono-cell"><code>sha256:9b2104...77d3</code></td>
-                    <td class="mono-cell"><span class="cosign-badge">MEYCIQ2p9...Verified</span></td>
-                    <td><span class="slsa-badge level-3">SLSA Level 3</span></td>
-                    <td><span class="decision-badge approved">APPROVED &amp; SIGNED</span></td>
-                  </tr>
-                  <tr class="ledger-row blocked">
-                    <td class="artifact-cell">
-                      <span class="artifact-outline-icon warning">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                      </span>
-                      <div>
-                        <strong>untrusted-mcp-helper.json</strong>
-                        <span class="sub-label">Ingested MCP Skill Manifest</span>
-                      </div>
-                    </td>
-                    <td class="mono-cell"><code>sha256:3c81e2...559f</code></td>
-                    <td class="mono-cell"><span class="cosign-badge rejected">NONE (REVOKED)</span></td>
-                    <td><span class="slsa-badge failed">Backdoor in Diff</span></td>
-                    <td><span class="decision-badge rejected">BLOCKED (BLK-902)</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="ward-ledger-footer">
-              <span>Ledger file: <code>data/ledger/release_ledger.json</code></span>
-              <span style="color: #52B788;">100% Deterministic Cosign Keyless Verification</span>
-            </div>
-          </div>
-
-          <!-- Ward Tab Content 2: CycloneDX SBOM & SPDX -->
-          <div class="ward-tab-panel" id="wardTabSbom">
-            <div class="ward-sbom-view">
-              <div class="sbom-sidebar">
-                <div class="sbom-stat-card">
-                  <span class="stat-number">40 / 40</span>
-                  <span class="stat-text">Dependencies Audited</span>
-                </div>
-                <div class="sbom-stat-card">
-                  <span class="stat-number" style="color: #52B788;">0</span>
-                  <span class="stat-text">Vulnerabilities Detected</span>
-                </div>
-                <div class="sbom-stat-card">
-                  <span class="stat-number" style="color: #52B788;">100%</span>
-                  <span class="stat-text">SPDX Permissive (MIT / Apache-2)</span>
-                </div>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px;">
+                <span class="slsa-badge level-3">✔ SLSA Level 3 Provenance</span>
+                <span class="cosign-badge">✔ Sigstore Cosign ECDSA P-256</span>
+                <span class="decision-badge approved">✔ CycloneDX SPDX Validated</span>
+                <span class="vault-badge-secure">✔ Zero Outbound Egress</span>
               </div>
-
-              <div class="sbom-code-box">
-                <div class="sbom-code-bar">
-                  <span>CycloneDX 1.5 JSON Dependency Graph</span>
-                  <span>Validated by Syft &amp; Grype</span>
-                </div>
-                <pre class="sbom-code-content"><code>{
-  "bomFormat": "CycloneDX",
-  "specVersion": "1.5",
-  "serialNumber": "urn:uuid:8b31f0e2-76fa-4b12-9c12-slsa-ward-8101",
-  "version": 1,
-  "metadata": {
-    "component": { "name": "kelvra-ward", "version": "1.4.2", "type": "application" },
-    "licenses": [{ "license": { "id": "Apache-2.0" } }]
-  },
-  "components": [
-    { "name": "cryptography", "version": "42.0.5", "purl": "pkg:pypi/cryptography@42.0.5", "licenses": [{ "id": "Apache-2.0" }] },
-    { "name": "fastapi", "version": "0.110.0", "purl": "pkg:pypi/fastapi@0.110.0", "licenses": [{ "id": "MIT" }] },
-    { "name": "sigstore-cosign", "version": "2.2.3", "purl": "pkg:pypi/sigstore@2.2.3", "licenses": [{ "id": "Apache-2.0" }] },
-    { "name": "pydantic", "version": "2.6.4", "purl": "pkg:pypi/pydantic@2.6.4", "licenses": [{ "id": "MIT" }] }
-  ]
-}</code></pre>
-              </div>
-            </div>
-          </div>
-
-          <!-- Ward Tab Content 3: Pre-Ship Gate Simulator -->
-          <div class="ward-tab-panel" id="wardTabGate">
-            <div class="ward-gate-simulator">
-              <div class="gate-controls">
-                <div class="gate-info">
-                  <strong>Trigger Gate Verification (<code>POST /api/ward/release/verify</code>)</strong>
-                  <p>Runs diff sanitization, 40-test suite execution, SPDX license compliance, and Sigstore Cosign signing.</p>
-                </div>
-                <button class="gate-run-btn" id="gateRunBtn" type="button">
-                  <span class="gate-btn-icon">▶</span>
-                  <span id="gateBtnLabel">Run Pre-Shipment Gate</span>
-                </button>
-              </div>
-
-              <!-- 4-Stage Pipeline Progress -->
-              <div class="gate-pipeline-steps" id="gatePipelineSteps">
-                <div class="pipeline-step" data-step="1">
-                  <div class="step-icon">1</div>
-                  <div class="step-content">
-                    <span class="step-title">Diff Sanitization</span>
-                    <span class="step-desc">Zero scratch files, debug logs, or exposed keys in git diff</span>
-                  </div>
-                  <span class="step-status">IDLE</span>
-                </div>
-
-                <div class="pipeline-step" data-step="2">
-                  <div class="step-icon">2</div>
-                  <div class="step-content">
-                    <span class="step-title">Automated Test Gate</span>
-                    <span class="step-desc">Executing full pytest suite (40 passed, 0 failed, 0 skipped)</span>
-                  </div>
-                  <span class="step-status">IDLE</span>
-                </div>
-
-                <div class="pipeline-step" data-step="3">
-                  <div class="step-icon">3</div>
-                  <div class="step-content">
-                    <span class="step-title">SPDX License Audit</span>
-                    <span class="step-desc">Strict whitelist: MIT, Apache-2.0, BSD-3. Zero GPL copyleft</span>
-                  </div>
-                  <span class="step-status">IDLE</span>
-                </div>
-
-                <div class="pipeline-step" data-step="4">
-                  <div class="step-icon">4</div>
-                  <div class="step-content">
-                    <span class="step-title">Sigstore Cosign Attestation</span>
-                    <span class="step-desc">SLSA v1.0 in-toto statement generated &amp; ECDSA P-256 signed</span>
-                  </div>
-                  <span class="step-status">IDLE</span>
-                </div>
-              </div>
-
-              <!-- Live Statement Output Box -->
-              <div class="gate-output-box" id="gateOutputBox" style="display: none;">
-                <div class="gate-output-header">
-                  <span style="color: #52B788; font-weight: 600;">✔ Gate Passed: Release Signed &amp; Immutable</span>
-                  <span class="mono-badge">SHA-256: 7f8a...c92b</span>
-                </div>
-                <pre class="gate-output-code"><code>{
-  "_type": "https://in-toto.io/Statement/v1",
-  "predicateType": "https://slsa.dev/provenance/v1",
-  "subject": [{ "name": "kelvra-release-candidate", "digest": { "sha256": "7f8a9462b083e91124f1c92ba1850123" } }],
-  "predicate": {
-    "buildDefinition": { "buildType": "https://kelvra.dev/build/v1", "externalParameters": { "source": "git+https://github.com/greninja-op/KELVRA" } },
-    "runDetails": { "builder": { "id": "kelvra-ward://builder@slsa-level-3" }, "metadata": { "completeness": { "parameters": true, "environment": true, "materials": true } } }
-  }
-}</code></pre>
-              </div>
+              <a href="features.html#ward" class="btn-section-explore">
+                <span>Inspect Full Tamper-Evident Ledger, SBOM &amp; Gate Simulator</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
             </div>
           </div>
         </div>
@@ -2471,22 +2327,10 @@
         <p class="section-desc" style="max-width: 760px; margin: 0 auto;">
           Traditional AI tools overwrite files on your active branch. Kelvra provisions ephemeral, RAM-mounted Git worktrees. Each agent compiles on an isolated branch, screened by AST symbol locks and merged with human sign-off.
         </p>
-
-        <!-- Perspective Toggle (Worktree Matrix vs Token Economics) -->
-        <div class="wt-view-switcher" role="tablist">
-          <button class="wt-view-btn active" data-wt-view="matrix" type="button" role="tab" aria-selected="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>
-            </svg>
-            <span>Git Worktree Concurrency Matrix</span>
-          </button>
-          <button class="wt-view-btn" data-wt-view="economics" type="button" role="tab" aria-selected="false">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-            </svg>
-            <span>Token Economics &amp; ROI Calculator</span>
-          </button>
-        </div>
+        <a href="features.html#worktrees" class="btn-section-explore" style="margin-top: 18px;">
+          <span>Full Worktree Sandbox &amp; Token Economics Calculator</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
 
       <!-- VIEW 1: WORKTREE MATRIX -->
@@ -2653,103 +2497,52 @@
         </div>
       </div>
 
-      <!-- VIEW 2: SWARM TOKEN ECONOMICS & ROI CALCULATOR -->
-      <div class="wt-view-panel" id="wtPanelEconomics">
-        <div class="econ-calculator-grid">
-          <!-- Left: Sliders Card -->
-          <div class="econ-inputs-card">
-            <div class="econ-card-header">
-              <span class="section-eyebrow">YOUR TEAM PARAMETERS</span>
-              <h3 class="econ-card-title">Simulate Swarm ROI</h3>
-              <p class="econ-card-desc">See how much your organization saves by shifting from closed-source SaaS seat monopolies to Kelvra's local-first orchestrator.</p>
-            </div>
+      </div>
+  </section>
 
-            <div class="econ-slider-group">
-              <div class="econ-slider-head">
-                <label for="econTeamSlider" class="econ-label">Engineers in Team</label>
-                <span class="econ-val-badge" id="econTeamBadge">5 devs</span>
-              </div>
-              <input type="range" class="econ-range-slider" id="econTeamSlider" min="1" max="50" value="5" step="1" />
-              <div class="econ-slider-range-labels">
-                <span>1 dev</span>
-                <span>25 devs</span>
-                <span>50 devs</span>
-              </div>
-            </div>
+  <section class="benchmarks-section" id="benchmarks">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">VERIFIED REPRODUCIBILITY</span>
+        <h2 class="section-title">Measurable precision: <em>proven benchmarks.</em></h2>
+        <p class="section-desc">
+          Rigorously evaluated across standardized SWE-bench suites, token efficiency tests, and hardware attestation stress cases.
+        </p>
+        <a href="features.html#benchmarks" class="btn-section-explore">
+          <span>View Full Benchmark Methodology &amp; Telemetry</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
 
-            <div class="econ-slider-group" style="margin-top: 24px;">
-              <div class="econ-slider-head">
-                <label for="econTasksSlider" class="econ-label">Daily Directives per Engineer</label>
-                <span class="econ-val-badge" id="econTasksBadge">24 tasks / day</span>
-              </div>
-              <input type="range" class="econ-range-slider" id="econTasksSlider" min="5" max="100" value="24" step="1" />
-              <div class="econ-slider-range-labels">
-                <span>5 tasks</span>
-                <span>50 tasks</span>
-                <span>100 tasks</span>
-              </div>
-            </div>
+      <div class="benchmark-cards-grid">
+        <div class="benchmark-card">
+          <div class="benchmark-number">74.2%</div>
+          <div class="benchmark-label">SWE-bench Verified (Pass@1)</div>
+          <p class="benchmark-desc">371 of 500 verified real-world GitHub issues resolved end-to-end with unit test pass guarantees.</p>
+        </div>
 
-            <div class="econ-savings-callout">
-              <div class="econ-callout-top">
-                <span class="econ-callout-tag">NET ANNUAL SAVINGS</span>
-                <span class="econ-callout-num" id="econNetYearly">$20,016 / yr</span>
-              </div>
-              <p class="econ-callout-sub">Zero seat taxes, zero proprietary subscription lock-in, and 64% fewer wasted tokens via AST symbol decomposition.</p>
-            </div>
-          </div>
+        <div class="benchmark-card">
+          <div class="benchmark-number">0s / 0 Tokens</div>
+          <div class="benchmark-label">Handoff Context Loss</div>
+          <p class="benchmark-desc">100% token preservation when switching providers across hourly rate limit boundaries.</p>
+        </div>
 
-          <!-- Right: Side-by-side Comparative Cost Breakdown -->
-          <div class="econ-breakdown-card">
-            <div class="econ-columns-compare">
-              <!-- Column 1: SaaS Tax -->
-              <div class="econ-col saas">
-                <div class="econ-col-head">
-                  <div class="econ-col-title">Closed SaaS Cloud Seat</div>
-                  <span class="econ-col-price" id="econSaasPrice">$1,860</span>
-                  <span class="econ-col-period">per month</span>
-                </div>
-                <ul class="econ-col-features">
-                  <li><span class="econ-x">✕</span> $200/mo per-seat SaaS tax</li>
-                  <li><span class="econ-x">✕</span> $15/1M token markup markup</li>
-                  <li><span class="econ-x">✕</span> Full file dumps burn token limits</li>
-                  <li><span class="econ-x">✕</span> Proprietary telemetry tracking code</li>
-                </ul>
-              </div>
+        <div class="benchmark-card">
+          <div class="benchmark-number">&lt;160ms</div>
+          <div class="benchmark-label">Neural Voice Latency</div>
+          <p class="benchmark-desc">Full streaming speech-to-intent pipeline executing entirely on local CPU/NPU without cloud round-trips.</p>
+        </div>
 
-              <!-- Column 2: Kelvra Local-First Swarm -->
-              <div class="econ-col kelvra active">
-                <div class="econ-col-head">
-                  <div class="econ-col-badge">RECOMMENDED</div>
-                  <div class="econ-col-title">Kelvra Local Swarm</div>
-                  <span class="econ-col-price" id="econKelvraPrice">$192</span>
-                  <span class="econ-col-period">per month</span>
-                </div>
-                <ul class="econ-col-features">
-                  <li><span class="econ-chk">✔</span> <strong>$0 / mo</strong> 100% Free &amp; Open Source</li>
-                  <li><span class="econ-chk">✔</span> Wholesale BYOK API key pricing</li>
-                  <li><span class="econ-chk">✔</span> Free local Ollama for triage</li>
-                  <li><span class="econ-chk">✔</span> 0 bytes outbound code leakage</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="econ-efficiency-strip">
-              <div class="econ-eff-item">
-                <span class="econ-eff-num" id="econHoursSaved">180 hrs</span>
-                <span class="econ-eff-desc">Monthly Parallel Build Time Saved</span>
-              </div>
-              <div class="econ-eff-divider"></div>
-              <div class="econ-eff-item">
-                <span class="econ-eff-num" id="econTokenPercent">64%</span>
-                <span class="econ-eff-desc">AST Token Waste Reduction</span>
-              </div>
-            </div>
-          </div>
+        <div class="benchmark-card">
+          <div class="benchmark-number">0 Contention</div>
+          <div class="benchmark-label">Worktree Lock Collisions</div>
+          <p class="benchmark-desc">Zero index lock collision across 12 concurrent subagents writing to isolated worktree directories.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <hr class="section-divider" />
 
   <hr class="section-divider" />
 
