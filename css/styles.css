@@ -3613,7 +3613,7 @@ button {
    ========================================================================== */
 
 .final-cta-section {
-  padding: var(--space-24) 0;
+  padding: clamp(64px, 8vw, 110px) 0;
   text-align: center !important;
   position: relative;
 }
@@ -3623,24 +3623,28 @@ button {
   flex-direction: column;
   align-items: center;
   text-align: center !important;
+  max-width: 960px;
 }
 
 .final-cta-title {
   font-family: var(--font-serif);
-  font-size: clamp(38px, 5.5vw, 68px);
+  font-size: clamp(36px, 5.2vw, 64px);
   font-weight: 400;
-  margin: 0 auto var(--space-4) auto;
-  letter-spacing: -0.3px;
+  margin: 0 auto 16px auto;
+  letter-spacing: -0.4px;
+  line-height: 1.12;
   text-align: center !important;
-  max-width: 860px;
+  max-width: 840px;
   width: 100%;
+  color: var(--text-primary);
 }
 
 .final-cta-sub {
-  font-size: 17px;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.65;
   color: var(--text-secondary);
-  max-width: 580px;
-  margin: 0 auto var(--space-10) auto;
+  max-width: 620px;
+  margin: 0 auto 40px auto;
   text-align: center !important;
   width: 100%;
 }
@@ -3649,17 +3653,20 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-4);
+  gap: 20px;
   flex-wrap: wrap;
   width: 100%;
   margin: 0 auto;
 }
 
 .os-download-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: 14px 24px;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 26px;
+  min-height: 48px;
+  box-sizing: border-box;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
@@ -3668,21 +3675,27 @@ button {
   color: var(--text-primary);
   transition: all var(--transition-fast);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .os-download-btn.primary {
   background: linear-gradient(135deg, #E06D4A 0%, #D97757 100%);
   border-color: rgba(255, 255, 255, 0.25);
   box-shadow: 0 6px 28px rgba(217, 119, 87, 0.45);
+  color: #FFFFFF;
 }
 
 .os-download-btn:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: var(--bg-card);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
 }
 
 .os-download-btn.primary:hover {
-  box-shadow: 0 8px 36px rgba(217, 119, 87, 0.6);
+  background: linear-gradient(135deg, #EB7753 0%, #E06D4A 100%);
+  box-shadow: 0 8px 36px rgba(217, 119, 87, 0.65);
 }
 
 /* ==========================================================================
@@ -3915,9 +3928,11 @@ button {
   .download-os-grid {
     flex-direction: column;
     width: 100%;
+    gap: 12px;
   }
   .os-download-btn {
     width: 100%;
+    max-width: 320px;
     justify-content: center;
   }
 }
