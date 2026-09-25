@@ -1,0 +1,49 @@
+﻿name: CI Gate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    name: Build & Asset Integrity Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate Core Files Exist
+        run: |
+          echo Checking essential files...
+          test -f index.html || { echo index.html is missing; exit 1; }
+          test -f css/styles.css || { echo css/styles.css is missing; exit 1; }
+          test -f js/main.js || { echo js/main.js is missing; exit 1; }
+
+      - name: Validate Authentic Logo & Mascot Assets
+        run: |
+          echo Checking authentic assets...
+          test -f assets/kelvra-logo.png || { echo assets/kelvra-logo.png is missing; exit 1; }
+          test -f assets/favicon.png || { echo assets/favicon.png is missing; exit 1; }
+          test -f assets/angel-bot-idle.gif || { echo assets/angel-bot-idle.gif is missing; exit 1; }
+
+      - name: Validate Product Lineup & Ward Presence
+        run: |
+          echo Verifying six products in markup...
+          grep -q Kelvra Ward index.html || { echo Kelvra Ward missing from index.html; exit 1; }
+          grep -q Kelvra Mobile index.html || { echo Kelvra Mobile missing from index.html; exit 1; }
+          grep -q Kelvra Bench index.html || { echo Kelvra Bench missing from index.html; exit 1; }
+          grep -q Kelvra Voice index.html || { echo Kelvra Voice missing from index.html; exit 1; }
+          grep -q Kelvra Security index.html || { echo Kelvra Security missing from index.html; exit 1; }
+          grep -q Kelvra Space index.html || { echo Kelvra Space missing from index.html; exit 1; }
+          grep -q mobile-remote-demo index.html || { echo Mobile demo missing from index.html; exit 1; }
+          grep -q agent-voice-demo index.html || { echo Agent voice demo missing from index.html; exit 1; }
+
+      - name: Check HTML Syntax Integrity
+        run: |
+          echo Checking HTML structure...
+          grep -q </html> index.html || { echo Unclosed html tag in index.html; exit 1; }
+          grep -q </body> index.html || { echo Unclosed body tag in index.html; exit 1; }
+          echo Integrity check passed successfully.
