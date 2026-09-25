@@ -550,7 +550,7 @@
                   </div>
                   <div class="agent-msg-content">
                     <div class="agent-thought-pill">
-                      <span class="thought-spark">✨</span>
+                      <svg class="thought-spark" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
                       <span>Verified zero lock collisions on .worktrees/fe-mobile &amp; auth-mesh</span>
                     </div>
                     <div class="agent-msg-bubble">
@@ -1161,15 +1161,21 @@
           </div>
           <div class="broadcast-commands">
             <button class="broadcast-cmd-btn" id="btnBroadcastTest" data-cmd="test" type="button">
-              <span class="cmd-icon">▶</span>
+              <span class="cmd-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </span>
               <span>$ cargo test --all</span>
             </button>
             <button class="broadcast-cmd-btn" id="btnBroadcastScan" data-cmd="scan" type="button">
-              <span class="cmd-icon">⚡</span>
+              <span class="cmd-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
               <span>$ kelvra sec scan</span>
             </button>
             <button class="broadcast-cmd-btn" id="btnBroadcastSync" data-cmd="sync" type="button">
-              <span class="cmd-icon">🔄</span>
+              <span class="cmd-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              </span>
               <span>$ git worktree sync</span>
             </button>
           </div>
@@ -1957,7 +1963,10 @@
                     <span class="m-voice-tap-hint">Tap to trigger voice directive</span>
 
                     <div class="m-transcription-preview">
-                      <div class="transcription-label">🎙️ LOCAL WHISPER ON-DEVICE</div>
+                      <div class="transcription-label">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                        <span>LOCAL WHISPER ON-DEVICE</span>
+                      </div>
                       <div class="transcription-text" id="iphoneVoiceText">“Spin up 3 Claude Code agents in isolated worktrees to optimize responsive CSS”</div>
                     </div>
 
@@ -2080,13 +2089,16 @@
             <span class="chips-label">Simulate Voice Directive Direct:</span>
             <div class="chips-row">
               <button class="voice-chip-btn active" data-intent="swarm" type="button">
-                <span class="chip-mic">🎙️</span> "Launch 6-pane swarm"
+                <svg class="chip-mic-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                <span>"Launch 6-pane swarm"</span>
               </button>
               <button class="voice-chip-btn" data-intent="test" type="button">
-                <span class="chip-mic">🎙️</span> "Cargo test &amp; auto-fix"
+                <svg class="chip-mic-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                <span>"Cargo test &amp; auto-fix"</span>
               </button>
               <button class="voice-chip-btn" data-intent="quarantine" type="button">
-                <span class="chip-mic">🎙️</span> "Quarantine PR #412"
+                <svg class="chip-mic-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                <span>"Quarantine PR #412"</span>
               </button>
             </div>
           </div>
@@ -2139,7 +2151,7 @@
             <div class="sandbox-screen" id="sandboxScreen">
               <div class="screen-row">
                 <span class="screen-label">Shield Verdict:</span>
-                <span class="threat-status-badge blocked" id="screenVerdict">🔴 BLOCKED [THREAT DETECTED]</span>
+                <span class="threat-status-badge blocked" id="screenVerdict"><span class="verdict-dot red"></span> BLOCKED [THREAT DETECTED]</span>
               </div>
               <div class="screen-row">
                 <span class="screen-label">Threat Confidence:</span>
@@ -2238,7 +2250,9 @@
                 <tbody>
                   <tr class="ledger-row verified">
                     <td class="artifact-cell">
-                      <span class="artifact-icon">📱</span>
+                      <span class="artifact-outline-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                      </span>
                       <div>
                         <strong>kelvra-space-v1.4.2-arm64.apk</strong>
                         <span class="sub-label">Mobile Companion Release</span>
@@ -2251,7 +2265,9 @@
                   </tr>
                   <tr class="ledger-row verified">
                     <td class="artifact-cell">
-                      <span class="artifact-icon">⚡</span>
+                      <span class="artifact-outline-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      </span>
                       <div>
                         <strong>kelvra-swarm-worker-x86_64.tar.gz</strong>
                         <span class="sub-label">Swarm Container Runtime</span>
@@ -2264,7 +2280,9 @@
                   </tr>
                   <tr class="ledger-row blocked">
                     <td class="artifact-cell">
-                      <span class="artifact-icon">⚠️</span>
+                      <span class="artifact-outline-icon warning">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                      </span>
                       <div>
                         <strong>untrusted-mcp-helper.json</strong>
                         <span class="sub-label">Ingested MCP Skill Manifest</span>
