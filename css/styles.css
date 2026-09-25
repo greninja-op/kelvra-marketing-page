@@ -398,6 +398,125 @@ button:active,
   background: linear-gradient(135deg, #EB7753 0%, #E06D4A 100%);
 }
 
+/* --- Mobile Navigation: Hamburger Button & Glass Drawer (BridgeMind Pattern) --- */
+.nav-hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 10;
+}
+
+.nav-hamburger:hover,
+.nav-hamburger.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #FFFFFF;
+}
+
+.nav-hamburger.active .line-top {
+  transform: translateY(5px) rotate(45deg);
+  transform-origin: 12px 12px;
+}
+.nav-hamburger.active .line-mid {
+  opacity: 0;
+}
+.nav-hamburger.active .line-bot {
+  transform: translateY(-5px) rotate(-45deg);
+  transform-origin: 12px 12px;
+}
+.nav-hamburger svg line {
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.nav-mobile-drawer {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(14, 14, 12, 0.96);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-hairline);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.nav-mobile-drawer.open {
+  max-height: 540px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-mobile-drawer-inner {
+  padding: 16px var(--space-4) 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nav-mobile-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-mobile-link {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-mobile-link:hover,
+.nav-mobile-link:active {
+  background: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+}
+
+.nav-mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.btn-nav-github.mobile,
+.btn-nav-primary.mobile {
+  width: 100%;
+  justify-content: center;
+  padding: 11px 18px;
+  font-size: 13px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 /* ==========================================================================
    HERO SECTION & RADIANT BEAM
    ========================================================================== */
@@ -6349,17 +6468,21 @@ button:active,
   .container {
     padding: 0 var(--space-4);
   }
-  .nav-links {
-    display: none;
-  }
   .nav-inner {
     height: 58px;
+    justify-content: space-between;
   }
-  .btn-nav-github span {
-    display: none;
+  .nav-links {
+    display: none !important;
   }
-  .btn-nav-github {
-    padding: 9px;
+  .nav-actions {
+    display: none !important;
+  }
+  .nav-hamburger {
+    display: inline-flex !important;
+  }
+  .nav-mobile-drawer {
+    display: block;
   }
   
   /* Hero Window Mockup Responsive Adaptations */
@@ -6776,10 +6899,11 @@ button:active,
   margin: 0 auto;
 }
 
-/* Workspace Grid: Left Rail + SVG Bridge + Right Thread */
+/* Workspace Grid: Left Rail + SVG Bridge (absolute overlay) + Right Thread */
 .acs-workspace {
   display: grid;
-  grid-template-columns: 310px 80px 1fr;
+  grid-template-columns: 310px 1fr;
+  column-gap: 80px;
   align-items: stretch;
   position: relative;
   min-height: 520px;
@@ -6798,7 +6922,7 @@ button:active,
   flex-direction: column;
   gap: 12px;
   position: relative;
-  z-index: 3;
+  z-index: 2;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -6962,31 +7086,32 @@ button:active,
   background: var(--status-amber);
 }
 
-/* Port Dots on Card Edge */
+/* Port Dots on Card Edge (Full Circles with High z-index) */
 .acs-port {
   position: absolute;
   right: -7px;
   top: 50%;
   transform: translateY(-50%);
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--bg-card);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  z-index: 5;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  z-index: 12;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
 }
 
 .acs-card.active .acs-port {
   border-color: var(--accent-terracotta);
   background: var(--accent-coral);
-  box-shadow: 0 0 10px var(--accent-terracotta);
+  box-shadow: 0 0 12px var(--accent-terracotta);
 }
 
 .acs-card.limit-warning .acs-port {
   border-color: var(--status-amber);
   background: #FFD43B;
-  box-shadow: 0 0 12px var(--status-amber);
+  box-shadow: 0 0 14px var(--status-amber);
 }
 
 .acs-rail-hint {
@@ -7006,13 +7131,14 @@ button:active,
   color: var(--accent-terracotta);
 }
 
-/* --- Center: Dynamic Spline Bridge --- */
+/* --- Center: Dynamic Spline Bridge (Absolute Full-Workspace Canvas Overlay) --- */
 .acs-bridge {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  min-height: 480px;
-  z-index: 2;
+  min-height: 100%;
+  z-index: 8;
   pointer-events: none;
   overflow: visible;
 }
@@ -7026,15 +7152,15 @@ button:active,
 
 .acs-guide-path {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.05);
+  stroke: rgba(255, 255, 255, 0.08);
   stroke-width: 1.5;
   stroke-dasharray: 4 6;
 }
 
 .acs-wire-glow {
   fill: none;
-  stroke: rgba(217, 119, 87, 0.4);
-  stroke-width: 7;
+  stroke: rgba(217, 119, 87, 0.45);
+  stroke-width: 8;
   stroke-linecap: round;
   transition: stroke 0.4s ease;
 }
@@ -7042,14 +7168,14 @@ button:active,
 .acs-wire-core {
   fill: none;
   stroke: var(--accent-terracotta);
-  stroke-width: 2.4;
+  stroke-width: 2.6;
   stroke-linecap: round;
   transition: stroke 0.4s ease;
 }
 
 .acs-spark {
   fill: #FFFFFF;
-  filter: drop-shadow(0 0 6px var(--accent-coral));
+  filter: drop-shadow(0 0 8px var(--accent-coral));
   opacity: 0.95;
   transition: opacity 0.3s ease;
 }
@@ -7088,12 +7214,12 @@ button:active,
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-hairline);
   border-radius: 16px;
-  overflow: hidden;
+  overflow: visible; /* FULL CIRCLE UNCLIPPED: Fixed semi-circle clipping bug! */
   display: flex;
   flex-direction: column;
   position: relative;
   box-shadow: 0 24px 64px -16px rgba(0, 0, 0, 0.6);
-  z-index: 3;
+  z-index: 2;
 }
 
 .acs-thread-port {
@@ -7105,14 +7231,16 @@ button:active,
   border-radius: 50%;
   background: var(--accent-coral);
   border: 2px solid var(--accent-terracotta);
-  box-shadow: 0 0 10px var(--accent-terracotta);
-  z-index: 5;
+  box-shadow: 0 0 12px var(--accent-terracotta);
+  z-index: 12;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .acs-thread-chrome {
   background: rgba(24, 24, 21, 0.96);
   border-bottom: 1px solid var(--border-hairline);
+  border-radius: 15px 15px 0 0;
   padding: 12px 18px;
   display: flex;
   align-items: center;
@@ -7177,6 +7305,8 @@ button:active,
   flex-direction: column;
   gap: 16px;
   overscroll-behavior: auto;
+  border-radius: 0 0 15px 15px;
+  overflow: hidden;
 }
 
 .acs-msg-human {
@@ -7663,62 +7793,223 @@ button:active,
 }
 
 /* ==========================================================================
-   ACCOUNTS ROUTER RESPONSIVENESS (ZERO HORIZONTAL OVERFLOW GUARANTEED)
+   ACCOUNTS ROUTER RESPONSIVENESS (BRIDGEMIND MOBILE ROW & VERTICAL SPLINE PATTERN)
    ========================================================================== */
 
-@media (max-width: 992px) {
+@media (max-width: 860px) {
   .acs-workspace {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 52px; /* Smooth vertical clearance for the curved SVG spline */
     min-height: auto;
+    position: relative;
+    margin-bottom: 48px;
   }
 
   .acs-bridge {
-    height: 48px;
-    min-height: 48px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    z-index: 8;
+    pointer-events: none;
+    overflow: visible;
   }
 
+  /* Accounts rail: compact horizontal row matching BridgeMind mobile pattern */
   .acs-rail {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 12px 10px;
+    background: rgba(24, 24, 21, 0.85);
+    border: 1px solid var(--border-hairline);
+    border-radius: 16px;
+    position: relative;
+    z-index: 2;
   }
 
-  .acs-port,
-  .acs-thread-port {
+  .acs-rail-header,
+  .acs-rail-hint {
     display: none !important;
   }
 
-  .acs-rail-hint {
-    grid-column: span 2;
+  .acs-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px 4px 14px;
+    border-radius: 12px;
+    position: relative;
+    background: rgba(30, 30, 28, 0.65);
+    border: 1px solid var(--border-hairline);
+    transition: all 0.25s ease;
+  }
+
+  .acs-card-top {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .acs-card-identity {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .acs-avatar-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .acs-avatar-box img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+
+  .acs-card-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .acs-card-name {
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 68px;
+    color: var(--text-primary);
+  }
+
+  .acs-card-model {
+    display: none !important;
+  }
+
+  .acs-badge-status {
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    margin-top: 2px;
+  }
+
+  .acs-meter-wrap {
+    display: none !important;
+  }
+
+  /* Port dot on BOTTOM CENTER of each card on mobile */
+  .acs-port {
+    display: block !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: -7px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 12;
+    box-sizing: border-box;
+  }
+
+  /* Thread receiving port on TOP CENTER on mobile */
+  .acs-thread-port {
+    display: block !important;
+    left: 50% !important;
+    top: -7px !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translateX(-50%) !important;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 12;
+    box-sizing: border-box;
+  }
+
+  .acs-thread {
+    z-index: 2;
+    overflow: visible !important;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 520px) {
   .acs-rail {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(4, minmax(64px, 1fr));
+    gap: 6px;
+    padding: 8px 6px;
   }
 
-  .acs-rail-hint {
-    grid-column: span 1;
+  .acs-card {
+    padding: 8px 2px 12px;
+  }
+
+  .acs-avatar-box {
+    width: 28px;
+    height: 28px;
+  }
+
+  .acs-avatar-box img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .acs-card-name {
+    font-size: 10px;
+    max-width: 58px;
+  }
+
+  .acs-badge-status {
+    font-size: 8px;
+    padding: 1px 4px;
   }
 
   .acs-thread-chrome {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    padding: 10px 14px;
   }
 
-  .acs-thread-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+  .acs-thread-body {
+    padding: 14px;
+  }
+
+  .acs-diff-viewer {
+    font-size: 11px;
+    padding: 8px;
+  }
+
+  .acs-notice-card {
+    padding: 12px;
+  }
+
+  .acs-picker-modal {
+    padding: 12px;
   }
 
   .acs-picker-summary {
     flex-direction: column;
     gap: 4px;
+  }
+
+  .btn-acs-action,
+  .btn-acs-confirm {
+    font-size: 12px;
+    padding: 10px 14px;
   }
 }
 

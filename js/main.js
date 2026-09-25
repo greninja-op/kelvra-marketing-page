@@ -765,14 +765,57 @@ function initHeroModeSwitcher() {
   });
 }
 
-// Wire Mobile Showcase, Hero Mode Switcher, Accounts Router, Swarm Workbench & Swarm Matrix on DOMContentLoaded
+// Wire Mobile Navigation, Showcase, Hero Mode Switcher, Accounts Router, Swarm Workbench & Swarm Matrix on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
+  initMobileNavigation();
   initMobileShowcaseAutoplay();
   initHeroModeSwitcher();
   initAccountsRouter();
   initSwarmWorkbench();
   initSwarmMatrix();
 });
+
+/**
+ * Mobile Navigation Drawer & Hamburger Toggle (BridgeMind Pattern)
+ */
+function initMobileNavigation() {
+  const hamburger = document.getElementById("navHamburger");
+  const drawer = document.getElementById("navMobileDrawer");
+  if (!hamburger || !drawer) return;
+
+  function setDrawer(open) {
+    drawer.classList.toggle("open", open);
+    hamburger.classList.toggle("active", open);
+    hamburger.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isOpen = drawer.classList.contains("open");
+    setDrawer(!isOpen);
+  });
+
+  // Close drawer on clicking any navigation link inside
+  drawer.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      setDrawer(false);
+    });
+  });
+
+  // Close drawer when clicking outside
+  document.addEventListener("click", (e) => {
+    if (drawer.classList.contains("open") && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+      setDrawer(false);
+    }
+  });
+
+  // Close drawer on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawer.classList.contains("open")) {
+      setDrawer(false);
+    }
+  });
+}
 
 /* ==========================================================================
    FEATURE 1: DYNAMIC MULTI-ACCOUNT ROUTER & SPLINE BRIDGE STATE MACHINE
@@ -859,50 +902,92 @@ function initAccountsRouter() {
    * Recalculate Dynamic SVG Splines & Guides
    */
   function updateSplines() {
-    const bridgeRect = bridge.getBoundingClientRect();
-    if (bridgeRect.width <= 0 || bridgeRect.height <= 0) return;
+    const wsRect = workspace.getBoundingClientRect();
+    if (wsRect.width <= 0 || wsRect.height <= 0) return;
 
-    // Set SVG internal viewBox to match container pixels exactly
-    svg.setAttribute("viewBox", `0 0 ${bridgeRect.width} ${bridgeRect.height}`);
+    // Set SVG internal viewBox to match entire workspace container pixels
+    svg.setAttribute("viewBox", `0 0 ${wsRect.width} ${wsRect.height}`);
 
-    const isStacked = window.innerWidth <= 992;
-    let startX = 0;
-    let startY = bridgeRect.height / 2;
-    let endX = bridgeRect.width;
-    let endY = bridgeRect.height / 2;
+    const isStacked = window.innerWidth <= 860;
 
     if (isStacked) {
-      // Clean top-to-bottom pipeline on mobile/tablet
-      startX = bridgeRect.width / 2;
-      startY = 4;
-      endX = bridgeRect.width / 2;
-      endY = bridgeRect.height - 4;
+      // Mobile / Compact Row Pipeline (BridgeMind Mobile Pattern)
+      // Connects active card's bottom-center port dot to thread card's top-center port dot
+      const activeCard = document.querySelector(`.acs-card[data-account="${activeCardId}"]`);
+      let startX = wsRect.width / 2;
+      let startY = 80;
+      let endX = wsRect.width / 2;
+      let endY = 180;
 
-      const vPath = `M ${startX} ${startY} L ${endX} ${endY}`;
+      if (activeCard) {
+        const port = activeCard.querySelector(".acs-port");
+        if (port) {
+          const pRect = port.getBoundingClientRect();
+          startX = pRect.left + pRect.width / 2 - wsRect.left;
+          startY = pRect.top + pRect.height / 2 - wsRect.top;
+        }
+      }
+
+      if (threadPort) {
+        const tRect = threadPort.getBoundingClientRect();
+        endX = tRect.left + tRect.width / 2 - wsRect.left;
+        endY = tRect.top + tRect.height / 2 - wsRect.top;
+      }
+
+      // Smooth vertical S-curve bezier from card bottom port down into thread top port
+      const dy = endY - startY;
+      const c1x = startX;
+      const c1y = startY + dy * 0.48;
+      const c2x = endX;
+      const c2y = endY - dy * 0.48;
+
+      const vPath = `M ${startX.toFixed(1)} ${startY.toFixed(1)} C ${c1x.toFixed(1)} ${c1y.toFixed(1)}, ${c2x.toFixed(1)} ${c2y.toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}`;
       wireGlow.setAttribute("d", vPath);
       wireCore.setAttribute("d", vPath);
+
+      // Faint vertical guide curves for standby cards
+      cards.forEach((card, idx) => {
+        const gPath = document.getElementById(`acsGuidePath${idx + 1}`);
+        if (!gPath) return;
+        const port = card.querySelector(".acs-port");
+        if (port) {
+          const pRect = port.getBoundingClientRect();
+          const gx = pRect.left + pRect.width / 2 - wsRect.left;
+          const gy = pRect.top + pRect.height / 2 - wsRect.top;
+          const gdy = endY - gy;
+          const gd = `M ${gx.toFixed(1)} ${gy.toFixed(1)} C ${gx.toFixed(1)} ${(gy + gdy * 0.48).toFixed(1)}, ${endX.toFixed(1)} ${(endY - gdy * 0.48).toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}`;
+          gPath.setAttribute("d", gd);
+        }
+      });
       return;
     }
 
-    // Desktop view: Compute exact anchor point of active card's port
+    // Desktop view: Compute exact center of active card's port circle (ZERO GAP)
+    let startX = 0;
+    let startY = wsRect.height / 2;
+    let endX = wsRect.width;
+    let endY = wsRect.height / 2;
+
     const activeCard = document.querySelector(`.acs-card[data-account="${activeCardId}"]`);
     if (activeCard) {
       const port = activeCard.querySelector(".acs-port");
       if (port) {
         const pRect = port.getBoundingClientRect();
-        startX = Math.max(0, pRect.left + pRect.width / 2 - bridgeRect.left);
-        startY = pRect.top + pRect.height / 2 - bridgeRect.top;
+        // Exact center coordinates of the port ball relative to workspace
+        startX = pRect.left + pRect.width / 2 - wsRect.left;
+        startY = pRect.top + pRect.height / 2 - wsRect.top;
       }
     }
 
-    // Thread port target
+    // Thread receiving port target (ZERO GAP)
     if (threadPort) {
       const tRect = threadPort.getBoundingClientRect();
-      endX = Math.min(bridgeRect.width, tRect.left + tRect.width / 2 - bridgeRect.left);
-      endY = tRect.top + tRect.height / 2 - bridgeRect.top;
+      // Exact center coordinates of the thread port ball relative to workspace
+      endX = tRect.left + tRect.width / 2 - wsRect.left;
+      endY = tRect.top + tRect.height / 2 - wsRect.top;
     }
 
-    // Smooth cubic bezier spline
+    // Smooth horizontal cubic bezier spline
     const dx = endX - startX;
     const c1x = startX + dx * 0.48;
     const c1y = startY;
@@ -914,15 +999,15 @@ function initAccountsRouter() {
     wireGlow.setAttribute("d", pathD);
     wireCore.setAttribute("d", pathD);
 
-    // Compute faint background guide lines for other cards
+    // Compute faint background guide lines for all 4 cards (ZERO GAP)
     cards.forEach((card, idx) => {
       const gPath = document.getElementById(`acsGuidePath${idx + 1}`);
       if (!gPath) return;
       const port = card.querySelector(".acs-port");
       if (port) {
         const pRect = port.getBoundingClientRect();
-        const gx = Math.max(0, pRect.left + pRect.width / 2 - bridgeRect.left);
-        const gy = pRect.top + pRect.height / 2 - bridgeRect.top;
+        const gx = pRect.left + pRect.width / 2 - wsRect.left;
+        const gy = pRect.top + pRect.height / 2 - wsRect.top;
         const gdx = endX - gx;
         const gd = `M ${gx.toFixed(1)} ${gy.toFixed(1)} C ${(gx + gdx * 0.48).toFixed(1)} ${gy.toFixed(1)}, ${(endX - gdx * 0.48).toFixed(1)} ${endY.toFixed(1)}, ${endX.toFixed(1)} ${endY.toFixed(1)}`;
         gPath.setAttribute("d", gd);
@@ -1215,8 +1300,18 @@ function initAccountsRouter() {
     });
   }
 
-  // Window resize listener for responsive spline recalculation (avoids scroll-thrashing)
+  // Window resize & orientation change listener
   window.addEventListener("resize", updateSplines, { passive: true });
+  window.addEventListener("orientationchange", () => setTimeout(updateSplines, 200), { passive: true });
+  window.addEventListener("load", updateSplines, { passive: true });
+
+  // ResizeObserver for zero-lag recalibration on container shifts or font loads
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(() => {
+      updateSplines();
+    });
+    ro.observe(workspace);
+  }
 
   // Start animated spark particle
   animateSpark();
@@ -1242,8 +1337,10 @@ function initAccountsRouter() {
     runStage1();
   }
 
-  // Initial layout calculation
-  setTimeout(updateSplines, 100);
+  // Initial multi-stage layout calibration
+  setTimeout(updateSplines, 50);
+  setTimeout(updateSplines, 250);
+  setTimeout(updateSplines, 800);
 }
 
 /* ==========================================================================
