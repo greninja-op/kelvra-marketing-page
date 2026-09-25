@@ -224,6 +224,7 @@ button:active,
   height: 68px;
   min-height: 48px;
   position: relative;
+  gap: 16px;
 }
 
 .nav-brand {
@@ -276,17 +277,17 @@ button:active,
 }
 
 .nav-links {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;
+  transform: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(8px, 1vw, 13px);
+  gap: clamp(10px, 1.4vw, 22px);
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   z-index: 1;
+  flex-shrink: 1;
 }
 
 .nav-link {
@@ -6450,17 +6451,16 @@ button:active,
 
 @media (max-width: 1080px) {
   .nav-links {
-    gap: 8px;
+    display: none !important;
   }
-  .nav-link {
-    font-size: 11.5px;
-    padding: 3px 5px;
+  .nav-actions {
+    display: none !important;
   }
-}
-
-@media (max-width: 860px) {
-  .nav-links {
-    display: none;
+  .nav-hamburger {
+    display: inline-flex !important;
+  }
+  .nav-mobile-drawer {
+    display: block;
   }
 }
 
@@ -8808,109 +8808,48 @@ button:active,
 }
 
 /* ==========================================================================
-   HERO QUICK-INSTALL CLI PILL (1-CLICK COPY SNIPPET)
-   ========================================================================== */
-
-.hero-cli-pill-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 18px;
-  width: 100%;
-}
-
-.hero-cli-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 14px 8px 16px;
-  background: rgba(24, 24, 21, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-hairline);
-  border-radius: 999px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  max-width: 92vw;
-}
-
-.hero-cli-pill:hover {
-  border-color: rgba(217, 119, 87, 0.5);
-  box-shadow: 0 12px 32px rgba(217, 119, 87, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  transform: translateY(-1px);
-}
-
-.cli-pill-prefix {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--accent-coral);
-  user-select: none;
-}
-
-.cli-pill-cmd {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  color: #F5F5F0;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.cli-pill-copy {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  padding: 5px 11px;
-  font-size: 11px;
-  font-family: var(--font-mono);
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
-}
-
-.cli-pill-copy:hover {
-  background: var(--accent-terracotta);
-  border-color: var(--accent-coral);
-  color: #FFFFFF;
-}
-
-.cli-pill-copy.copied {
-  background: rgba(82, 183, 136, 0.2);
-  border-color: #52B788;
-  color: #52B788;
-}
-
-/* ==========================================================================
    SECTION EXPLORATION CALLOUT BUTTON (TIER 1 -> TIER 2 HANDOFF)
    ========================================================================== */
+
+.section-explore-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 18px 0 28px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.section-explore-wrap.start {
+  justify-content: flex-start;
+}
 
 .btn-section-explore {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-size: 13px;
   font-weight: 600;
   color: var(--accent-coral);
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 9px 20px;
   border-radius: 999px;
   background: rgba(217, 119, 87, 0.1);
-  border: 1px solid rgba(217, 119, 87, 0.3);
-  margin-top: 14px;
+  border: 1px solid rgba(217, 119, 87, 0.35);
+  margin: 0;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   width: fit-content;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-section-explore:hover {
-  background: rgba(217, 119, 87, 0.2);
+  background: rgba(217, 119, 87, 0.22);
   border-color: var(--accent-coral);
   color: #FFFFFF;
-  transform: translateX(3px);
-  box-shadow: 0 4px 16px rgba(217, 119, 87, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(217, 119, 87, 0.28);
 }
 
 .btn-section-explore svg {
@@ -9235,18 +9174,6 @@ button:active,
   .benchmark-cards-grid {
     grid-template-columns: 1fr;
   }
-  .hero-cli-pill {
-    flex-wrap: wrap;
-    border-radius: 12px;
-    padding: 10px 12px;
-    gap: 8px;
-  }
-  .cli-pill-cmd {
-    font-size: 11.5px;
-  }
-  .cli-pill-copy {
-    width: 100%;
-    justify-content: center;
 }
 
 /* Skills Marquee */
@@ -9254,15 +9181,17 @@ button:active,
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding: 24px 0;
+  padding: 16px 0;
+  margin: 8px 0 0 0;
   mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
 
 .skills-marquee-track {
-  display: flex;
+  display: flex !important;
   gap: 14px;
   width: max-content;
+  will-change: transform;
   animation: skillsMarqueeScroll 32s linear infinite;
 }
 
@@ -9276,12 +9205,12 @@ button:active,
 }
 
 .skill-chip {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   gap: 6px;
   padding: 8px 18px;
-  background: rgba(28, 28, 24, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(28, 28, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
   font-family: var(--font-mono, monospace);
   font-size: 13px;
@@ -9289,6 +9218,7 @@ button:active,
   white-space: nowrap;
   backdrop-filter: blur(8px);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
 }
 
 .skill-chip:hover {
@@ -9298,3 +9228,4 @@ button:active,
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(217, 119, 87, 0.2);
 }
+
