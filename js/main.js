@@ -176,9 +176,14 @@ function initFaqAccordion() {
     trigger?.addEventListener("click", () => {
       const isOpen = item.classList.contains("open");
       // Close peers for clean single-expansion feel
-      faqItems.forEach((other) => other.classList.remove("open"));
+      faqItems.forEach((other) => {
+        other.classList.remove("open");
+        const otherTrigger = other.querySelector(".faq-trigger");
+        if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
+      });
       if (!isOpen) {
         item.classList.add("open");
+        trigger.setAttribute("aria-expanded", "true");
       }
     });
   });

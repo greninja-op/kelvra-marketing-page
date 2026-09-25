@@ -1397,67 +1397,79 @@
       <div class="faq-accordion">
         <!-- Q1 -->
         <div class="faq-item open">
-          <button class="faq-trigger">
+          <button type="button" class="faq-trigger" aria-expanded="true">
             <span>What is Kelvra?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content">
-            Kelvra (Kinetic Execution Layer, Verified Routing for Agents) is an open-source multi-agent developer intelligence platform. It provides a multi-terminal grid for running parallel coding agents (Claude Code, Cursor, Gemini, Codex) in isolated Git worktrees, controlled via natural speech and gated by human PR reviews.
+            <div class="faq-content-inner">
+              Kelvra (Kinetic Execution Layer, Verified Routing for Agents) is an open-source multi-agent developer intelligence platform. It provides a multi-terminal grid for running parallel coding agents (Claude Code, Cursor, Gemini, Codex) in isolated Git worktrees, controlled via natural speech and gated by human PR reviews.
+            </div>
           </div>
         </div>
 
         <!-- Q2 -->
         <div class="faq-item">
-          <button class="faq-trigger">
+          <button type="button" class="faq-trigger" aria-expanded="false">
             <span>What are the six products in the Kelvra ecosystem?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content">
-            The ecosystem consists of six tightly integrated products: (1) <strong>Kelvra Bench</strong>: the multi-agent terminal grid & orchestrator in isolated Git worktrees; (2) <strong>Kelvra Voice</strong>: continuous on-device dictation with push-to-hold Ctrl+Space orb directives; (3) <strong>Kelvra Security</strong>: PromptGuard injection defense and automated secrets auditing; (4) <strong>Kelvra Ward</strong>: cryptographic supply chain security with SLSA Level 3 attestations, Sigstore Cosign verification, and the Godmode sandbox runtime; (5) <strong>Kelvra Space</strong>: the unified umbrella dashboard connecting all local services and active sessions; and (6) <strong>Kelvra Mobile</strong>: the companion remote control app providing real-time telemetry, swarm terminal handback, diff inspections, and voice dispatch.
+            <div class="faq-content-inner">
+              The ecosystem consists of six tightly integrated products: (1) <strong>Kelvra Bench</strong>: the multi-agent terminal grid & orchestrator in isolated Git worktrees; (2) <strong>Kelvra Voice</strong>: continuous on-device dictation with push-to-hold Ctrl+Space orb directives; (3) <strong>Kelvra Security</strong>: PromptGuard injection defense and automated secrets auditing; (4) <strong>Kelvra Ward</strong>: cryptographic supply chain security with SLSA Level 3 attestations, Sigstore Cosign verification, and the Godmode sandbox runtime; (5) <strong>Kelvra Space</strong>: the unified umbrella dashboard connecting all local services and active sessions; and (6) <strong>Kelvra Mobile</strong>: the companion remote control app providing real-time telemetry, swarm terminal handback, diff inspections, and voice dispatch.
+            </div>
           </div>
         </div>
 
         <!-- Q3 -->
         <div class="faq-item">
-          <button class="faq-trigger">
+          <button type="button" class="faq-trigger" aria-expanded="false">
             <span>Do I need my own API keys or CLI subscriptions?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content">
-            Yes. Kelvra is a self-hosted platform that interfaces directly with your own CLI tools (like Claude Code, Cursor Agent, or Gemini CLI) or your own API keys (Anthropic, OpenAI, Gemini). You never pay Kelvra a markup on tokens or a subscription fee.
+            <div class="faq-content-inner">
+              Yes. Kelvra is a self-hosted platform that interfaces directly with your own CLI tools (like Claude Code, Cursor Agent, or Gemini CLI) or your own API keys (Anthropic, OpenAI, Gemini). You never pay Kelvra a markup on tokens or a subscription fee.
+            </div>
           </div>
         </div>
 
         <!-- Q4 -->
         <div class="faq-item">
-          <button class="faq-trigger">
+          <button type="button" class="faq-trigger" aria-expanded="false">
             <span>How does Git worktree isolation prevent merge conflicts?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content">
-            Rather than having multiple agents write to the same working directory simultaneously, Kelvra spawns each agent in an isolated Git worktree branch under <code>.worktrees/</code>. Agents operate on disjoint file subsets. When finished, their changes are presented as a clean PR-style diff for your inspection before merging.
+            <div class="faq-content-inner">
+              Rather than having multiple agents write to the same working directory simultaneously, Kelvra spawns each agent in an isolated Git worktree branch under <code>.worktrees/</code>. Agents operate on disjoint file subsets. When finished, their changes are presented as a clean PR-style diff for your inspection before merging.
+            </div>
           </div>
         </div>
 
         <!-- Q5 -->
         <div class="faq-item">
-          <button class="faq-trigger">
+          <button type="button" class="faq-trigger" aria-expanded="false">
             <span>Can I run Kelvra fully offline or air-gapped?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content">
-            Yes! Kelvra features a strict Air-Gap mode. When enabled, cloud egress is blocked, and all transcription, intent parsing, and code generation runs through local models (such as local Whisper and Ollama/Local Llama).
+            <div class="faq-content-inner">
+              Yes! Kelvra features a strict Air-Gap mode. When enabled, cloud egress is blocked, and all transcription, intent parsing, and code generation runs through local models (such as local Whisper and Ollama/Local Llama).
+            </div>
           </div>
         </div>
 
         <!-- Q6 -->
         <div class="faq-item">
-          <button class="faq-trigger">
+          <button type="button" class="faq-trigger" aria-expanded="false">
             <span>How do I contribute or customize Kelvra?</span>
             <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-content">
-            Kelvra is 100% open source under the MIT / Apache 2.0 license. You can clone the repository, write custom agent personas, add workflow presets, or submit pull requests directly on our GitHub repository.
+            <div class="faq-content-inner">
+              Kelvra is 100% open source under the MIT / Apache 2.0 license. You can clone the repository, write custom agent personas, add workflow presets, or submit pull requests directly on our GitHub repository.
+            </div>
           </div>
         </div>
       </div>
