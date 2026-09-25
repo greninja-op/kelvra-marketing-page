@@ -423,10 +423,9 @@ function initMobileShowcaseAutoplay() {
       runTerminalSimulation();
     }
 
-    // If triggered manually by user, pause autoplay briefly then resume
+    // If triggered manually by user, clear any pending autoplay
     if (isManual) {
       clearInterval(autoplayInterval);
-      setTimeout(startAutoplay, 6000);
     }
   }
 
@@ -626,9 +625,8 @@ function initMobileShowcaseAutoplay() {
     });
   }
 
-  // Initial activate & start timer
+  // Initial activate without autoplay
   switchScenario(scenarios[0], false);
-  startAutoplay();
 }
 
 /* ==========================================================================
