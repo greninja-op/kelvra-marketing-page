@@ -64,13 +64,13 @@ function initVoiceOrbDemo() {
   const phrases = [
     { s: "listening", status: "LISTENING", key: "swarm", t: "create a workspace named nova-app and 6 sections of Claude Code" },
     { s: "processing", status: "DECOMPOSING", key: "swarm", t: "Splitting task into 6 disjoint worktrees & verifying boundary locks..." },
-    { s: "dispatched", status: "DISPATCHED", key: "swarm", t: "✔ Swarm launched: 6 Claude Code agents executing concurrently in isolation" },
+    { s: "dispatched", status: "DISPATCHED", key: "swarm", t: "Swarm launched: 6 Claude Code agents executing concurrently in isolation" },
     { s: "listening", status: "LISTENING", key: "test", t: "run cargo test on backend and auto-fix all failures" },
     { s: "processing", status: "AUDITING", key: "test", t: "Running pytest/cargo test harness with zero network egress..." },
-    { s: "dispatched", status: "DISPATCHED", key: "test", t: "✔ All 40 tests passed across worktrees with zero leaks" },
+    { s: "dispatched", status: "DISPATCHED", key: "test", t: "All 40 tests passed across worktrees with zero leaks" },
     { s: "listening", status: "LISTENING", key: "quarantine", t: "quarantine untrusted PR #412 and verify SLSA provenance" },
     { s: "processing", status: "QUARANTINING", key: "quarantine", t: "Detecting prompt injection attempt. Relocating diff to quarantine storage..." },
-    { s: "dispatched", status: "ISOLATED", key: "quarantine", t: "✔ PR #412 isolated at port :8101 gatekeeper boundary" },
+    { s: "dispatched", status: "ISOLATED", key: "quarantine", t: "PR #412 isolated at port :8101 gatekeeper boundary" },
   ];
   let phraseIdx = 0;
 
@@ -349,10 +349,10 @@ function initMobileShowcaseAutoplay() {
   const terminalSequence = [
     { text: "$ git worktree add .worktrees/fe-mobile", cls: "term-code", prefix: "$ " },
     { text: "• Synchronizing branch state over mesh...", cls: "text-muted" },
-    { text: "✔ Worktree locked at .worktrees/fe-mobile", cls: "text-emerald" },
+    { text: "Worktree locked at .worktrees/fe-mobile", cls: "text-emerald" },
     { text: "$ npm run dev -- --host", cls: "term-code", prefix: "$ " },
     { text: "• Compiling Vite 5.4 application bundle...", cls: "text-muted" },
-    { text: "✔ Ready in 138ms: http://localhost:5173/", cls: "text-emerald" },
+    { text: "Ready in 138ms: http://localhost:5173/", cls: "text-emerald" },
     { text: "• Interactive PTY attached (PID: 8192)", cls: "text-coral", style: "color:#D97757;" }
   ];
 
@@ -466,11 +466,11 @@ function initMobileShowcaseAutoplay() {
 
   if (btnApprove) {
     btnApprove.addEventListener("click", () => {
-      btnApprove.textContent = "✔ Merged to main";
+      btnApprove.textContent = "Merged to main";
       btnApprove.style.background = "#52B788";
       btnApprove.style.color = "#0B0B09";
       setTimeout(() => {
-        btnApprove.textContent = "✔ Approve & Merge";
+        btnApprove.textContent = "Approve & Merge";
         btnApprove.style.background = "";
         btnApprove.style.color = "";
       }, 2500);
@@ -499,7 +499,7 @@ function initMobileShowcaseAutoplay() {
   if (pushApproveBtn) {
     pushApproveBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      pushApproveBtn.textContent = "✔ Authorized";
+      pushApproveBtn.textContent = "Authorized";
       pushApproveBtn.style.background = "#52B788";
       pushApproveBtn.style.color = "#0B0B09";
       if (pushBanner) {
@@ -719,7 +719,7 @@ function initHeroModeSwitcher() {
   if (chatApproveBtn) {
     chatApproveBtn.addEventListener("click", () => {
       const orig = chatApproveBtn.innerHTML;
-      chatApproveBtn.innerHTML = "✔ Approved &amp; Merged";
+      chatApproveBtn.innerHTML = "Approved &amp; Merged";
       chatApproveBtn.style.background = "#52B788";
       chatApproveBtn.style.color = "#0B0B09";
       setTimeout(() => {
@@ -1277,7 +1277,7 @@ function initAccountsRouter() {
       if (!opt.querySelector(".acs-option-check")) {
         const chk = document.createElement("span");
         chk.className = "acs-option-check";
-        chk.textContent = "✔";
+        chk.innerHTML = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
         opt.appendChild(chk);
       }
       const targetPick = opt.dataset.pick;
@@ -1452,7 +1452,7 @@ function initSwarmWorkbench() {
         diffToast.style.display = "flex";
         diffToast.style.borderColor = "rgba(82, 183, 136, 0.4)";
         diffToast.style.background = "rgba(82, 183, 136, 0.12)";
-        toastTitle.textContent = "✔ Fast-forward merged into main @ commit 9f84a1e";
+        toastTitle.textContent = "Fast-forward merged into main @ commit 9f84a1e";
         toastTitle.style.color = "#52B788";
         toastSub.textContent = "Worktree .worktrees/auth-mesh reaped with 0 merge conflicts.";
       }
@@ -1728,13 +1728,13 @@ function initSwarmMatrix() {
     btnBroadcastTest.addEventListener("click", () => {
       broadcastResponse("Running $ cargo test --all across 6 worktrees...", "#FFD43B");
       setTimeout(() => {
-        broadcastResponse("✔ All 44 tests passed across 6 worktrees · 0 failed · 42ms total runtime", "#52B788");
+        broadcastResponse("All 44 tests passed across 6 worktrees · 0 failed · 42ms total runtime", "#52B788");
         const qaStream = document.getElementById("paneStreamQa");
         if (qaStream) {
           const newRow = document.createElement("div");
           newRow.style.color = "#52B788";
           newRow.style.marginTop = "3px";
-          newRow.textContent = "✔ [Broadcast] Full suite verified clean: 28 unit, 16 integration";
+          newRow.textContent = "[Broadcast] Full suite verified clean: 28 unit, 16 integration";
           qaStream.appendChild(newRow);
         }
       }, 450);
@@ -1746,13 +1746,13 @@ function initSwarmMatrix() {
     btnBroadcastScan.addEventListener("click", () => {
       broadcastResponse("Running $ kelvra sec scan (PromptGuard + AST secrets)...", "#60A5FA");
       setTimeout(() => {
-        broadcastResponse("✔ Security Scan Passed: 0 secret leaks, 0 prompt injections detected", "#52B788");
+        broadcastResponse("Security Scan Passed: 0 secret leaks, 0 prompt injections detected", "#52B788");
         const secStream = document.getElementById("paneStreamSec");
         if (secStream) {
           const newRow = document.createElement("div");
           newRow.style.color = "#60A5FA";
           newRow.style.marginTop = "3px";
-          newRow.textContent = "✔ [Broadcast] PromptGuard AST check: 100% clean diffs";
+          newRow.textContent = "[Broadcast] PromptGuard AST check: 100% clean diffs";
           secStream.appendChild(newRow);
         }
       }, 450);
@@ -1764,13 +1764,13 @@ function initSwarmMatrix() {
     btnBroadcastSync.addEventListener("click", () => {
       broadcastResponse("Running $ git worktree sync --all across namespaces...", "#F0906F");
       setTimeout(() => {
-        broadcastResponse("✔ Git worktrees synchronized: 0 lock collisions across 6 branches", "#52B788");
+        broadcastResponse("Git worktrees synchronized: 0 lock collisions across 6 branches", "#52B788");
         const leadStream = document.getElementById("paneStreamLead");
         if (leadStream) {
           const newRow = document.createElement("div");
           newRow.style.color = "#F0906F";
           newRow.style.marginTop = "3px";
-          newRow.textContent = "✔ [Broadcast] Disjoint branches synced to staging drawer";
+          newRow.textContent = "[Broadcast] Disjoint branches synced to staging drawer";
           leadStream.appendChild(newRow);
         }
       }, 450);
@@ -1957,13 +1957,13 @@ function initWardStudio() {
             currentStep.classList.remove("active");
             currentStep.classList.add("completed");
             const icon = currentStep.querySelector(".step-icon");
-            if (icon) icon.textContent = "✔";
+            if (icon) icon.innerHTML = '<svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
             if (status) status.textContent = item.label;
 
             // If final step
             if (index === pipelineSequence.length - 1) {
               if (gateOutputBox) gateOutputBox.style.display = "block";
-              if (gateBtnLabel) gateBtnLabel.textContent = "✔ Release Attestation Complete";
+              if (gateBtnLabel) gateBtnLabel.textContent = "Release Attestation Complete";
               gateRunBtn.style.opacity = "1";
               gateRunBtn.style.pointerEvents = "auto";
               isGateRunning = false;
@@ -2020,8 +2020,8 @@ function initWorktreeStudio() {
         { name: "tests/touch.test.ts", type: "add", text: "+42" }
       ],
       terminal: `<span class="wt-term-prompt">$</span> <span class="wt-term-cmd">git worktree lock --reason="Active Claude Code session (PID 8192)"</span><br />` +
-                `<span class="wt-term-res">✔ Inode lock established at .worktrees/fe-mobile</span><br />` +
-                `<span class="wt-term-res">✔ AST-Tree validation passed: 0 symbol collisions with pending PR #19</span>`
+                `<span class="wt-term-res">Inode lock established at .worktrees/fe-mobile</span><br />` +
+                `<span class="wt-term-res">AST-Tree validation passed: 0 symbol collisions with pending PR #19</span>`
     },
     auth: {
       path: "/dev/shm/.kelvra/wt-auth-mesh",
@@ -2034,8 +2034,8 @@ function initWorktreeStudio() {
         { name: "src/crypto/claims.rs", type: "mod", text: "~12" }
       ],
       terminal: `<span class="wt-term-prompt">$</span> <span class="wt-term-cmd">git worktree lock --reason="OpenAI o3-mini session (PID 8204)"</span><br />` +
-                `<span class="wt-term-res">✔ Inode lock established at .worktrees/auth-mesh</span><br />` +
-                `<span class="wt-term-res">✔ Hardware key P-256 claims passed compilation with zero heap leaks</span>`
+                `<span class="wt-term-res">Inode lock established at .worktrees/auth-mesh</span><br />` +
+                `<span class="wt-term-res">Hardware key P-256 claims passed compilation with zero heap leaks</span>`
     },
     qa: {
       path: "/dev/shm/.kelvra/wt-qa-sentinel",
@@ -2048,8 +2048,8 @@ function initWorktreeStudio() {
         { name: "data/sandbox/quarantine.json", type: "mod", text: "0 diffs" }
       ],
       terminal: `<span class="wt-term-prompt">$</span> <span class="wt-term-cmd">git worktree lock --reason="Local Ollama SLSA audit (PID 8219)"</span><br />` +
-                `<span class="wt-term-res">✔ Read-only filesystem boundary active (0 network egress)</span><br />` +
-                `<span class="wt-term-res">✔ 40/40 AppSec assertions passing with SLSA Level 3 provenance</span>`
+                `<span class="wt-term-res">Read-only filesystem boundary active (0 network egress)</span><br />` +
+                `<span class="wt-term-res">40/40 AppSec assertions passing with SLSA Level 3 provenance</span>`
     },
     db: {
       path: "/dev/shm/.kelvra/wt-db-migration",
@@ -2062,8 +2062,8 @@ function initWorktreeStudio() {
         { name: "src/storage/index.rs", type: "mod", text: "~30" }
       ],
       terminal: `<span class="wt-term-prompt">$</span> <span class="wt-term-cmd">git worktree lock --reason="Gemini 2.5 Flash session (PID 8231)"</span><br />` +
-                `<span class="wt-term-res">✔ Write-ahead log lock confirmed</span><br />` +
-                `<span class="wt-term-res">✔ 0 lock collisions with active SQLite connection pool</span>`
+                `<span class="wt-term-res">Write-ahead log lock confirmed</span><br />` +
+                `<span class="wt-term-res">0 lock collisions with active SQLite connection pool</span>`
     }
   };
 
@@ -2134,9 +2134,9 @@ function initWorktreeStudio() {
       setTimeout(() => {
         btnRebase.classList.add("success");
         btnRebase.style.opacity = "1";
-        if (btnRebaseLabel) btnRebaseLabel.textContent = "✔ Fast-Forward Merged (commit 4d91a0c)";
+        if (btnRebaseLabel) btnRebaseLabel.textContent = "Fast-Forward Merged (commit 4d91a0c)";
         if (rebaseStatus) {
-          rebaseStatus.textContent = "✔ Clean rebase verified: 0 merge conflicts";
+          rebaseStatus.textContent = "Clean rebase verified: 0 merge conflicts";
           rebaseStatus.style.color = "#52B788";
         }
       }, 380);
